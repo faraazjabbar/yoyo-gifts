@@ -1,6 +1,7 @@
 import { Gift } from './gift.model';
 
 export interface User {
+  key?: string;
   userId: string;
   userName: string;
   email: string;
