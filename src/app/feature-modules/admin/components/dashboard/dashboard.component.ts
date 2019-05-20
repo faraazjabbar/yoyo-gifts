@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private mdbModal: MDBModalService, private adminGiftService: AdminGiftService) { }
 
   ngOnInit() {
+    this.adminGiftService.deleteGift();
   }
   openAddGiftModal() {
     this.modalRef = this.mdbModal.show(ManageGiftComponent);
