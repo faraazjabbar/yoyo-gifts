@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 })
 export class GiftService {
   gifts: any = [];
-  constructor(private firebaseService: FirebaseService) { }
-
+  constructor(private firebaseService: FirebaseService) {}
 
   public getGifts() {
-    this.gifts = this.firebaseService.get('/gifts');
-      console.log(this.gifts);
-    }
+    this.firebaseService.get('/gifts').subscribe(data => {
+      console.log(data);
+    });
+  }
 }
