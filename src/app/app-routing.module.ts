@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [
+  {
+    path: '', component: HomeComponent
+  },
+  {
+    path: 'admin', loadChildren: './feature-modules/admin/admin.module#AdminModule'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
