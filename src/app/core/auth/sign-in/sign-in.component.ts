@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../services/auth.service';
 import { User } from './../../../shared/models/user.model';
 import { Router } from '@angular/router';
+import { RouterLinks } from './../../../shared/constants/app.constants';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  public isRegistered = true;
+  public isRegistered = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
@@ -39,14 +40,17 @@ export class SignInComponent implements OnInit {
 
   private getUser(email) {
     this.authService.getUser(email).subscribe((data: any) => {
-      console.log(data);
-      this.setUserInSession(Object.values(data)[0]);
+      const user: any = { key: Object.keys[0], ...Object.values(data)[0] };
+      this.setUserInSession(user);
     });
   }
 
-  private setUserInSession(user) {
+  private setUserInSession(user: User) {
     sessionStorage.setItem('user', JSON.stringify(user));
-    this.router.navigate(['/admin']);
+    this.authService.emitUserData.next(user);
+    user.isAdmin
+      ? this.router.navigate([RouterLinks.ADMIN])
+      : this.router.navigate([RouterLinks.USER]);
   }
 
   public toggleRegister() {
