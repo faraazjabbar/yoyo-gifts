@@ -11,16 +11,15 @@ export class AppComponent implements OnInit {
     title = 'yoyo-gifts';
 
     ngOnInit() {
-        console.log('Start: emailjs-com');
-
-        const templateParams = {
-            email: 'Vishnu.Paturu@mindtree.com',
-            name: 'Samir',
-            notes: 'Check this out!'
-        };
-        const emailJsServiceId = 'gmail';
-        const emailJsTemplateId = 'template_Cg1kIF0Z';
-        const emailJsUserId = 'user_1Vb8OYU8eOTkZpWt24PNf';
+        // console.log('Start: emailjs-com');
+        // const templateParams = {
+        //     toemail: 'Samir.Adak@mindtree.com',
+        //     toname: '<recipient name>',
+        //     fromname: 'YoYo Gifts Group#1'
+        // };
+        // const emailJsServiceId = 'gmail';
+        // const emailJsTemplateId = 'template_Cg1kIF0Z';
+        // const emailJsUserId = 'user_1Vb8OYU8eOTkZpWt24PNf';
 
         // emailjs.send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
         //     .then((response) => {
@@ -28,8 +27,9 @@ export class AppComponent implements OnInit {
         //     }, (err) => {
         //         console.log('FAILED...', err);
         //     });
+        // console.log('End: emailjs-com');
 
-        console.log('End: emailjs-com');
+
     }
 
 }
