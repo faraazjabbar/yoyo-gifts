@@ -8,22 +8,28 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HeaderComponent } from './components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [SignInComponent, HeaderComponent],
+  declarations: [SignInComponent, HeaderComponent, NoAccessComponent],
   imports: [
     CommonModule,
+    RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     MDBBootstrapModule,
-    HeaderComponent
+    HeaderComponent,
+    NoAccessComponent
   ]
 })
 export class CoreModule {}

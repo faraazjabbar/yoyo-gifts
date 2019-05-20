@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLinks } from './../../../shared/constants/app.constants';
 import { AuthService } from '../../services/auth.service';
@@ -13,7 +13,11 @@ import { Subscription, Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
   public user;
   isLoggedIn = false;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.getUser();
@@ -22,6 +26,7 @@ export class HeaderComponent implements OnInit {
   private getUser() {
     this.authService.emitUserData.subscribe(data => {
       this.user = JSON.parse(JSON.stringify(data));
+      this.cdr.detectChanges();
     });
   }
 

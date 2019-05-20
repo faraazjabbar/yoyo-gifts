@@ -23,6 +23,10 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  public createUserWithEmail(email, password) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+
   public signOut() {
     return this.afAuth.auth.signOut();
   }
