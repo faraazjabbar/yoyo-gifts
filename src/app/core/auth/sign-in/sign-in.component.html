@@ -1,3 +1,77 @@
-<p>
-  sign-in works!
-</p>
+<div>
+  <!-- Default form login -->
+  <form class="text-center border border-light p-5">
+    <p class="h4 mb-4">Sign in</p>
+
+    <div class="form-row mb-4" *ngIf="isRegistered">
+      <div class="col">
+        <!-- First name -->
+        <input
+          type="text"
+          id="defaultRegisterFormFirstName"
+          class="form-control"
+          placeholder="First name"
+        />
+      </div>
+      <div class="col">
+        <!-- Last name -->
+        <input
+          type="text"
+          id="defaultRegisterFormLastName"
+          class="form-control"
+          placeholder="Last name"
+        />
+      </div>
+    </div>
+
+    <!-- Email -->
+    <input
+      type="email"
+      id="defaultLoginFormEmail"
+      class="form-control mb-4"
+      placeholder="E-mail"
+    />
+
+    <!-- Password -->
+    <input
+      type="password"
+      id="defaultLoginFormPassword"
+      class="form-control mb-4"
+      placeholder="Password"
+    />
+
+    <div class="d-flex justify-content-around">
+      <div>
+        <!-- Remember me -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="defaultLoginFormRemember"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+    <!-- Register -->
+    <p *ngIf="!isRegistered">
+      Not a member?
+      <a class="light-blue-text" (click)="toggleRegister()">Register</a>
+    </p>
+    <p *ngIf="isRegistered">
+      Already a member?
+      <a class="light-blue-text" (click)="toggleRegister()">Login</a>
+    </p>
+
+    <!-- Social login -->
+    <p>or sign in with:</p>
+
+    <a type="button" class="light-blue-text mx-2" (click)="signInWithGoogle()">
+      <em class="fab fa-google-plus-g"></em>
+    </a>
+  </form>
+  <!-- Default form login -->
+</div>
