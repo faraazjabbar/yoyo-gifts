@@ -4,11 +4,14 @@ import { auth } from 'firebase';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/shared/models/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public emitUserData = new BehaviorSubject(null);
+
   constructor(private afAuth: AngularFireAuth, private http: HttpClient) {}
 
   public googleSignInWithPopup() {
