@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: './feature-modules/admin/admin.module#AdminModule'
+  },
+  {
+    path: 'gifts',
+    loadChildren: './feature-modules/gift/gift.module#GiftModule'
   }
 ];
 
