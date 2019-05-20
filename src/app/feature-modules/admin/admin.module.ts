@@ -7,10 +7,9 @@ import { ManageGiftComponent } from './components/manage-gift/manage-gift.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent, UserListComponent],
+  declarations: [ManageGiftComponent, DashboardComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

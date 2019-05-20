@@ -1,5 +1,5 @@
 export interface Gift {
-  giftId?: string;
+  key?: string;
   giftName: string;
   brandId?: string;
   brandName: string;
@@ -24,13 +24,13 @@ export interface Review {
 }
 
 export interface Brand {
-  brandId?: string;
+  key?: string;
   brandName: string;
   categoryId?: string;
   categoryName: string;
 }
 
 export interface Category {
-  categoryId?: string;
+  key?: string;
   categoryName: string;
 }

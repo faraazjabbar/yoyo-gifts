@@ -1,6 +1,7 @@
 import { Gift } from './gift.model';
 
 export interface Order {
+  key?: string;
   email: string;
   recieved: RecievedGift[];
   sent: SentGift[];
