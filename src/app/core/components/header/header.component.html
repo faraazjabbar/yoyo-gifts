@@ -2,7 +2,7 @@
   <nav
     class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar"
   >
-    <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
+    <a class="navbar-brand" href="/"><strong>YOYO</strong></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -32,9 +32,14 @@
         </li>
       </ul>
       <ul class="navbar-nav nav-flex-icons">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!user">
           <button type="button" class="btn btn-info" (click)="gotoSignIn()">
             SignIn
+          </button>
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <button type="button" class="btn btn-info" (click)="logOut()">
+            logout
           </button>
         </li>
       </ul>
