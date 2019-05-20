@@ -11,15 +11,15 @@ import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 export class DashboardComponent implements OnInit {
   modalRef: MDBModalRef;
 
-  constructor(private mdbModal: MDBModalService, private adminGiftService: AdminGiftService) { }
+  constructor(
+    private mdbModal: MDBModalService,
+    private adminGiftService: AdminGiftService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   openAddGiftModal() {
     this.modalRef = this.mdbModal.show(ManageGiftComponent);
 
     this.modalRef.content.heading = 'Add new project';
-
   }
-
 }

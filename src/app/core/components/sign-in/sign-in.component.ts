@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../services/auth.service';
-import { User } from './../../../shared/models/user.model';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
-import { RouterLinks } from './../../../shared/constants/app.constants';
+import { RouterLinks } from '../../../shared/constants/app.constants';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,7 +17,6 @@ export class SignInComponent implements OnInit {
 
   public signInWithGoogle() {
     this.authService.googleSignInWithPopup().then((data: any) => {
-      console.log(data);
       data.additionalUserInfo.isNewUser
         ? this.addNewUser(data)
         : this.getUser(data.user.email);
@@ -50,7 +49,7 @@ export class SignInComponent implements OnInit {
     this.authService.emitUserData.next(user);
     user.isAdmin
       ? this.router.navigate([RouterLinks.ADMIN])
-      : this.router.navigate([RouterLinks.USER]);
+      : this.router.navigate([RouterLinks.HOME]);
   }
 
   public toggleRegister() {
