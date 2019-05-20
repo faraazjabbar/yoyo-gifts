@@ -1,16 +1,17 @@
 export interface Gift {
-  giftId: string;
+  giftId?: string;
   giftName: string;
   brandId?: string;
   brandName: string;
   categoryId?: string;
   categoryName: string;
-  imageLink: string;
+  imageLink?: string;
   cost: number;
   discount?: number;
   count: number;
   description?: string;
   rating?: number;
+  giftedCount?: number;
   reviews?: Review[];
 }
 
@@ -20,4 +21,16 @@ export interface Review {
   userImage?: string;
   userRating: number;
   userReview: string;
+}
+
+export interface Brand {
+  brandId?: string;
+  brandName: string;
+  categoryId?: string;
+  categoryName: string;
+}
+
+export interface Category {
+  categoryId?: string;
+  categoryName: string;
 }

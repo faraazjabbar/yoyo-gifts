@@ -16,4 +16,6 @@ export interface RecievedGift extends Gift {
   senderEmail: string;
   senderName: string;
   senderImage?: string;
+  isRedeemed: boolean;
+  isReviewed: boolean;
 }
