@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  public isRegistered = true;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
-  public signIn() {
+  public signInWithGoogle() {
     this.authService.googleSignInWithPopup().then((data: any) => {
       console.log(data);
       data.additionalUserInfo.isNewUser
@@ -46,5 +47,9 @@ export class SignInComponent implements OnInit {
   private setUserInSession(user) {
     sessionStorage.setItem('user', JSON.stringify(user));
     this.router.navigate(['/admin']);
+  }
+
+  public toggleRegister() {
+    this.isRegistered = !this.isRegistered;
   }
 }
