@@ -29,8 +29,12 @@ export class FirebaseService {
     const projects = this.db.list(path);
     return projects.push(item);
   }
+
   update(path: string, item: any) {
-    return of(this.db.object(path + '/' + item.key).update(item));
+    const key = item.key;
+    delete item.key;
+    return of(this.db.object( path + '/' + key)
+      .update(item));
   }
   delete(path: string, item: any) {
     return this.db.object(path + '/' + item.key).remove();
