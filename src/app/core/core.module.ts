@@ -19,7 +19,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   exports: [
     AngularFireModule,
     AngularFireDatabaseModule,
-    MDBBootstrapModule
+    MDBBootstrapModule,
   ]
 })
 export class CoreModule { }

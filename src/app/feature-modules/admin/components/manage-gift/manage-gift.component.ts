@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, Validators, NgForm } from '@angular/forms';
+import { MDBModalRef } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-manage-gift',
   templateUrl: './manage-gift.component.html',
-  styleUrls: ['./manage-gift.component.scss']
+  styleUrls: ['./manage-gift.component.scss'],
 })
 export class ManageGiftComponent implements OnInit {
+  @ViewChild('projectForm') projectForm: NgForm;
 
-  constructor() { }
+  heading: string;
+  project: any = {};
+
+  constructor(public modalRef: MDBModalRef) { }
 
   ngOnInit() {
   }
