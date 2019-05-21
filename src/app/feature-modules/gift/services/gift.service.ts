@@ -16,6 +16,6 @@ export class GiftService {
     }
 
     getGiftByKey(key: string): Observable<Gift> {
-        return this.firebaseService.getByKey<Gift>(key);
+        return this.firebaseService.getByKey<Gift>('/gifts', key);
     }
 }
