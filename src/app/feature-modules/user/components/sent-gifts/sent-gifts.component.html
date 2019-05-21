@@ -1,0 +1,17 @@
+<div *ngIf="noData">
+  <h3>You haven't sent any gifts till now. Goto Gifts to send gifts.</h3>
+</div>
+
+<div *ngIf="!noData">
+  <div class="col-md-12 sent-gift" *ngFor="let gift of sentGifts">
+    <div class="row">
+      <div class="col-md-10">
+        <p>You have gifted {{ gift.giftName }} to {{ gift.recieverName }}.</p>
+      </div>
+
+      <div class=" date col-md-2">
+        {{ formatDate(gift.sentOn) }}
+      </div>
+    </div>
+  </div>
+</div>
