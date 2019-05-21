@@ -11,7 +11,7 @@ export class GiftListComponent implements OnInit {
   constructor(private giftService: GiftService) { }
 
   ngOnInit() {
-    this.giftService.getGifts();
+    this.giftService.getGiftByKey({key: '-LfIigQjjdKusws13mRo'});
   }
 
 }
