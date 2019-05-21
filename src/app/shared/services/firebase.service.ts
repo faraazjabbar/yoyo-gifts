@@ -13,7 +13,7 @@ export class FirebaseService {
 
     constructor(private db: AngularFireDatabase, private http: HttpClient) {}
 
-    get(path: string): Observable<Gift|User> {
+    get<T>(path: string): Observable<T[]> {
         return this.db
             .list(path)
             .snapshotChanges()
@@ -29,8 +29,8 @@ export class FirebaseService {
             );
     }
 
-    getByKey(key: string) {
-        return this.http.get(`https://yoyo-gift.firebaseio.com/gifts/${key}.json`);
+    getByKey<T>(key: string): Observable<T> {
+        return this.http.get<T>(`https://yoyo-gift.firebaseio.com/gifts/${key}.json`);
     }
 
     add(path, item: any) {
