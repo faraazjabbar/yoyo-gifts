@@ -16,6 +16,8 @@ export class GiftService {
     });
   }
   getGiftByKey(gift: any) {
-    this.firebaseService.getByKey('-LfIigQjjdKusws13mRo');
+    this.firebaseService.getByKey('/gifts', gift.key).subscribe(data => {
+      console.log(data);
+    });
 }
 }

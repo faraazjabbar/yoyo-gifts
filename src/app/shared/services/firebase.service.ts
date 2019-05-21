@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { of, Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { Order } from '../models/orders.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +29,12 @@ export class FirebaseService {
         })
       );
   }
-  getByKey(key: string) {
-    return this.http.get(`https://yoyo-gift.firebaseio.com/gifts/${key}.json`);
+  getByKey(path: string, key: string): Observable<any> {
+    return this.http.get(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`).pipe(
+      map(data => {
+        return data;
+      })
+    );
   }
   add(path, item: any) {
     const projects = this.db.list(path);

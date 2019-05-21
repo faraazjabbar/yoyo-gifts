@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouterLinks } from './../../../shared/constants/app.constants';
-import { AuthService } from '../../services/auth.service';
+import { RouterLinks } from './../../shared/constants/app.constants';
+import { AuthService } from '../auth/auth.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Subscription, Observable } from 'rxjs';
 
