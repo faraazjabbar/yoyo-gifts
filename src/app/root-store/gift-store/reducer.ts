@@ -53,7 +53,7 @@ export function reducer(state = initialState, action: Actions): State {
             };
 
             if (action.payload.isNew) {
-                return adapter.updateOne({ id: action.payload.gift.giftId, changes: action.payload.gift }, newState);
+                return adapter.updateOne({ id: action.payload.gift.key, changes: action.payload.gift }, newState);
             } else {
                 return adapter.addOne(action.payload.gift, newState);
             }
@@ -61,7 +61,7 @@ export function reducer(state = initialState, action: Actions): State {
 
         // Delete
         case ActionTypes.DELETE_GIFT_SUCCESS: {
-            return adapter.removeOne(action.payload.giftId, {
+            return adapter.removeOne(action.payload.key, {
                 ...state,
                 loading: false,
                 error: null

@@ -10,8 +10,7 @@ export class GiftService {
   constructor(private firebaseService: FirebaseService) {}
 
   public getGifts() {
-    this.firebaseService.get('/gifts').subscribe(data => {
-      console.log(data);
-    });
+      // this.firebaseService.get('/gifts').subscribe(data => console.log(data));
+      return this.firebaseService.get('/gifts');
   }
 }

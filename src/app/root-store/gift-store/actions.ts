@@ -44,7 +44,7 @@ export class GetGiftsSuccessAction implements Action {
 // Get
 export class GetGiftRequestAction implements Action {
     readonly type = ActionTypes.GET_GIFT_REQUEST;
-    constructor(public payload: { giftId: number }) {}
+    constructor(public payload: { key: string }) {}
 }
 
 export class GetGiftFailureAction implements Action {
@@ -76,7 +76,7 @@ export class SaveGiftSuccessAction implements Action {
 // Delete
 export class DeleteGiftRequestAction implements Action {
     readonly type = ActionTypes.DELETE_GIFT_REQUEST;
-    constructor(public payload: { giftId: number }) {}
+    constructor(public payload: { key: string }) {}
 }
 
 export class DeleteGiftFailureAction implements Action {
@@ -86,7 +86,7 @@ export class DeleteGiftFailureAction implements Action {
 
 export class DeleteGiftSuccessAction implements Action {
     readonly type = ActionTypes.DELETE_GIFT_SUCCESS;
-    constructor(public payload: { giftId: number }) {}
+    constructor(public payload: { key: string }) {}
 }
 
 export type Actions =

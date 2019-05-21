@@ -2,7 +2,7 @@
 import { Gift } from 'src/app/shared/models/gift.model';
 
 export const adapter: EntityAdapter<Gift> = createEntityAdapter<Gift>({
-    selectId: gift => gift.giftId
+    selectId: gift => gift.key
 });
 
 export interface State extends EntityState<Gift> {
