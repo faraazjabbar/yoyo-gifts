@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { FirebaseService } from './../../../shared/services/firebase.service';
 import { Gift } from './../../../shared/models/gift.model';
 import { Injectable } from '@angular/core';
@@ -7,11 +8,14 @@ import { Injectable } from '@angular/core';
 })
 export class GiftService {
   gifts: any = [];
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService, private http: HttpClient) {}
 
-  public getGifts() {
-    this.firebaseService.get('/gifts').subscribe(data => {
+  getGifts() {
+    this.firebaseService.get('/gifts').subscribe((data: Gift) => {
       console.log(data);
     });
   }
+  getGiftByKey(gift: any) {
+    this.firebaseService.getByKey('-LfIigQjjdKusws13mRo');
+}
 }

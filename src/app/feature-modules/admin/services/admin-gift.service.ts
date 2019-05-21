@@ -42,7 +42,7 @@ export class AdminGiftService {
       imageLink: 'https://encrypted-tbn0.gstatic.com/images?q=tbn...',
       rating: 4
     };
-    this.firebaseService.update('/gifts', gift);
+    this.firebaseService.update('/gifts', gift)
   }
   deleteGift() {
     const gift = {
