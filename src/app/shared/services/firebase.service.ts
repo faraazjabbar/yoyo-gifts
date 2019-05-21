@@ -1,20 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { User } from './../models/user.model';
-import { Gift } from './../models/gift.model';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { of, Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
-import { Order } from '../models/orders.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class FirebaseService {
+
   constructor(private db: AngularFireDatabase, private http: HttpClient) {}
 
-  get(path: string): Observable<Gift|User> {
+  get<T>(path: string): Observable<T[]> {
     return this.db
       .list(path)
       .snapshotChanges()
@@ -29,13 +27,15 @@ export class FirebaseService {
         })
       );
   }
-  getByKey(path: string, key: string): Observable<any> {
-    return this.http.get(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`).pipe(
+
+  getByKey<T>(path: string, key: string): Observable<T> {
+    return this.http.get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`).pipe(
       map(data => {
         return data;
       })
     );
   }
+
   add(path, item: any) {
     const projects = this.db.list(path);
     return projects.push(item);
@@ -44,9 +44,9 @@ export class FirebaseService {
   update(path: string, item: any) {
     const key = item.key;
     delete item.key;
-    return of(this.db.object( path + '/' + key)
-      .update(item));
+    return of(this.db.object( path + '/' + key).update(item));
   }
+
   delete(path: string, item: any) {
     return this.db.object(path + '/' + item.key).remove();
   }
