@@ -22,13 +22,17 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: './feature-modules/user/user.module#AdminModule'
+    loadChildren: './feature-modules/user/user.module#UserModule'
   },
   {
     path: 'gifts',
     loadChildren: './feature-modules/gift/gift.module#GiftModule'
   },
-  { path: 'noAccess', component: NoAccessComponent }
+  { path: 'noAccess', component: NoAccessComponent },
+  {
+    path: '**',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({

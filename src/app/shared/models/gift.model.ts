@@ -21,6 +21,7 @@ export interface Review {
   userImage?: string;
   userRating: number;
   userReview: string;
+  reviewedOn: string;
 }
 
 export interface Brand {
