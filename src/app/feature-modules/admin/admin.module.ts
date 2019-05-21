@@ -7,9 +7,10 @@ import { ManageGiftComponent } from './components/manage-gift/manage-gift.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent],
+  declarations: [ManageGiftComponent, DashboardComponent, UserListComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -18,8 +19,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MDBBootstrapModule.forRoot(),
     SharedModule
   ],
-  entryComponents: [
-    ManageGiftComponent
-  ]
+  entryComponents: [ManageGiftComponent]
 })
-export class AdminModule { }
+export class AdminModule {}
