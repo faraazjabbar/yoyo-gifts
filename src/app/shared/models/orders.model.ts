@@ -11,6 +11,7 @@ export interface SentGift extends Gift {
   revieverEmail: string;
   recieverName: string;
   recieverImage?: string;
+  sentOn: string;
 }
 
 export interface RecievedGift extends Gift {
@@ -19,4 +20,5 @@ export interface RecievedGift extends Gift {
   senderImage?: string;
   isRedeemed: boolean;
   isReviewed: boolean;
+  recievedOn: string;
 }

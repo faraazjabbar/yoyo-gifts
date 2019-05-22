@@ -1,3 +1,4 @@
+import { UserListComponent } from './components/user-list/user-list.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,7 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent],
+  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent, UserListComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -28,4 +29,4 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     ConfirmationModalComponent
   ]
 })
-export class AdminModule { }
+export class AdminModule {}
