@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class GiftService {
-    gifts: any = [];
+    // gifts: Gift[] = [];
     constructor(private firebaseService: FirebaseService, private http: HttpClient) {}
 
     public getGifts(): Observable<Gift[]> {
