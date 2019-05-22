@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   public emitUserData = new BehaviorSubject(null);
   constructor(private afAuth: AngularFireAuth, private http: HttpClient) {
-    this.emitUserData.next(JSON.parse(sessionStorage.getItem('user')));
+    this.emitUserData.next(JSON.parse(localStorage.getItem('user')));
   }
 
   public googleSignInWithPopup() {

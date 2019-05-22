@@ -112,7 +112,7 @@ export class SignInComponent implements OnInit {
   }
 
   private setUserInSession(user: User) {
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     this.authService.emitUserData.next(user);
     user.isAdmin
       ? this.router.navigate([RouterLinks.ADMIN])

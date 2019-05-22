@@ -21,10 +21,11 @@ export class GiftCardComponent implements OnInit {
   //   imageLink: 'https://firebasestorage.googleapis.com/v0/b/yoyo-gift.appspot.com/o/amazon-logo-500500._V327001990_.jpg?alt=media&token=8f238527-0575-4fdb-ba3f-191f3daf320a',
   //   rating: 4
   // };
-  adminMode = true;
+  @Input()
+  isAdmin;
   @Output() deleteEvent = new EventEmitter<Gift>();
   @Output() editEvent = new EventEmitter<Gift>();
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     console.log(this.gift);
@@ -36,5 +37,4 @@ export class GiftCardComponent implements OnInit {
   onDelete() {
     this.deleteEvent.emit(this.gift);
   }
-
 }

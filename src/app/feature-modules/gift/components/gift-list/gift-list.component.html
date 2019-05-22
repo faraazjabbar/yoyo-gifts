@@ -1,12 +1,13 @@
-<a class="float" (click)="openManageGiftModal('add')">
+<a class="float" (click)="openManageGiftModal('add')" *ngIf="isAdmin">
   <em class="fa fa-plus my-float"></em>
 </a>
-<!-- <div>
+<div *ngIf="false">
   <app-gift-filter></app-gift-filter>
-</div> -->
+</div>
 <div class="projects-list d-flex flex-wrap fadeIn animated">
   <div class="project" *ngFor="let gift of gifts$ | async">
     <app-gift-card
+      [isAdmin]="isAdmin"
       [gift]="gift"
       (editEvent)="onEdit($event)"
       (deleteEvent)="onDelete($event)"

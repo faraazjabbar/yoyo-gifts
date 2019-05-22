@@ -31,6 +31,10 @@ export class OrdersService {
   public updateOrder(order: Order) {
     return this.fbService.update('/orders', order);
   }
+
+  public addNewOrder(order: Order) {
+    return this.fbService.add('/orders', order);
+  }
   public updateGift(gift: Gift) {
     return this.fbService.update('/gifts', gift);
   }
