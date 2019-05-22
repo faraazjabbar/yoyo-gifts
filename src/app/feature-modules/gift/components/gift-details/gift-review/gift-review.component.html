@@ -1,0 +1,10 @@
+<div class="media">
+  <img class="review-user-img d-flex mr-3" src="{{review.userImage}}" alt="{{review.userName}}">
+  <div class="media-body text-left">
+    <h5 class="mt-0 mb-2 font-weight-bold">{{review.userName}}</h5>
+    <!--Review-->
+    <app-rating [rating]="review.userRating" [viewOnly]="true"></app-rating>
+    <div class="clearfix"></div>
+    <p>{{review.userReview}}</p>
+  </div>
+</div>

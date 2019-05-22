@@ -6,7 +6,7 @@ export const getState: MemoizedSelector<object, State> = createFeatureSelector<S
 
 export const getList: (state: object) => Gift[] = adapter.getSelectors(getState).selectAll;
 
-export const getByKey = (key: string) => createSelector(getState, (state: State) => state.entities[key]);
+export const getByKey = (id: string) => createSelector(getState, (state: State) => state.entities[id]);
 
 export const getError: MemoizedSelector<object, string> = createSelector(getState, (state: State) => state.error);
 
