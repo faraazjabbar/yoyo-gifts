@@ -56,7 +56,9 @@ export class RecievedGiftsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reviewSubscription.unsubscribe();
+    if (this.reviewSubscription) {
+      this.reviewSubscription.unsubscribe();
+    }
   }
 
   public formatDate(date) {
