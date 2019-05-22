@@ -2,7 +2,6 @@
     <!--Card image-->
     <mdb-card-img *ngIf="gift.imageLink" src="{{ gift.imageLink }}" alt="Card image cap" class="waves-light"
       mdbWavesEffect></mdb-card-img>
-    <!-- <mdb-card-img *ngIf="!project.photoUrl" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg" alt="Card image cap"></mdb-card-img> -->
     <!--Card content-->
     <mdb-card-body>
 
@@ -14,10 +13,12 @@
       <!--Text-->
       <mdb-card-text> {{ gift.brandName }}
       </mdb-card-text>
+      <mdb-card-text> {{ gift.rating }}
+      </mdb-card-text>
 
       <div class="text-left">
-        <a *ngIf="adminMode" mdbBtn color="primary" mdbWavesEffect (click)="onEdit()">Edit</a>
-        <a *ngIf="adminMode" mdbBtn class="red lighten-1 white-text" mdbWavesEffect (click)="onDelete()">Delete</a>
+        <yoyo-button *ngIf="adminMode" (click)="onEdit()" [title]="'Edit'"></yoyo-button>
+        <yoyo-button *ngIf="adminMode" (click)="onDelete()" [title]="'Delete'"></yoyo-button>
       </div>
     </mdb-card-body>
   </mdb-card>

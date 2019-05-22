@@ -6,28 +6,63 @@
     <h4 class="modal-title w-100" id="myModalLabel">{{ heading }}</h4>
   </div>
   <div class="modal-body">
-    <form #projectForm="ngForm">
-      <div class="md-form">
-        <input type="text" class="form-control" name="title" [(ngModel)]="project.title" mdbInput mdbValidate [validateSuccess]="false" #title="ngModel" required>
-        <label for="title">Title</label>
-        <mdb-error *ngIf="title && title.invalid && (title.dirty || title.touched)">Title is required</mdb-error>
-      </div>
+      <!-- Form -->
+    <form [formGroup]="manageForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;">
 
-      <div class="md-form">
-        <textarea type="text" id="description" class="md-textarea form-control" name="description" [(ngModel)]="project.description" mdbInput mdbValidate [validateSuccess]="false" #description="ngModel" required></textarea>
-        <label for="description">Description</label>
-        <mdb-error *ngIf="description && description.invalid && (description.dirty || description.touched)">Description is required</mdb-error>
-      </div>
+        <!-- Gift Name -->
+        <div class="md-form mt-3">
+          <input type="text" class="form-control" formControlName="giftName" mdbInput maxlength="50">
+          <label for="giftName">Gift Name *</label>
+          <!-- <span class="invalid-msg" *ngIf="f.giftName.touched && f.giftName.errors.required">This is a required field</span> -->
+        </div>
 
-      <div class="md-form">
-        <input type="text" id="photo" class="form-control" name="photoUrl" [(ngModel)]="project.photoUrl" mdbInput>
-        <label for="photo">Photo URL</label>
-      </div>
-    </form>
+        <!-- Description -->
+        <div class="md-form">
+          <input type="text" class="form-control" formControlName="description" mdbInput maxlength="200">
+          <label for="description">Description *</label>
+          <!-- <span class="invalid-msg" *ngIf="f.description.errors.required && f.description.touched">This is a required field</span> -->
+        </div>
+         <!-- Count -->
+         <div class="md-form">
+            <input type="number" class="form-control" formControlName="count" mdbInput maxlength="4">
+            <label for="description">Count *</label>
+            <!-- <span class="invalid-msg" *ngIf="f.count.errors.required && f.count.touched">This is a required field</span> -->
+          </div>
+        <!-- Cost -->
+        <div class="md-form">
+            <input type="number" class="form-control" formControlName="cost" mdbInput>
+            <label for="cost">Cost *</label>
+            <!-- <span class="invalid-msg" *ngIf="f.cost.errors.required && f.cost.touched">This is a required field</span> -->
+          </div>
+          <!-- Discount -->
+        <div class="md-form">
+            <input type="number" class="form-control" formControlName="discount" mdbInput>
+            <label for="discount">Discount</label>
+          </div>
+          <div class="md-form">
+              <select class="browser-default custom-select" formControlName="categoryId" (change)="categorySelected($event.target.value)">
+                  <option selected disabled>-Category-</option>
+                  <option *ngFor="let category of categories" [value]="category.key">{{category.categoryName}}</option>
+              </select>
+            </div>
+            <div class="md-form">
+                <select class="browser-default custom-select" formControlName="brandId">
+                    <option selected disabled>-Brand-</option>
+                    <option *ngFor="let brand of brands | brandFilter:selectedCategory " [value]="brand.key">{{brand.brandName}}</option>
+                </select>
+              </div>
+
+        <!-- Discount -->
+        <div class="md-form">
+            <input type="text" class="form-control" formControlName="imageLink" mdbInput>
+            <label for="discount">Image Link</label>
+          </div>
+      </form>
+      <!-- Form -->
   </div>
   <div class="modal-footer">
     <button type="button" mdbBtn color="white" class="black-text waves-light" aria-label="Close" (click)="modalRef.hide()"
       mdbWavesEffect>Close</button>
-    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" [disabled]="!this.manageForm.valid" mdbWavesEffect (click)="onSubmit()">Save!</button>
   </div>
 </div>

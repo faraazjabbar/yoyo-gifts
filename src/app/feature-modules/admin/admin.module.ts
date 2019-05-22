@@ -7,9 +7,11 @@ import { ManageGiftComponent } from './components/manage-gift/manage-gift.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent],
+  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -20,6 +22,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   entryComponents: [
     ManageGiftComponent
+  ],
+  exports: [
+    ManageGiftComponent,
+    ConfirmationModalComponent
   ]
 })
 export class AdminModule { }

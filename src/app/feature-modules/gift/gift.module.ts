@@ -1,3 +1,6 @@
+import { ConfirmationModalComponent } from './../admin/components/confirmation-modal/confirmation-modal.component';
+import { AdminModule } from './../admin/admin.module';
+import { ManageGiftComponent } from './../admin/components/manage-gift/manage-gift.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +14,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     GiftRoutingModule,
-    SharedModule
+    SharedModule,
+    AdminModule
+  ],
+  entryComponents: [
+    ManageGiftComponent,
+    ConfirmationModalComponent
   ]
 })
 export class GiftModule { }

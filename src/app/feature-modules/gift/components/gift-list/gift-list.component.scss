@@ -1,0 +1,49 @@
+.projects-list {
+  box-sizing: border-box;
+  justify-content: center;
+}
+.project {
+  width: 80%;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .project {
+      width: calc(50% - 2rem);
+  }
+
+  .projects-list {
+      justify-content: normal;
+  }
+}
+
+@media (min-width: 992px) {
+  .project {
+      width: calc(33.3333% - 2rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .project {
+      width: calc(25% - 3rem);
+  }
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color: #FD240B;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  z-index: 1;
+}
+
+.my-float{
+  color:#FFF;
+	margin-top:22px;
+}
+

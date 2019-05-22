@@ -1,4 +1,6 @@
-import { GiftService } from './../../services/gift.service';
+import { ConfirmationModalComponent } from './../../../admin/components/confirmation-modal/confirmation-modal.component';
+import { ManageGiftComponent } from './../../../admin/components/manage-gift/manage-gift.component';
+import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -12,13 +14,42 @@ import { Gift } from 'src/app/shared/models/gift.model';
   styleUrls: ['./gift-list.component.scss']
 })
 export class GiftListComponent implements OnInit, OnDestroy {
+  modalOptions = {
+    backdrop: true,
+    keyboard: true,
+    focus: true,
+    show: false,
+    ignoreBackdropClick: true,
+    class: '',
+    containerClass: '',
+    animated: true,
+    data: {}
+    };
     private subscriptions: Subscription[] = [];
     gifts$: Observable<Gift[]>;
+    modalRef: MDBModalRef;
+
     constructor(
         private store: Store<RootStoreState.State>,
-        private giftService: GiftService
+        private mdbModal: MDBModalService
     ) { }
 
+    onEdit(event: Gift) {
+      this.modalOptions.data = { content: event };
+      this.modalRef = this.mdbModal.show(ManageGiftComponent, this.modalOptions);
+
+      console.log(event);
+    }
+    onDelete(event: Gift) {
+      this.modalOptions.data = { content: event };
+      this.modalRef = this.mdbModal.show(ConfirmationModalComponent, this.modalOptions);
+      console.log(event);
+    }
+    openManageGiftModal(mode: string) {
+      if (mode === 'add') {
+        this.modalRef = this.mdbModal.show(ManageGiftComponent);
+      }
+    }
     ngOnInit() {
         // individial gift key to be fetched : '-LfIigQjjdKusws13mRo';
 
