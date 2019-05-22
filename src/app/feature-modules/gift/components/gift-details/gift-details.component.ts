@@ -5,6 +5,7 @@ import { tap, map } from 'rxjs/operators';
 import { Subscription, Observable, of } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
 import { ActivatedRoute } from '@angular/router';
+import * as emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-gift-details',
@@ -18,6 +19,13 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
   translation$: Observable<Object>;
   gift$: Observable<Gift>;
   gift: Gift;
+  giftMessage: String;
+
+  model: any = {
+    name: '',
+    email: '',
+    messege: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +70,34 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
               x.unsubscribe();
           }
       });
+  }
+
+  onSubmit() {
+      console.log('Submitted form: ', this.model);
+      console.log('Selected Gift: ', this.gift);
+
+      console.log('Start: emailjs-com');
+      const templateParams = {
+          toemail: this.model.email,
+          toname: this.model.name,
+          fromname: 'YoYo Gifts Group#1'
+      };
+      const emailJsServiceId = 'gmail';
+      const emailJsTemplateId = 'template_Cg1kIF0Z';
+      const emailJsUserId = 'user_1Vb8OYU8eOTkZpWt24PNf';
+      emailjs.send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
+          .then((response) => {
+              console.log('SUCCESS!', response.status, response.text);
+          }, (err) => {
+              console.log('FAILED...', err);
+          });
+      console.log('End: emailjs-com');
+      this.giftMessage = 'Gift Sent Successfully !!!';
+  }
+
+  cancelSendGift() {
+    console.log('cancelled gift');
+    this.giftMessage = 'Gift NOT Sent Successfully !!!';
   }
 
 }

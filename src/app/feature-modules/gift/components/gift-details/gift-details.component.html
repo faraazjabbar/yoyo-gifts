@@ -25,6 +25,66 @@
         <div class="action">
           <button class="add-to-cart btn btn-default" type="button"><i class="fa fa-gift-card"></i> Send Card </button>
           <button class="like btn btn-default" type="button"><i class="fa fa-heart"></i></button>
+          <span *ngIf="giftMessage" class="ml-5 text-right">{{giftMessage}}</span>
+        </div>
+        <div class="row">
+
+          <!-- Default form send card -->
+          <form class="text-center border border-light p-3" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" name="form" style="width: 90%">
+
+              <p class="h4">Send Card To</p>
+
+              <!-- Name -->
+              <div class="form-group">
+                <input type="text"
+                  #name="ngModel"
+                  class="form-control mb-4"
+                  name="name"
+                  [(ngModel)]="model.name"
+                  [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+                  placeholder="Name"
+                  required />
+                <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                    <div *ngIf="name?.errors.required">First Name is required</div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <input type="text"
+                  #email="ngModel"
+                  class="form-control mb-4"
+                  name="email"
+                  [(ngModel)]="model.email"
+                  [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+                  placeholder="Email"
+                  required
+                  email />
+                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                    <div *ngIf="email?.errors.required">Email is required</div>
+                    <div *ngIf="email?.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group mb-4">
+                  <textarea
+                    #messege="ngModel"
+                    class="form-control rounded-0"
+                    name="messege" rows="3"
+                    placeholder="Message"
+                    [(ngModel)]="model.messege"></textarea>
+              </div>
+
+              <!-- Send button -->
+              <div class="d-flex flex-row justify-content-between">
+                  <button class="btn btn-info btn-block col-4" type="submit">Send</button>
+                  <button class="btn btn-info btn-block col-4" type="button" (click)="cancelSendGift()">Cancel</button>
+              </div>
+
+
+          </form>
+          <!-- Default form send card -->
         </div>
       </div>
 
@@ -37,5 +97,3 @@
     </div>
   </div>
 </div>
-
-
