@@ -6,10 +6,9 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class FirebaseService {
-
   constructor(private db: AngularFireDatabase, private http: HttpClient) {}
 
   get<T>(path: string): Observable<T[]> {
@@ -29,11 +28,13 @@ export class FirebaseService {
   }
 
   getByKey<T>(path: string, key: string): Observable<T> {
-    return this.http.get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`).pipe(
-      map(data => {
-        return data;
-      })
-    );
+    return this.http
+      .get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`)
+      .pipe(
+        map(data => {
+          return data;
+        })
+      );
   }
 
   add(path, item: any) {
@@ -44,7 +45,7 @@ export class FirebaseService {
   update(path: string, item: any) {
     const key = item.key;
     delete item.key;
-    return of(this.db.object( path + '/' + key).update(item));
+    return of(this.db.object(path + '/' + key).update(item));
   }
 
   delete(path: string, item: any) {
