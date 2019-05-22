@@ -1,6 +1,10 @@
-<div>
+<div class="offset-md-3 col-md-6">
   <!-- Default form login -->
-  <form class="text-center border border-light p-5">
+  <form
+    [formGroup]="signInForm"
+    (ngSubmit)="onSubmit(signInForm)"
+    class="text-center border border-light p-5"
+  >
     <p class="h4 mb-4">Sign in</p>
 
     <div class="form-row mb-4" *ngIf="isRegistered">
@@ -10,8 +14,20 @@
           type="text"
           id="defaultRegisterFormFirstName"
           class="form-control"
-          placeholder="First name"
+          placeholder="First name*"
+          formControlName="firstName"
         />
+        <div>
+          <p
+            *ngIf="
+              signInForm.get('firstName').hasError('required') &&
+              signInForm.get('firstName').touched
+            "
+            class="red-text"
+          >
+            First name is a required field.
+          </p>
+        </div>
       </div>
       <div class="col">
         <!-- Last name -->
@@ -20,6 +36,7 @@
           id="defaultRegisterFormLastName"
           class="form-control"
           placeholder="Last name"
+          formControlName="lastName"
         />
       </div>
     </div>
@@ -29,32 +46,50 @@
       type="email"
       id="defaultLoginFormEmail"
       class="form-control mb-4"
-      placeholder="E-mail"
+      placeholder="E-mail*"
+      formControlName="email"
     />
-
+    <div>
+      <p
+        *ngIf="
+          (signInForm.get('email').hasError('required') ||
+            signInForm.get('email').hasError('email')) &&
+          signInForm.get('email').touched
+        "
+        class="red-text"
+      >
+        Valid Email is required.
+      </p>
+    </div>
     <!-- Password -->
     <input
       type="password"
       id="defaultLoginFormPassword"
       class="form-control mb-4"
-      placeholder="Password"
+      placeholder="Password*"
+      formControlName="password"
     />
-
-    <div class="d-flex justify-content-around">
-      <div>
-        <!-- Remember me -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="defaultLoginFormRemember"
-          />
-        </div>
-      </div>
+    <div>
+      <p
+        *ngIf="
+          (signInForm.get('password').hasError('required') ||
+            signInForm.get('password').hasError('minlength') ||
+            signInForm.get('password').hasError('maxlength')) &&
+          signInForm.get('password').touched
+        "
+        class="red-text"
+      >
+        Password is required field with 6 - 10 characters.
+      </p>
     </div>
-
     <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+    <button
+      class="btn btn-info btn-block my-4"
+      [disabled]="signInForm.invalid"
+      type="submit"
+    >
+      Sign in
+    </button>
 
     <!-- Register -->
     <p *ngIf="!isRegistered">

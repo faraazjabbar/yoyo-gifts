@@ -1,0 +1,34 @@
+<div *ngIf="noData">
+  <h3>You haven't sent any gifts till now. Goto Gifts to send gifts.</h3>
+</div>
+
+<div *ngIf="!noData">
+  <div class="col-md-12 sent-gift" *ngFor="let gift of recievedGifts">
+    <div class="row">
+      <div class="col-md-8">
+        <p>You have recieved {{ gift.giftName }} from {{ gift.senderName }}.</p>
+      </div>
+
+      <div class="col-md-2">
+        <button
+          class="btn btn-info"
+          (click)="redeem(gift)"
+          *ngIf="!gift.isRedeemed"
+        >
+          Redeem
+        </button>
+        <button
+          class="btn btn-info"
+          *ngIf="gift.isRedeemed && !gift.isReviewed"
+          (click)="review(gift)"
+        >
+          Review
+        </button>
+      </div>
+
+      <div class=" date col-md-2">
+        {{ formatDate(gift.recievedOn) }}
+      </div>
+    </div>
+  </div>
+</div>
