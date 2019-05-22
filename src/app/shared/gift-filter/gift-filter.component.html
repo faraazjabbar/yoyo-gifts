@@ -47,12 +47,28 @@
     </div>
   </div>
 
+  <div class="btn-group">
+    <label
+      mdbBtn
+      color="primary"
+      [(ngModel)]="orderBy"
+      mdbRadio="asc"
+      mdbWavesEffect
+    >
+      Low to High
+    </label>
+    <label
+      mdbBtn
+      color="primary"
+      [(ngModel)]="orderBy"
+      mdbRadio="des"
+      mdbWavesEffect
+    >
+      High to Low
+    </label>
+  </div>
+
   <div>
-    <mdb-range-input
-      default="true"
-      id="range"
-      min="0"
-      max="100"
-    ></mdb-range-input>
+    <button class="btn btn-info" (click)="applyFilter()">Apply</button>
   </div>
 </div>

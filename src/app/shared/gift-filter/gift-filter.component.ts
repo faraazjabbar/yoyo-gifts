@@ -29,8 +29,9 @@ export class GiftFilterComponent implements OnInit, OnChanges {
   public filteredCategoryIds: string[] = [];
 
   @Output()
-  emitFilteredGifts: EventEmitter<Gift[]> = new EventEmitter();
+  emitFilters = new EventEmitter();
 
+  orderBy = '';
   constructor() {}
 
   ngOnInit() {}
@@ -74,5 +75,12 @@ export class GiftFilterComponent implements OnInit, OnChanges {
         1
       );
     }
+  }
+
+  public applyFilter() {
+    this.emitFilters.emit({
+      brands: this.filteredBrandIds,
+      order: this.orderBy
+    });
   }
 }
