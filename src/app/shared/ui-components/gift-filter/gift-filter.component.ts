@@ -6,8 +6,8 @@ import {
   EventEmitter,
   OnChanges
 } from '@angular/core';
-import { Category } from '../models/gift.model';
-import { Brand, Gift } from './../models/gift.model';
+import { Category } from '../../models/gift.model';
+import { Brand, Gift } from '../../models/gift.model';
 import { MdbCheckboxChange } from 'angular-bootstrap-md';
 
 @Component({

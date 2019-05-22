@@ -11,6 +11,7 @@ import {
 } from 'src/app/root-store';
 import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
+import { Brand } from './../../../../shared/models/gift.model';
 
 @Component({
   selector: 'app-gift-list',
@@ -41,8 +42,6 @@ export class GiftListComponent implements OnInit, OnDestroy {
   onEdit(event: Gift) {
     this.modalOptions.data = { content: event };
     this.modalRef = this.mdbModal.show(ManageGiftComponent, this.modalOptions);
-
-    console.log(event);
   }
   onDelete(event: Gift) {
     this.modalOptions.data = { content: event };
@@ -50,7 +49,6 @@ export class GiftListComponent implements OnInit, OnDestroy {
       ConfirmationModalComponent,
       this.modalOptions
     );
-    console.log(event);
   }
   openManageGiftModal(mode: string) {
     if (mode === 'add') {
