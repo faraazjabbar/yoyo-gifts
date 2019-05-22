@@ -1,4 +1,4 @@
-import { RatingComponent } from './components/rating/rating.component';
+import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

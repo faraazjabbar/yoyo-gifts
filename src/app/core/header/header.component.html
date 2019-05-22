@@ -35,7 +35,7 @@
    21 54 26 116 96 131 147 9 28 12 199 12 600 l0 560 -28 53 c-30 59 -95 111
    -160 129 -20 5 -88 10 -151 10 l-114 0 21 23 c71 76 69 210 -4 295 -52 61
    -105 86 -184 86 -110 0 -195 -64 -221 -165 -7 -26 -16 -46 -20 -44 -3 3 -12
-   26 -19 52 -8 35 -24 60 -58 93 -69 67 -158 87 -245 56z m126 -166 c19 -15 28
+  26 -19 52 -8 35 -24 60 -58 93 -69 67 -158 87 -245 56z m126 -166 c19 -15 28
    -36 37 -89 7 -37 11 -73 9 -79 -5 -13 -90 21 -136 55 -41 30 -44 72 -8 108 29
    30 64 32 98 5z m492 -5 c32 -31 33 -75 3 -102 -29 -25 -32 -27 -97 -53 l-53
    -21 7 58 c4 32 13 72 20 89 24 57 79 71 120 29z m381 -418 c21 -25 24 -37 24
@@ -105,7 +105,7 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/gifts"
+       <a class="nav-link waves-light" mdbWavesEffect routerLink="/gifts"
           >Gifts</a
         >
       </li>
@@ -155,11 +155,7 @@
           >Sign In</a
         >
       </li>
-      <!-- <li class="nav-item" *ngIf="user">
-        <a class="dropdown-item waves-light" mdbWavesEffect>{{
-          user.userName
-        }}</a>
-      </li> -->
+
       <li class="nav-item avatar dropdown" *ngIf="user" dropdown>
         <a
           dropdownToggle
@@ -199,58 +195,3 @@
   <!-- Collapsible content -->
 </mdb-navbar>
 <!--/.Navbar-->
-<!-- Search form -->
-<form class="form-inline md-form form-sm">
-    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search"
-      mdbInput>
-    <i class="fas fa-search" aria-hidden="true"></i>
-  </form>
-<!--
-<header>
-  <nav
-    class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar"
-  >
-    <a class="navbar-brand" href="/"><strong>YOYO</strong></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Opinions</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav nav-flex-icons">
-        <li class="nav-item" *ngIf="!user">
-          <button type="button" class="btn btn-info" (click)="gotoSignIn()">
-            SignIn
-          </button>
-        </li>
-        <li class="nav-item" *ngIf="user">
-          <button type="button" class="btn btn-info" (click)="logOut()">
-            logout
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header> -->

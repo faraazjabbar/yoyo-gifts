@@ -1,8 +1,11 @@
 <a class="float" (click)="openManageGiftModal('add')">
     <i class="fa fa-plus my-float"></i>
 </a>
-<div class="projects-list d-flex flex-wrap fadeIn animated">
-    <div class="project" *ngFor="let gift of gifts$ | async">
-        <app-gift-card [gift]= "gift" (editEvent)="onEdit($event)" (deleteEvent)="onDelete($event)"></app-gift-card>
+<div class="container-custom">
+    <div class="projects-list d-flex flex-wrap fadeIn animated">
+        <div class="project" *ngFor="let gift of gifts$ | async">
+            <app-gift-card [gift]= "gift" (editEvent)="onEdit($event)" (deleteEvent)="onDelete($event)"></app-gift-card>
+        </div>
     </div>
 </div>
+

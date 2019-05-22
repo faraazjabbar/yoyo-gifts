@@ -1,24 +1,36 @@
-<mdb-card>
+  <!--Card-->
+<div class="card card-cascade card-ecommerce wider">
+
     <!--Card image-->
-    <mdb-card-img *ngIf="gift.imageLink" src="{{ gift.imageLink }}" alt="Card image cap" class="waves-light"
-      mdbWavesEffect></mdb-card-img>
+    <div class="view view-cascade overlay">
+      <img class="card-img-top" src="{{ gift.imageLink }}"
+        alt="">
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+    <!--/.Card image-->
+
     <!--Card content-->
-    <mdb-card-body>
+    <div class="card-body card-body-cascade text-center">
+      <!--Category & Title-->
+      <h5>{{ gift.brandName }}</h5>
+      <h4 class="card-title"><strong><a href="">{{ gift.giftName }}</a></strong></h4>
 
-      <!--Title-->
-      <mdb-card-title>
-        <h4>{{ gift.giftName }}</h4>
-      </mdb-card-title>
+      <div class="clearfix ml-5"><app-rating class="mr3" [rating]="gift.rating" [viewOnly]="true"></app-rating></div>
 
-      <!--Text-->
-      <mdb-card-text> {{ gift.brandName }}
-      </mdb-card-text>
-      <mdb-card-text> {{ gift.rating }}
-      </mdb-card-text>
-
-      <div class="text-left">
-        <yoyo-button *ngIf="adminMode" (click)="onEdit()" [title]="'Edit'"></yoyo-button>
-        <yoyo-button *ngIf="adminMode" (click)="onDelete()" [title]="'Delete'"></yoyo-button>
+      <!--Card footer-->
+      <div class="card-footer">
+        <span class="float-left">{{ gift.cost }} Points</span>
+        <span class="float-right">
+          <a data-toggle="tooltip" data-placement="top" *ngIf="adminMode" (click)="onEdit()" title="Edit Gift"><i class="fas fa-edit mr-3"></i></a>
+          <a data-toggle="tooltip" data-placement="top" *ngIf="adminMode" (click)="onDelete()" title="Delete Gift"><i class="fas fa-trash mr-3"></i></a>
+          <a class="active" data-toggle="tooltip" data-placement="top" *ngIf="!adminMode" title="Add to favorites"><i class="fas fa-heart"></i></a>
+        </span>
       </div>
-    </mdb-card-body>
-  </mdb-card>
+
+    </div>
+    <!--/.Card content-->
+
+  </div>
+  <!--/.Card-->
