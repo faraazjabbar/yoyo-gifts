@@ -31,7 +31,7 @@
     role="tabpanel"
     aria-labelledby="home-tab"
   >
-    <app-sent-gifts [sentGifts]="sentGifts"></app-sent-gifts>
+    <app-sent-gifts [orders]="orders"></app-sent-gifts>
   </div>
   <div
     [ngClass]="{ 'tab-pane fade': true, 'show active': selectedTab }"
@@ -39,6 +39,6 @@
     role="tabpanel"
     aria-labelledby="profile-tab"
   >
-    <app-recieved-gifts [recievedGifts]="recievedGifts"></app-recieved-gifts>
+    <app-recieved-gifts [orders]="orders"></app-recieved-gifts>
   </div>
 </div>

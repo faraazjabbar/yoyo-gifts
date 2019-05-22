@@ -18,6 +18,7 @@
           Redeem
         </button>
         <button
+          class="btn btn-info"
           *ngIf="gift.isRedeemed && !gift.isReviewed"
           (click)="review(gift)"
         >

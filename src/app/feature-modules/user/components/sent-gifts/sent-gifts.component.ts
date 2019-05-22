@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { SentGift } from 'src/app/shared/models/orders.model';
+import { SentGift, Order } from 'src/app/shared/models/orders.model';
 
 @Component({
   selector: 'app-sent-gifts',
@@ -7,7 +7,9 @@ import { SentGift } from 'src/app/shared/models/orders.model';
   styleUrls: ['./sent-gifts.component.scss']
 })
 export class SentGiftsComponent implements OnInit, OnChanges {
-  @Input() sentGifts: SentGift[];
+  @Input()
+  orders: Order;
+  public sentGifts: SentGift[];
   public noData = false;
 
   constructor() {}
@@ -15,6 +17,7 @@ export class SentGiftsComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
+    this.sentGifts = this.orders && this.orders.sent;
     if (!this.sentGifts || !this.sentGifts.length) {
       this.noData = true;
     } else {

@@ -103,7 +103,10 @@ export class SignInComponent implements OnInit {
 
   private getUser(email) {
     this.authService.getUser(email).subscribe((data: any) => {
-      const user: any = { key: Object.keys[0], ...Object.values(data)[0] };
+      const user: any = {
+        key: Object.keys(data)[0],
+        ...Object.values(data)[0]
+      };
       this.setUserInSession(user);
     });
   }

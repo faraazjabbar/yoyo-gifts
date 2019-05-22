@@ -8,9 +8,19 @@ import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from './../../shared/shared.module';
 import { SentGiftsComponent } from './components/sent-gifts/sent-gifts.component';
 import { RecievedGiftsComponent } from './components/recieved-gifts/recieved-gifts.component';
+import { ReviewGiftComponent } from './components/review-gift/review-gift.component';
+import { MDBModalRef } from 'angular-bootstrap-md';
 
 @NgModule({
-  declarations: [OrdersComponent, ProfileComponent, SentGiftsComponent, RecievedGiftsComponent],
-  imports: [CommonModule, CoreModule, SharedModule, UserRoutingModule]
+  declarations: [
+    OrdersComponent,
+    ProfileComponent,
+    SentGiftsComponent,
+    RecievedGiftsComponent,
+    ReviewGiftComponent
+  ],
+  imports: [CommonModule, CoreModule, SharedModule, UserRoutingModule],
+  providers: [MDBModalRef],
+  entryComponents: [ReviewGiftComponent]
 })
 export class UserModule {}
