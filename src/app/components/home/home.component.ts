@@ -9,17 +9,7 @@ import { FirebaseService } from 'src/app/shared/services/firebase.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  categories;
-  brands;
-
   constructor(private fbs: FirebaseService) {}
 
-  ngOnInit() {
-    this.fbs.get('/categories').subscribe(data => {
-      this.categories = data;
-    });
-    this.fbs.get('/brands').subscribe(data => {
-      this.brands = data;
-    });
-  }
+  ngOnInit() {}
 }
