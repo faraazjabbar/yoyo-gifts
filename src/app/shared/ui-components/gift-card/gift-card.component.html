@@ -1,6 +1,6 @@
 <mdb-card>
     <!--Card image-->
-    <mdb-card-img *ngIf="gift.imageLink" src="{{ gift.imageLink }}" alt="Card image cap" class="waves-light"
+    <mdb-card-img [routerLink]="['/gifts/details/', gift.key]" *ngIf="gift.imageLink" src="{{ gift.imageLink }}" alt="Card image cap" class="waves-light"
       mdbWavesEffect></mdb-card-img>
     <!--Card content-->
     <mdb-card-body>
