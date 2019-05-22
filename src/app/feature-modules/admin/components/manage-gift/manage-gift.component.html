@@ -1,68 +1,182 @@
 <div class="modal-content">
   <div class="modal-header">
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
       <span aria-hidden="true">×</span>
     </button>
     <h4 class="modal-title w-100" id="myModalLabel">{{ heading }}</h4>
   </div>
   <div class="modal-body">
-      <!-- Form -->
-    <form [formGroup]="manageForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;">
+    <!-- Form -->
+    <form
+      [formGroup]="manageForm"
+      (ngSubmit)="onSubmit()"
+      class="text-center"
+      style="color: #757575;"
+    >
+      <!-- Gift Name -->
+      <div class="md-form mt-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="giftName"
+          mdbInput
+          maxlength="50"
+        />
+        <label for="giftName">Gift Name *</label>
+        <span
+          class="invalid-msg"
+          *ngIf="
+            manageForm.get('giftName').touched &&
+            (manageForm.get('giftName').hasError('required') ||
+              manageForm.get('giftName').hasError('minlength') ||
+              manageForm.get('giftName').hasError('maxlength'))
+          "
+          >This is a required field with 4 - 20 characters.</span
+        >
+      </div>
 
-        <!-- Gift Name -->
-        <div class="md-form mt-3">
-          <input type="text" class="form-control" formControlName="giftName" mdbInput maxlength="50">
-          <label for="giftName">Gift Name *</label>
-          <!-- <span class="invalid-msg" *ngIf="f.giftName.touched && f.giftName.errors.required">This is a required field</span> -->
-        </div>
+      <!-- Description -->
+      <div class="md-form">
+        <textarea
+          type="text"
+          class="md-textarea form-control"
+          formControlName="description"
+          mdbInput
+          maxlength="200"
+        ></textarea>
+        <label for="description">Description *</label>
+        <span
+          class="invalid-msg"
+          *ngIf="
+            manageForm.get('description').touched &&
+            (manageForm.get('description').hasError('required') ||
+              manageForm.get('description').hasError('minlength') ||
+              manageForm.get('description').hasError('maxlength'))
+          "
+          >This is a required field with 4 - 150 characters.</span
+        >
+      </div>
+      <!-- Count -->
+      <div class="md-form">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="count"
+          mdbInput
+          maxlength="4"
+        />
+        <label for="description">Count *</label>
+        <span
+          class="invalid-msg"
+          *ngIf="
+            manageForm.get('count').touched &&
+            (manageForm.get('count').hasError('required') ||
+              manageForm.get('count').hasError('minlength') ||
+              manageForm.get('count').hasError('maxlength'))
+          "
+          >This is a required field with 4 - 20 characters.</span
+        >
+      </div>
+      <!-- Cost -->
+      <div class="md-form">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="cost"
+          mdbInput
+        />
+        <label for="cost">Cost *</label>
+        <span
+          class="invalid-msg"
+          *ngIf="
+            manageForm.get('cost').touched &&
+            (manageForm.get('cost').hasError('required') ||
+              manageForm.get('cost').hasError('max'))
+          "
+          >This is a required field and should be less than 1000.</span
+        >
+      </div>
+      <!-- Discount -->
+      <div class="md-form">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="discount"
+          mdbInput
+        />
+        <label for="discount">Discount</label>
+        <span
+          class="invalid-msg"
+          *ngIf="
+            manageForm.get('discount').touched &&
+            manageForm.get('discount').hasError('max')
+          "
+          >This value should be less than 50.</span
+        >
+      </div>
+      <div class="md-form">
+        <select
+          class="browser-default custom-select"
+          formControlName="categoryId"
+          (change)="categorySelected($event.target.value)"
+        >
+          <option selected disabled>-Category-</option>
+          <option *ngFor="let category of categories" [value]="category.key">{{
+            category.categoryName
+          }}</option>
+        </select>
+      </div>
+      <div class="md-form">
+        <select class="browser-default custom-select" formControlName="brandId">
+          <option selected disabled>-Brand-</option>
+          <option
+            *ngFor="let brand of brands | brandFilter: selectedCategory"
+            [value]="brand.key"
+            >{{ brand.brandName }}</option
+          >
+        </select>
+      </div>
 
-        <!-- Description -->
-        <div class="md-form">
-          <input type="text" class="form-control" formControlName="description" mdbInput maxlength="200">
-          <label for="description">Description *</label>
-          <!-- <span class="invalid-msg" *ngIf="f.description.errors.required && f.description.touched">This is a required field</span> -->
-        </div>
-         <!-- Count -->
-         <div class="md-form">
-            <input type="number" class="form-control" formControlName="count" mdbInput maxlength="4">
-            <label for="description">Count *</label>
-            <!-- <span class="invalid-msg" *ngIf="f.count.errors.required && f.count.touched">This is a required field</span> -->
-          </div>
-        <!-- Cost -->
-        <div class="md-form">
-            <input type="number" class="form-control" formControlName="cost" mdbInput>
-            <label for="cost">Cost *</label>
-            <!-- <span class="invalid-msg" *ngIf="f.cost.errors.required && f.cost.touched">This is a required field</span> -->
-          </div>
-          <!-- Discount -->
-        <div class="md-form">
-            <input type="number" class="form-control" formControlName="discount" mdbInput>
-            <label for="discount">Discount</label>
-          </div>
-          <div class="md-form">
-              <select class="browser-default custom-select" formControlName="categoryId" (change)="categorySelected($event.target.value)">
-                  <option selected disabled>-Category-</option>
-                  <option *ngFor="let category of categories" [value]="category.key">{{category.categoryName}}</option>
-              </select>
-            </div>
-            <div class="md-form">
-                <select class="browser-default custom-select" formControlName="brandId">
-                    <option selected disabled>-Brand-</option>
-                    <option *ngFor="let brand of brands | brandFilter:selectedCategory " [value]="brand.key">{{brand.brandName}}</option>
-                </select>
-              </div>
-
-        <!-- Discount -->
-        <div class="md-form">
-            <input type="text" class="form-control" formControlName="imageLink" mdbInput>
-            <label for="discount">Image Link</label>
-          </div>
-      </form>
-      <!-- Form -->
+      <!-- Discount -->
+      <div class="md-form">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="imageLink"
+          mdbInput
+        />
+        <label for="discount">Image Link</label>
+      </div>
+    </form>
+    <!-- Form -->
   </div>
   <div class="modal-footer">
-    <button type="button" mdbBtn color="white" class="black-text waves-light" aria-label="Close" (click)="modalRef.hide()"
-      mdbWavesEffect>Close</button>
-    <button type="button" mdbBtn color="primary" class="relative waves-light" [disabled]="!this.manageForm.valid" mdbWavesEffect (click)="onSubmit()">Save!</button>
+    <button
+      type="button"
+      mdbBtn
+      color="white"
+      class="black-text waves-light"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+      mdbWavesEffect
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      mdbBtn
+      color="primary"
+      class="relative waves-light"
+      [disabled]="!this.manageForm.valid"
+      mdbWavesEffect
+      (click)="onSubmit()"
+    >
+      Save!
+    </button>
   </div>
 </div>

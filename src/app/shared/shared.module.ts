@@ -4,18 +4,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GiftCardComponent } from './ui-components/gift-card/gift-card.component';
 import { ButtonComponent } from './ui-components/button/button.component';
+import { RouterModule } from '@angular/router';
+import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.component';
+import { CoreModule } from './../core/core.module';
 
 @NgModule({
-  declarations: [RatingComponent, GiftCardComponent, ButtonComponent],
+  declarations: [
+    RatingComponent,
+    GiftCardComponent,
+    ButtonComponent,
+    GiftFilterComponent
+  ],
   imports: [
     CommonModule,
-    MDBBootstrapModule.forRoot()
+    CoreModule,
+    MDBBootstrapModule.forRoot(),
+    RouterModule
   ],
   exports: [
     MDBBootstrapModule,
     GiftCardComponent,
     ButtonComponent,
-    RatingComponent
+    RatingComponent,
+    RouterModule,
+    GiftFilterComponent
   ]
 })
 export class SharedModule {}
