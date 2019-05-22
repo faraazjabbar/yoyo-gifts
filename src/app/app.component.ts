@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
         // const emailJsServiceId = 'gmail';
         // const emailJsTemplateId = 'template_Cg1kIF0Z';
         // const emailJsUserId = 'user_1Vb8OYU8eOTkZpWt24PNf';
-
         // emailjs.send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
         //     .then((response) => {
         //         console.log('SUCCESS!', response.status, response.text);
@@ -37,13 +36,21 @@ export class AppComponent implements OnInit {
         //     });
         // console.log('End: emailjs-com');
 
-        this.store.select(GiftStoreSelectors.getList).pipe(
-            tap(gifts => console.log('From Selector::: ', gifts))
-        ).subscribe();
+        // NGRX for gift lists ...
+        // this.store.select(GiftStoreSelectors.getList)
+        //     .pipe(
+        //         tap(gifts => console.log('From GetList Selector::: ', gifts))
+        //     )
+        //     .subscribe();
+        // // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
 
-        const payload = {};
-        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction(payload));
-
+        // NGRX for gift ...
+        // this.store.select(GiftStoreSelectors.getByKey('-LfIigQjjdKusws13mRo'))
+        //     .pipe(
+        //         tap(gift => console.log('From GetByKey Selector::: ', gift))
+        //     )
+        //     .subscribe();
+        // this.store.dispatch(new GiftStoreActions.GetGiftRequestAction({key: '-LfIigQjjdKusws13mRo'}));
     }
 
 }

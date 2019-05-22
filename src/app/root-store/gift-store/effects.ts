@@ -25,17 +25,17 @@ export class GiftStoreEffects {
         )
     );
 
-    // // Get
-    // @Effect()
-    // getGiftRequest$ = this.actions$.pipe(
-    //     ofType<actions.GetGiftRequestAction>(actions.ActionTypes.GET_GIFT_REQUEST),
-    //     switchMap(action =>
-    //         this.giftService.getById(action.payload.giftId).pipe(
-    //             map(gift => new actions.GetGiftSuccessAction({ gift: gift })),
-    //             catchError(error => of(new actions.GetGiftFailureAction({ error })))
-    //         )
-    //     )
-    // );
+    // Get
+    @Effect()
+    getGiftRequest$ = this.actions$.pipe(
+        ofType<actions.GetGiftRequestAction>(actions.ActionTypes.GET_GIFT_REQUEST),
+        switchMap(action =>
+            this.giftService.getGiftByKey(action.payload.key).pipe(
+                map(gift => new actions.GetGiftSuccessAction({ gift: gift })),
+                catchError(error => of(new actions.GetGiftFailureAction({ error })))
+            )
+        )
+    );
 
     // // Save
     // @Effect()
