@@ -1,24 +1,35 @@
 <mdb-card>
-    <!--Card image-->
-    <mdb-card-img [routerLink]="['/gifts/details/', gift.key]" *ngIf="gift.imageLink" src="{{ gift.imageLink }}" alt="Card image cap" class="waves-light"
-      mdbWavesEffect></mdb-card-img>
-    <!--Card content-->
-    <mdb-card-body>
+  <!--Card image-->
+  <mdb-card-img
+    [routerLink]="['/gifts/details/', gift.key]"
+    *ngIf="gift.imageLink"
+    src="{{ gift.imageLink }}"
+    alt="Card image cap"
+    class="waves-light"
+    mdbWavesEffect
+  ></mdb-card-img>
+  <!--Card content-->
+  <mdb-card-body>
+    <!--Title-->
+    <mdb-card-title>
+      <h4>{{ gift.giftName }}</h4>
+    </mdb-card-title>
 
-      <!--Title-->
-      <mdb-card-title>
-        <h4>{{ gift.giftName }}</h4>
-      </mdb-card-title>
+    <!--Text-->
+    <mdb-card-text> {{ gift.brandName }} </mdb-card-text>
+    <mdb-card-text> {{ gift.rating }} </mdb-card-text>
 
-      <!--Text-->
-      <mdb-card-text> {{ gift.brandName }}
-      </mdb-card-text>
-      <mdb-card-text> {{ gift.rating }}
-      </mdb-card-text>
-
-      <div class="text-left">
-        <yoyo-button *ngIf="adminMode" (click)="onEdit()" [title]="'Edit'"></yoyo-button>
-        <yoyo-button *ngIf="adminMode" (click)="onDelete()" [title]="'Delete'"></yoyo-button>
-      </div>
-    </mdb-card-body>
-  </mdb-card>
+    <div class="text-left">
+      <yoyo-button
+        *ngIf="isAdmin"
+        (click)="onEdit()"
+        [title]="'Edit'"
+      ></yoyo-button>
+      <yoyo-button
+        *ngIf="isAdmin"
+        (click)="onDelete()"
+        [title]="'Delete'"
+      ></yoyo-button>
+    </div>
+  </mdb-card-body>
+</mdb-card>

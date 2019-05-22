@@ -7,13 +7,17 @@ import { ButtonComponent } from './ui-components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.component';
 import { CoreModule } from './../core/core.module';
+import { TranslatePipe } from './pipes/translate.pipe';
+import { LookupPipe } from './pipes/lookup.pipe';
 
 @NgModule({
   declarations: [
     RatingComponent,
     GiftCardComponent,
     ButtonComponent,
-    GiftFilterComponent
+    GiftFilterComponent,
+    TranslatePipe,
+    LookupPipe
   ],
   imports: [
     CommonModule,

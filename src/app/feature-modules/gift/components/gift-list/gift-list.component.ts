@@ -12,6 +12,7 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
 import { Brand } from './../../../../shared/models/gift.model';
+import { User } from './../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-gift-list',
@@ -19,6 +20,7 @@ import { Brand } from './../../../../shared/models/gift.model';
   styleUrls: ['./gift-list.component.scss']
 })
 export class GiftListComponent implements OnInit, OnDestroy {
+  public isAdmin = false;
   modalOptions = {
     backdrop: true,
     keyboard: true,
@@ -59,6 +61,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    const user: User = JSON.parse(localStorage.getItem('user'));
+    this.isAdmin = user && user.isAdmin;
     // individial gift key to be fetched : '-LfIigQjjdKusws13mRo';
 
     // From NGRX Gift store ...
