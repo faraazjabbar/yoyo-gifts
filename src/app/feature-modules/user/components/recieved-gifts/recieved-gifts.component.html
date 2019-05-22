@@ -24,6 +24,18 @@
         >
           Review
         </button>
+
+        <button
+          mdbBtn
+          type="button"
+          color="info"
+          *ngIf="gift.isRedeemed && gift.isReviewed"
+          outline="true"
+          disabled
+          mdbWavesEffect
+        >
+          Reviewed
+        </button>
       </div>
 
       <div class=" date col-md-2">

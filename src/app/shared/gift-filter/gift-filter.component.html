@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="btn-group" mdbDropdown>
+    <button
+      mdbDropdownToggle
+      type="button"
+      mdbBtn
+      color="primary"
+      class="dropdown-toggle waves-light"
+      mdbWavesEffect
+    >
+      Categories
+    </button>
+
+    <div class="dropdown-menu dropdown-primary">
+      <mdb-checkbox
+        class="dropdown-item"
+        *ngFor="let category of categories"
+        (change)="categoryChange($event)"
+        [value]="category.key"
+        >{{ category.categoryName }}</mdb-checkbox
+      >
+    </div>
+  </div>
+
+  <div>
+    <div class="btn-group" mdbDropdown>
+      <button
+        mdbDropdownToggle
+        type="button"
+        mdbBtn
+        color="primary"
+        class="dropdown-toggle waves-light"
+        mdbWavesEffect
+      >
+        Brands
+      </button>
+      <div class="dropdown-menu dropdown-primary">
+        <mdb-checkbox
+          class="dropdown-item"
+          *ngFor="let brand of brandsToShow"
+          (change)="brandChange($event)"
+          [value]="brand.key"
+          [checked]="checkBrand(brand.key)"
+          >{{ brand.brandName }}</mdb-checkbox
+        >
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <mdb-range-input
+      default="true"
+      id="range"
+      min="0"
+      max="100"
+    ></mdb-range-input>
+  </div>
+</div>
