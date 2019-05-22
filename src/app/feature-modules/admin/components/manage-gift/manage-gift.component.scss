@@ -1,0 +1,13 @@
+.modal-title {
+  font-weight: bold;
+}
+.modal-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 600px;
+}
+.invalid-msg {
+  float: left;
+  font-size: 12px;
+  color: #DF4957;
+}

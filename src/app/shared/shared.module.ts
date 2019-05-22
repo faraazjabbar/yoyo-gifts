@@ -1,11 +1,21 @@
+import { RatingComponent } from './components/rating/rating.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RatingComponent } from './components/rating/rating.component';
-import { FormsModule } from '@angular/forms';
+import { GiftCardComponent } from './ui-components/gift-card/gift-card.component';
+import { ButtonComponent } from './ui-components/button/button.component';
 
 @NgModule({
-  declarations: [RatingComponent],
-  imports: [CommonModule, FormsModule],
-  exports: [RatingComponent, FormsModule]
+  declarations: [RatingComponent, GiftCardComponent, ButtonComponent],
+  imports: [
+    CommonModule,
+    MDBBootstrapModule.forRoot()
+  ],
+  exports: [
+    MDBBootstrapModule,
+    GiftCardComponent,
+    ButtonComponent,
+    RatingComponent
+  ]
 })
 export class SharedModule {}

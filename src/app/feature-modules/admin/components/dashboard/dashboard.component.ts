@@ -12,16 +12,10 @@ export class DashboardComponent implements OnInit {
   modalRef: MDBModalRef;
 
   constructor(
-    private mdbModal: MDBModalService,
     private adminGiftService: AdminGiftService
   ) {}
 
   ngOnInit() {
-    // this.adminGiftService.deleteGift();
   }
-  openAddGiftModal() {
-    this.modalRef = this.mdbModal.show(ManageGiftComponent);
 
-    this.modalRef.content.heading = 'Add new project';
-  }
 }
