@@ -1,0 +1,7 @@
+<div [class.loader-hidden]="!show">
+  <div class="d-flex justify-content-center clearfix spinner-overlay">
+    <div class="spinner-border text-danger" role="status" *ngIf="show">
+      <span class="sr-only">{{ content }}</span>
+    </div>
+  </div>
+</div>

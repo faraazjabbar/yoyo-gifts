@@ -10,6 +10,8 @@ import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.com
 import { CoreModule } from './../core/core.module';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { LookupPipe } from './pipes/lookup.pipe';
+import { SpinnerComponent } from './ui-components/spinner/spinner.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import { LookupPipe } from './pipes/lookup.pipe';
     GiftFilterComponent,
     TranslatePipe,
     LookupPipe,
-    ReversePipe
+    ReversePipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
-    CoreModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     MDBBootstrapModule,
@@ -34,7 +38,10 @@ import { LookupPipe } from './pipes/lookup.pipe';
     RatingComponent,
     ReversePipe,
     RouterModule,
-    GiftFilterComponent
+    GiftFilterComponent,
+    SpinnerComponent,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule {}
