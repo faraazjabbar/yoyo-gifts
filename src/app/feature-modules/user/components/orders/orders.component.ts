@@ -18,8 +18,9 @@ export class OrdersComponent implements OnInit {
   private user: User;
   public noData = false;
   public orders: Order;
+  public sentSection;
 
-  public selectedTab = 0;
+  public selectedTab = true;
 
   constructor(
     private authService: AuthService,
@@ -42,7 +43,7 @@ export class OrdersComponent implements OnInit {
   }
 
   public tabClick(tab) {
-    this.selectedTab = tab;
+    this.selectedTab = tab === 0 ? true : false ;
   }
 
   public getUpdatedData(event) {
