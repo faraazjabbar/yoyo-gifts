@@ -33,3 +33,10 @@
   margin-right: 70px;
   margin-top: 60px;
 }
+@media only screen and (max-width: 600px) {
+  .container-custom {
+    margin-left: 40px;
+    margin-right: 50px;
+    margin-top: 60px;
+  }
+}
