@@ -8,10 +8,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { RootStoreModule } from './root-store';
+import { SectionComponent } from './components/home/section/section.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, SectionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

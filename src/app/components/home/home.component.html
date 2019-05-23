@@ -1,3 +1,66 @@
-<p>
-  home works!
-</p>
+<mdb-carousel [isControls]="false" [animation]="'slide'">
+    <mdb-carousel-item>
+      <img class="d-block w-100" src="https://www.giftcart.com/pub/media/allbanners/HPDMAY03.jpg" alt="First slide">
+    </mdb-carousel-item>
+    <mdb-carousel-item>
+      <img class="d-block w-100" src="https://static.vecteezy.com/system/resources/previews/000/186/328/non_2x/discount-banner-design-voucher-template-vector.jpg" alt="Second slide">
+    </mdb-carousel-item>
+    <mdb-carousel-item>
+      <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg8NapjxiJnCDxKIAu_J4fZ5BMv0AHntRHesBYjXjcf8Dp_8hxjw" alt="Third slide">
+    </mdb-carousel-item>
+  </mdb-carousel>
+<div class="container-custom">
+  <app-section [gifts]="highRatedSection" [heading]="'Most Rated Gifts'"></app-section>
+  <app-section [gifts]="newSection" [heading]="'Newly Added Gifts'" ></app-section>
+
+  <!--Section: Features v.1-->
+<section class="text-center">
+
+    <!--Section heading-->
+    <h2 class="h1 py-5 font-weight-bold">Why choose YoYo Gifts?</h2>
+
+    <!--Grid row-->
+    <div class="row">
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="fas fa-chart-area fa-3x red-text"></i>
+        <h5 class="font-weight-bold mt-3">Analytics</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="fas fa-book fa-3x cyan-text"></i>
+        <h5 class="font-weight-bold mt-3">Tutorials</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4">
+        <i class="far fa-comments fa-3x orange-text"></i>
+        <h5 class="font-weight-bold mt-3">Support</h5>
+        <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
+          aperiam
+          minima assumenda
+          deleniti hic.
+        </p>
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Features v.1-->
+</div>

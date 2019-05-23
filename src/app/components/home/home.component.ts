@@ -1,4 +1,7 @@
+import { Gift } from './../../shared/models/gift.model';
+import { GiftService } from './../../feature-modules/gift/services/gift.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  newSection: Observable<Gift[]>;
+  highRatedSection: Observable<Gift[]>;
 
-  constructor() { }
+  constructor(private giftService: GiftService) { }
 
   ngOnInit() {
+    this.newSection = this.giftService.getGiftsByQuery();
+    this.highRatedSection = this.giftService.getGiftsByQuery2();
   }
 
 }

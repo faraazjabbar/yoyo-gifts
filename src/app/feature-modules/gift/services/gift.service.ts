@@ -14,6 +14,13 @@ export class GiftService {
         private http: HttpClient
     ) {}
 
+    getGiftsByQuery(): Observable<Gift[]> {
+      return this.firebaseService.getByQuery<Gift>('/gifts');
+    }
+    getGiftsByQuery2(): Observable<Gift[]> {
+      return this.firebaseService.getByQuery2<Gift>('/gifts');
+    }
+
     getGifts(): Observable<Gift[]> {
         return this.firebaseService.get<Gift>('/gifts');
     }

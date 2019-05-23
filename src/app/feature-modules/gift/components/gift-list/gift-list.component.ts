@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { RootStoreState, GiftStoreSelectors, GiftStoreActions } from 'src/app/root-store';
 import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
+import { GiftService } from '../../services/gift.service';
 
 @Component({
   selector: 'app-gift-list',
@@ -31,7 +32,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<RootStoreState.State>,
-        private mdbModal: MDBModalService
+        private mdbModal: MDBModalService,
+        private giftService: GiftService
     ) { }
 
     onEdit(event: Gift) {
@@ -51,6 +53,12 @@ export class GiftListComponent implements OnInit, OnDestroy {
       }
     }
     ngOnInit() {
+        this.giftService.getGiftsByQuery().subscribe(data => {
+          console.log(data);
+        });
+        this.giftService.getGiftsByQuery2().subscribe(data => {
+          console.log(data);
+        })
         // individial gift key to be fetched : '-LfIigQjjdKusws13mRo';
 
         // From NGRX Gift store ...
