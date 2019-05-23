@@ -2,7 +2,7 @@
 <div class="card card-cascade card-ecommerce wider">
 
     <!--Card image-->
-    <div class="view view-cascade overlay">
+    <div class="view view-cascade overlay" [routerLink]="['/gifts/details/', gift.key]">
       <img class="card-img-top" src="{{ gift.imageLink }}"
         alt="">
       <a>

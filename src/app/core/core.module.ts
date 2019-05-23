@@ -7,7 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
@@ -22,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     MDBBootstrapModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     AngularFireModule,
@@ -31,7 +32,8 @@ import { FooterComponent } from './footer/footer.component';
     MDBBootstrapModule,
     HeaderComponent,
     FooterComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    FormsModule
   ]
 })
 export class CoreModule {}

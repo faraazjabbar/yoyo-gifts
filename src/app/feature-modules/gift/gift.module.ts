@@ -11,6 +11,7 @@ import { ConfirmationModalComponent } from './../admin/components/confirmation-m
 import { GiftListComponent } from './components/gift-list/gift-list.component';
 import { GiftDetailsComponent } from './components/gift-details/gift-details.component';
 import { GiftReviewComponent } from './components/gift-details/gift-review/gift-review.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { GiftReviewComponent } from './components/gift-details/gift-review/gift-
     SharedModule,
     GiftRoutingModule,
     SharedModule,
+    FormsModule,
     AdminModule
   ],
   entryComponents: [

@@ -25,7 +25,7 @@ export class ReviewGiftComponent implements OnInit {
   }
 
   public sendReview() {
-    const user: User = JSON.parse(sessionStorage.getItem('user'));
+    const user: User = JSON.parse(localStorage.getItem('user'));
     const review: Review = {
       userId: user.key,
       userName: user.userName,

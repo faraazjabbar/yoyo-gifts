@@ -9,6 +9,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { RootStoreModule } from './root-store';
 import { SectionComponent } from './components/home/section/section.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { SectionComponent } from './components/home/section/section.component';
     CoreModule,
     SharedModule,
     HttpClientModule,
-    RootStoreModule
+    RootStoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
