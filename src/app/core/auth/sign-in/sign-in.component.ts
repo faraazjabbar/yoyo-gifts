@@ -4,6 +4,7 @@ import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { RouterLinks } from '../../../shared/constants/app.constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from './../../services/alert.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -54,18 +56,23 @@ export class SignInComponent implements OnInit {
   }
 
   public signInWithGoogle() {
-    this.authService.googleSignInWithPopup().then((data: any) => {
-      const user: User = {
-        userId: data.user.uid,
-        userName: data.user.displayName,
-        email: data.user.email,
-        imageLink: data.user.photoURL,
-        isAdmin: false
-      };
-      data.additionalUserInfo.isNewUser
-        ? this.addNewUser(user)
-        : this.getUser(data.user.email);
-    });
+    this.authService
+      .googleSignInWithPopup()
+      .then((data: any) => {
+        const user: User = {
+          userId: data.user.uid,
+          userName: data.user.displayName,
+          email: data.user.email,
+          imageLink: data.user.photoURL,
+          isAdmin: false
+        };
+        data.additionalUserInfo.isNewUser
+          ? this.addNewUser(user)
+          : this.getUser(data.user.email);
+      })
+      .catch(err => {
+        this.alertService.error(err);
+      });
   }
 
   public signInWithEmail(user) {
@@ -75,7 +82,7 @@ export class SignInComponent implements OnInit {
         this.getUser(userData.user.email);
       })
       .catch(err => {
-        console.log(err.message);
+        this.alertService.error(err);
       });
   }
 
@@ -91,6 +98,8 @@ export class SignInComponent implements OnInit {
           isAdmin: false
         };
         this.addNewUser(userData);
+      }).catch(err => {
+        this.alertService.error(err)
       });
   }
 
