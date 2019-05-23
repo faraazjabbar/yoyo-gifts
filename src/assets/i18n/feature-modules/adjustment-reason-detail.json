@@ -1,0 +1,18 @@
+{
+    "en": {
+        "title": "Adjustment Reason Detail",
+        "adjustmentReasonId": "ID",
+        "code": "Code",
+        "description": "Description",
+        "voucherStatusId" :  "Voucher Status", 
+        "isActive": "Active"
+    },
+    "jp": {
+        "title": "調整理由の詳細",
+        "adjustmentReasonId": "身元",
+        "code": "符号",
+        "description": "説明",
+        "voucherStatusId": "バウチャーステータス",
+        "isActive": "アクティブ"
+    }
+}

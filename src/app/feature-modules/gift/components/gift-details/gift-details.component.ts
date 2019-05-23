@@ -17,6 +17,7 @@ import {
 } from 'src/app/shared/models/orders.model';
 import { OrdersService } from 'src/app/feature-modules/user/services/orders.service';
 import { User } from './../../../../shared/models/user.model';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-gift-details',
@@ -42,19 +43,32 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: Store<RootStoreState.State>,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
+
+    // this.alertService.confirm('Want to delete?', 'xxxx', null);
+    // this.alertService.confirm(
+    //     this.confirmTitle,
+    //     this.confirmText,
+    //     () => this.yesCallBack(),
+    //     () => this.noCallBack(),
+    //     this.confirmBtnText,
+    //     this.cancelBtnText
+    // );
+    // this.alertService.error('Something went wrong');
+    // this.alertService.warning('Key is not Unique');
+
     this.user = JSON.parse(localStorage.getItem('user'));
-    // this.gift$ = this.store.select(GiftStoreSelectors.getByKey('-LfIigQjjdKusws13mRo'));
+
+    // Accessing gift data from resolver route guard ...
     this.route.data.subscribe((data: { gift: Gift }) => {
-      console.log('gift: ', data.gift);
       this.gift = data.gift;
     });
 
-    // console.log('RESOLVER GUARD GIFT: ', this.gift);
-
+    // this.gift$ = this.store.select(GiftStoreSelectors.getByKey('-LfIigQjjdKusws13mRo'));
     // this.gift$
     //     .pipe(
     //         tap(gift => console.log('From GetByKey Selector DETAILS PAGE ::: ', gift))
@@ -65,8 +79,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     //     .pipe(
     //         tap(error => {
     //             if (error) {
-    //                 // this.alertService.error(error);
-    //                 console.log('something went wrong');
+    //                 this.alertService.error(error);
     //             }
     //         })
     //     )
@@ -147,6 +160,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
 
     forkJoin([senderOderApi, recieverOrderApi])
       .pipe(
+        tap(data => console.log('Form Join data: ', data)),
         switchMap(data => {
           if (data[0].key) {
             senderOrder = data[0];
