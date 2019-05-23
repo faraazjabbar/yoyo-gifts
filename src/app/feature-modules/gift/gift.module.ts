@@ -1,3 +1,4 @@
+import { CoreModule } from 'src/app/core/core.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     GiftRoutingModule,
     SharedModule,
     FormsModule,
-    AdminModule
+    AdminModule,
+    CoreModule
   ],
   entryComponents: [
     ManageGiftComponent,

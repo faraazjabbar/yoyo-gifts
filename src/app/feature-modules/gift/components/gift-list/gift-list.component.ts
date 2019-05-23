@@ -1,3 +1,4 @@
+import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { ConfirmationModalComponent } from './../../../admin/components/confirmation-modal/confirmation-modal.component';
 import { ManageGiftComponent } from './../../../admin/components/manage-gift/manage-gift.component';
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
@@ -34,10 +35,12 @@ export class GiftListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   gifts$: Observable<Gift[]>;
   modalRef: MDBModalRef;
+  loading$: Observable<boolean>;
 
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
+        private spinnerService: SpinnerService
    ) { }
 
   onEdit(event: Gift) {
@@ -66,6 +69,18 @@ export class GiftListComponent implements OnInit, OnDestroy {
 
     // From NGRX Gift store ...
     this.gifts$ = this.store.select(GiftStoreSelectors.getList);
+    this.store.select(GiftStoreSelectors.getLoading)
+    .pipe(
+      tap(value => {
+        console.log(value);
+        if (value) {
+          this.spinnerService.show();
+        } else {
+          this.spinnerService.hide();
+        }
+      })
+    )
+    .subscribe();
 
     this.subscriptions.push(
       this.store

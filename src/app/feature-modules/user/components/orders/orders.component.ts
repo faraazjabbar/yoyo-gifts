@@ -1,3 +1,4 @@
+import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'firebase';
 import { OrdersService } from '../../services/orders.service';
@@ -24,7 +25,8 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit() {
@@ -37,8 +39,10 @@ export class OrdersComponent implements OnInit {
   }
 
   private getOrders() {
+    this.spinnerService.show();
     this.orderService.getOrders(this.user.email).subscribe((data: Order) => {
       this.orders = data;
+      this.spinnerService.hide();
     });
   }
 

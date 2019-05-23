@@ -1,10 +1,5 @@
+import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import {
-  RootStoreState,
-  GiftStoreActions,
-  GiftStoreSelectors
-} from 'src/app/root-store';
 import { tap, map, switchMap } from 'rxjs/operators';
 import { Subscription, Observable, of, forkJoin } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
@@ -32,7 +27,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
   translation$: Observable<Object>;
   gift$: Observable<Gift>;
   gift: Gift;
-  giftMessage: String;
+  giftMessage: string;
 
   model: any = {
     name: '',
@@ -42,9 +37,9 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<RootStoreState.State>,
     private orderService: OrdersService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit() {
@@ -64,8 +59,10 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('user'));
 
     // Accessing gift data from resolver route guard ...
+    this.spinnerService.show();
     this.route.data.subscribe((data: { gift: Gift }) => {
       this.gift = data.gift;
+      this.spinnerService.hide();
     });
 
     // this.gift$ = this.store.select(GiftStoreSelectors.getByKey('-LfIigQjjdKusws13mRo'));
