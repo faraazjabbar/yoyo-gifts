@@ -10,6 +10,7 @@ import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.com
 import { CoreModule } from './../core/core.module';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { LookupPipe } from './pipes/lookup.pipe';
+import { SpinnerComponent } from './ui-components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LookupPipe } from './pipes/lookup.pipe';
     GiftFilterComponent,
     TranslatePipe,
     LookupPipe,
-    ReversePipe
+    ReversePipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
