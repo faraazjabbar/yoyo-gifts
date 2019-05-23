@@ -12,9 +12,15 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [SignInComponent, HeaderComponent, NoAccessComponent, FooterComponent],
+  declarations: [
+    SignInComponent,
+    HeaderComponent,
+    NoAccessComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -22,8 +28,7 @@ import { FooterComponent } from './footer/footer.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     MDBBootstrapModule.forRoot(),
-    ReactiveFormsModule,
-    FormsModule
+    SharedModule
   ],
   exports: [
     AngularFireModule,
@@ -32,8 +37,7 @@ import { FooterComponent } from './footer/footer.component';
     MDBBootstrapModule,
     HeaderComponent,
     FooterComponent,
-    NoAccessComponent,
-    FormsModule
+    NoAccessComponent
   ]
 })
 export class CoreModule {}
