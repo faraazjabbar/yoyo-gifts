@@ -38,7 +38,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
-\    ) { }
+   ) { }
 
   onEdit(event: Gift) {
     this.modalOptions.data = { content: event };
