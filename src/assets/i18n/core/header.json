@@ -1,0 +1,18 @@
+{
+    "en": {
+        "signIn": "Sign In",
+        "home": "Home",
+        "gifts": "Gifts",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "categories": "Categories"
+    },
+    "jp": {
+      "signIn": "jp: Sign In",
+      "home": "jp: Home",
+      "gifts": "jp: Gifts",
+      "aboutUs": "jp: About Us",
+      "contactUs": "jp: Contact Us",
+      "categories": "jp: Categories"
+    }
+}

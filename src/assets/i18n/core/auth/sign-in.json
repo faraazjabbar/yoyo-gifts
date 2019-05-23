@@ -1,0 +1,20 @@
+{
+    "en": {
+        "title": "Sign In",
+        "btnTitle": "Sign In",
+        "email": "Email",
+        "password" : "Password",
+        "notmember": "Not A Member",
+        "Register": "Register",
+        "OrSignIn": "Or Sign in with:"
+    },
+    "jp": {
+      "title": "jp: Sign In",
+      "btnTitle": "jp: Sign In",
+      "email": "jp: Email",
+      "password" : "jp: Password",
+      "notmember": "jp: Not A Member",
+      "Register": "jp: Register",
+      "OrSignIn": "jp: Or Sign in with:"
+    }
+}
