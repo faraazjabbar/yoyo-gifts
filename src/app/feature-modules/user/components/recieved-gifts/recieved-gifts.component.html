@@ -5,42 +5,42 @@
 <div *ngIf="!noData">
   <div class="col-md-12 sent-gift" *ngFor="let gift of recievedGifts">
     <div class="row">
-      <div class="col-md-8">
-        <p>You have recieved {{ gift.giftName }} from {{ gift.senderName }}.</p>
+      <div class="col-md-6">
+        <p><strong class="font-weight-bold mr-4"> {{ gift.giftName }} from {{ gift.senderName }}.</strong></p>
       </div>
-
       <div class="col-md-2">
-        <button
-          class="btn btn-info"
+        <img class="img-responsive" [routerLink]="['/gifts/details/', gift.key]" src="{{ gift.imageLink }}" alt="">
+        </div>
+      <div class="col-md-2">
+        <h6 class="font-weight-bold red-custom mt-1"
           (click)="redeem(gift)"
           *ngIf="!gift.isRedeemed"
         >
           Redeem
-        </button>
-        <button
-          class="btn btn-info"
+      </h6>
+        <h6
+          class="font-weight-bold red-custom mt-1"
           *ngIf="gift.isRedeemed && !gift.isReviewed"
           (click)="review(gift)"
         >
           Review
-        </button>
+    </h6>
 
-        <button
-          mdbBtn
-          type="button"
-          color="info"
+        <h6
+          class="font-weight-bold black-custom mt-1"
           *ngIf="gift.isRedeemed && gift.isReviewed"
           outline="true"
           disabled
           mdbWavesEffect
         >
           Reviewed
-        </button>
+  </h6>
       </div>
 
       <div class=" date col-md-2">
-        {{ formatDate(gift.recievedOn) }}
+          <strong class="font-weight-bold mt-4"> {{ formatDate(gift.recievedOn) }} </strong>
       </div>
     </div>
+    <hr>
   </div>
 </div>
