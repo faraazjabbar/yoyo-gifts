@@ -4,6 +4,7 @@
 <div *ngIf="false">
   <app-gift-filter></app-gift-filter>
 </div>
+<div class="container-custom">
 <div class="projects-list d-flex flex-wrap fadeIn animated">
   <div class="project" *ngFor="let gift of gifts$ | async">
     <app-gift-card
@@ -14,3 +15,5 @@
     ></app-gift-card>
   </div>
 </div>
+</div>
+

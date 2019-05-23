@@ -11,7 +11,6 @@ import {
 } from 'src/app/root-store';
 import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
-import { Brand } from './../../../../shared/models/gift.model';
 import { User } from './../../../../shared/models/user.model';
 
 @Component({
@@ -36,10 +35,10 @@ export class GiftListComponent implements OnInit, OnDestroy {
   gifts$: Observable<Gift[]>;
   modalRef: MDBModalRef;
 
-  constructor(
-    private store: Store<RootStoreState.State>,
-    private mdbModal: MDBModalService
-  ) {}
+    constructor(
+        private store: Store<RootStoreState.State>,
+        private mdbModal: MDBModalService,
+   ) { }
 
   onEdit(event: Gift) {
     this.modalOptions.data = { content: event };

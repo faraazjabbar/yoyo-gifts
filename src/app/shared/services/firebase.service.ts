@@ -26,7 +26,42 @@ export class FirebaseService {
         })
       );
   }
-
+  getByQuery<T>(path: string): Observable<T[]> {
+    return this.db
+      .list(path, ref => {
+        const q = ref.limitToLast(4);
+        return q;
+      })
+      .snapshotChanges()
+      .pipe(
+        map((data: any) => {
+          return data.map((d: any) => {
+            return {
+              key: d.key,
+              ...d.payload.val()
+            };
+          });
+        })
+      );
+  }
+  getByQuery2<T>(path: string): Observable<T[]> {
+    return this.db
+      .list(path, ref => {
+        const q = ref.orderByChild('rating').limitToLast(4);
+        return q;
+      })
+      .snapshotChanges()
+      .pipe(
+        map((data: any) => {
+          return data.map((d: any) => {
+            return {
+              key: d.key,
+              ...d.payload.val()
+            };
+          });
+        })
+      );
+  }
   getByKey<T>(path: string, key: string): Observable<T> {
     return this.http
       .get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`)

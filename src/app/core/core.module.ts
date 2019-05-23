@@ -11,9 +11,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [SignInComponent, HeaderComponent, NoAccessComponent],
+  declarations: [SignInComponent, HeaderComponent, NoAccessComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -30,6 +31,7 @@ import { RouterModule } from '@angular/router';
     AngularFireDatabaseModule,
     MDBBootstrapModule,
     HeaderComponent,
+    FooterComponent,
     NoAccessComponent,
     FormsModule
   ]

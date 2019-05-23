@@ -1,9 +1,10 @@
-import { RatingComponent } from './components/rating/rating.component';
+import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GiftCardComponent } from './ui-components/gift-card/gift-card.component';
 import { ButtonComponent } from './ui-components/button/button.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.component';
 import { CoreModule } from './../core/core.module';
@@ -17,7 +18,8 @@ import { LookupPipe } from './pipes/lookup.pipe';
     ButtonComponent,
     GiftFilterComponent,
     TranslatePipe,
-    LookupPipe
+    LookupPipe,
+    ReversePipe
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { LookupPipe } from './pipes/lookup.pipe';
     GiftCardComponent,
     ButtonComponent,
     RatingComponent,
+    ReversePipe,
     RouterModule,
     GiftFilterComponent
   ]
