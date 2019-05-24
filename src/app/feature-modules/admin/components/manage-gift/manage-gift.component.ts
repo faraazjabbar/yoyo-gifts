@@ -8,6 +8,8 @@ import {
   AbstractControl
 } from '@angular/forms';
 import { MDBModalRef } from 'angular-bootstrap-md';
+import { tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-manage-gift',
@@ -25,7 +27,8 @@ export class ManageGiftComponent implements OnInit {
   constructor(
     public modalRef: MDBModalRef,
     private fb: FormBuilder,
-    private adminGiftService: AdminGiftService
+    private adminGiftService: AdminGiftService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -116,14 +119,31 @@ export class ManageGiftComponent implements OnInit {
     };
     console.log(addGiftObj);
     if (this.heading === 'Edit Gift') {
-      this.adminGiftService.updateGift({
-        key: this.content.key,
-        giftedCount: this.content.giftedCount ? this.content.giftedCount : null,
-        rating: this.content.rating ? this.content.rating : null,
-        ...addGiftObj
-      });
+      this.adminGiftService
+        .updateGift({
+          key: this.content.key,
+          giftedCount: this.content.giftedCount
+            ? this.content.giftedCount
+            : null,
+          rating: this.content.rating ? this.content.rating : null,
+          ...addGiftObj
+        })
+        .toPromise()
+        .then(() => {
+          this.alertService.success('Success', 'Gift updated successfully.');
+        })
+        .catch(err => {
+          this.alertService.error(err);
+        });
     } else {
-      this.adminGiftService.addGift(addGiftObj);
+      this.adminGiftService
+        .addGift(addGiftObj)
+        .then(() => {
+          this.alertService.success('Success', 'Gift added successfully.');
+        })
+        .catch(err => {
+          this.alertService.error(err);
+        });
     }
   }
   categoryValidator(
