@@ -11,16 +11,16 @@ import { Observable } from 'rxjs';
 export class AdminGiftService {
   categories: Category[] = [];
   brands: Brand[] = [];
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService) {}
 
   addGift(gift: Gift) {
-    this.firebaseService.add('/gifts', gift);
+   return this.firebaseService.add('/gifts', gift);
   }
   updateGift(gift: Gift) {
-    this.firebaseService.update('/gifts', gift);
+    return this.firebaseService.update('/gifts', gift);
   }
   deleteGift(gift: Gift) {
-    this.firebaseService.delete('/gifts', gift);
+    return this.firebaseService.delete('/gifts', gift);
   }
   getCategories(): Observable<Category[]> {
     return this.firebaseService.get<Category>('/categories');
