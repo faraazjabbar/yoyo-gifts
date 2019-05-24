@@ -64,7 +64,8 @@ export class SignInComponent implements OnInit {
           userName: data.user.displayName,
           email: data.user.email,
           imageLink: data.user.photoURL,
-          isAdmin: false
+          isAdmin: false,
+          points: 10000
         };
         data.additionalUserInfo.isNewUser
           ? this.addNewUser(user)
@@ -95,11 +96,13 @@ export class SignInComponent implements OnInit {
           userName: user.firstName + ' ' + user.lastName,
           email: user.email,
           imageLink: data.user.photoURL,
-          isAdmin: false
+          isAdmin: false,
+          points: 10000
         };
         this.addNewUser(userData);
-      }).catch(err => {
-        this.alertService.error(err)
+      })
+      .catch(err => {
+        this.alertService.error(err);
       });
   }
 
