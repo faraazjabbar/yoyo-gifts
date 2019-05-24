@@ -10,17 +10,19 @@ import { SentGiftsComponent } from './components/sent-gifts/sent-gifts.component
 import { RecievedGiftsComponent } from './components/recieved-gifts/recieved-gifts.component';
 import { ReviewGiftComponent } from './components/review-gift/review-gift.component';
 import { MDBModalRef } from 'angular-bootstrap-md';
+import { AddPointsComponent } from './components/add-points/add-points.component';
 
 @NgModule({
-  declarations: [
-    OrdersComponent,
-    ProfileComponent,
-    SentGiftsComponent,
-    RecievedGiftsComponent,
-    ReviewGiftComponent
-  ],
-  imports: [CommonModule, CoreModule, SharedModule, UserRoutingModule],
-  providers: [MDBModalRef],
-  entryComponents: [ReviewGiftComponent]
+    declarations: [
+        OrdersComponent,
+        ProfileComponent,
+        SentGiftsComponent,
+        RecievedGiftsComponent,
+        ReviewGiftComponent,
+        AddPointsComponent
+    ],
+    imports: [CommonModule, CoreModule, SharedModule, UserRoutingModule],
+    providers: [MDBModalRef],
+    entryComponents: [ReviewGiftComponent, AddPointsComponent]
 })
 export class UserModule {}
