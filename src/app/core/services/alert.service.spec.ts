@@ -10,7 +10,7 @@ describe('AlertService', () => {
     TestBed.configureTestingModule({
       providers: [
         AlertService,
-        { provide: SweetAlertResult, useValue: sweetAlertResultStub },
+        //{ provide: SweetAlertResult, useValue: sweetAlertResultStub },
         { provide: TranslationService, useValue: translationServiceStub }
       ]
     });

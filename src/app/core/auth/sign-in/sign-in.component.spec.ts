@@ -31,7 +31,6 @@ describe('SignInComponent', () => {
       declarations: [SignInComponent],
       providers: [
         { provide: AuthService, useValue: authServiceStub },
-        { provide: User, useValue: userStub },
         { provide: Router, useValue: routerStub },
         { provide: FormBuilder, useValue: formBuilderStub },
         { provide: AlertService, useValue: alertServiceStub }

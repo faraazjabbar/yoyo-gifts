@@ -12,21 +12,21 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent, UserListComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MDBBootstrapModule.forRoot(),
-    SharedModule
-  ],
-  entryComponents: [
-    ManageGiftComponent
-  ],
-  exports: [
-    ManageGiftComponent,
-    ConfirmationModalComponent
-  ]
+    declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent, UserListComponent],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MDBBootstrapModule.forRoot(),
+        SharedModule
+    ],
+    entryComponents: [
+        ManageGiftComponent
+    ],
+    exports: [
+        ManageGiftComponent,
+        ConfirmationModalComponent
+    ]
 })
 export class AdminModule {}
