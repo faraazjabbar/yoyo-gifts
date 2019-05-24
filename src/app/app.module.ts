@@ -12,21 +12,22 @@ import { SectionComponent } from './components/home/section/section.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SectionComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CoreModule,
-    SharedModule,
-    HttpClientModule,
-    RootStoreModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, HomeComponent, SectionComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CoreModule,
+        SharedModule,
+        HttpClientModule,
+        RootStoreModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production
+        })
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
