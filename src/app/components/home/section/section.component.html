@@ -1,5 +1,5 @@
 <div class="container-custom">
-  <h2><strong>{{ heading }}</strong> </h2>
+  <h2><strong class="font-weight-bold">{{ heading }}</strong> </h2>
     <div class="projects-list d-flex flex-wrap fadeIn animated">
         <div class="project" *ngFor="let gift of gifts | async | reverse">
             <app-gift-card [gift]= "gift"></app-gift-card>

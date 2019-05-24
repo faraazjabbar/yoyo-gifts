@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './spinner/spinner.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
@@ -15,12 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    SignInComponent,
-    HeaderComponent,
-    NoAccessComponent,
-    FooterComponent
-  ],
+  declarations: [SignInComponent, HeaderComponent, NoAccessComponent, FooterComponent, SpinnerComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -37,7 +33,9 @@ import { SharedModule } from '../shared/shared.module';
     MDBBootstrapModule,
     HeaderComponent,
     FooterComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    FormsModule,
+    SpinnerComponent
   ]
 })
 export class CoreModule {}
