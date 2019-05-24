@@ -43,7 +43,6 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-
     // this.alertService.confirm('Want to delete?', 'xxxx', null);
     // this.alertService.confirm(
     //     this.confirmTitle,
@@ -216,9 +215,11 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
             res => {
               console.log(res);
               this.isSendGift = false;
-              this.giftMessage = 'Gift Sent Successfully !!!';
+              this.alertService.success('Sent', 'Gift sent successfully.');
             },
-            err => {}
+            err => {
+              this.alertService.error('Failed to send gift.');
+            }
           );
           return data;
         })
