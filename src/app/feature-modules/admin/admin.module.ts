@@ -11,7 +11,8 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { GiftListComponent } from './components/gift-list/gift-list.component';
 
 @NgModule({
-  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent, UserListComponent],
+  declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe,
+    ConfirmationModalComponent, UserListComponent, GiftListComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
