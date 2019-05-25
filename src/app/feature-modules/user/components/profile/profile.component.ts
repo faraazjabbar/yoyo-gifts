@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './../../../../shared/models/user.model';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { AddPointsComponent } from './../add-points/add-points.component';
+import { AuthService } from './../../../../core/auth/auth.service';
 
 @Component({
     selector: 'app-profile',
@@ -23,10 +24,13 @@ export class ProfileComponent implements OnInit {
         data: {}
     };
 
-    constructor(private modalService: MDBModalService) {}
+    constructor(
+        private modalService: MDBModalService,
+        private authService: AuthService
+    ) {}
 
     ngOnInit() {
-        this.user = JSON.parse(localStorage.getItem('user'));
+        this.user = this.authService.emitUserData.getValue();
     }
 
     public addPoints() {

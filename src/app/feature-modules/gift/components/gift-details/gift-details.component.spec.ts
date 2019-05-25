@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from 'src/app/feature-modules/user/services/orders.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { GiftDetailsComponent } from './gift-details.component';
-fdescribe('GiftDetailsComponent', () => {
+describe('GiftDetailsComponent', () => {
     let component: GiftDetailsComponent;
     let fixture: ComponentFixture<GiftDetailsComponent>;
     beforeEach(() => {
@@ -18,18 +18,18 @@ fdescribe('GiftDetailsComponent', () => {
             updateGift: arg1 => ({})
         };
         const alertServiceStub = {
-        success: (string1, string2) => ({}),
-        error: string1 => ({})
+            success: (string1, string2) => ({}),
+            error: string1 => ({})
         };
         TestBed.configureTestingModule({
-        schemas: [NO_ERRORS_SCHEMA],
-        declarations: [GiftDetailsComponent],
-        providers: [
-            { provide: Store, useValue: storeStub },
-            { provide: ActivatedRoute, useValue: activatedRouteStub },
-            { provide: OrdersService, useValue: ordersServiceStub },
-            { provide: AlertService, useValue: alertServiceStub }
-        ]
+            schemas: [NO_ERRORS_SCHEMA],
+            declarations: [GiftDetailsComponent],
+            providers: [
+                { provide: Store, useValue: storeStub },
+                { provide: ActivatedRoute, useValue: activatedRouteStub },
+                { provide: OrdersService, useValue: ordersServiceStub },
+                { provide: AlertService, useValue: alertServiceStub }
+            ]
         });
         fixture = TestBed.createComponent(GiftDetailsComponent);
         component = fixture.componentInstance;

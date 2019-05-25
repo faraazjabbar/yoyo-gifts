@@ -3,7 +3,8 @@ export const RouterLinks = {
     HOME: '/home',
     ADMIN: '/admin',
     USER: '/user',
+    NO_ACCESS: '/noAccess',
+    PROFILE: '/user/profile',
     USERLIST: '/admin/user-list',
-    GIFTLIST: '/admin/gift-list',
-    NO_ACCESS: '/noAccess'
+    GIFTLIST: '/admin/gift-list'
 };

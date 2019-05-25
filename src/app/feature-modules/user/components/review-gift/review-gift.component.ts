@@ -4,6 +4,8 @@ import { RecievedGift } from 'src/app/shared/models/orders.model';
 import { Subject } from 'rxjs';
 import { Review } from 'src/app/shared/models/gift.model';
 import { User } from 'src/app/shared/models/user.model';
+import { componentFactoryName } from '@angular/compiler';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
     selector: 'app-review-gift',
@@ -15,21 +17,26 @@ export class ReviewGiftComponent implements OnInit {
     public review: string;
     public content: RecievedGift;
     public action: Subject<any> = new Subject();
+    public user: User;
 
-    constructor(public modalRef: MDBModalRef) {}
+    constructor(
+        public modalRef: MDBModalRef,
+        private authService: AuthService
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.user = this.authService.emitUserData.getValue();
+    }
 
     public getRating(rating: number): void {
         this.rating = rating;
     }
 
     public sendReview() {
-        const user: User = JSON.parse(localStorage.getItem('user'));
         const review: Review = {
-            userId: user.key,
-            userName: user.userName,
-            userImage: user.imageLink,
+            userId: this.user.key,
+            userName: this.user.userName,
+            userImage: this.user.imageLink,
             userReview: this.review,
             userRating: this.rating,
             reviewedOn: new Date().toDateString()
