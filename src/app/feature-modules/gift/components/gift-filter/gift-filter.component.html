@@ -1,0 +1,40 @@
+<hr>
+<div class="container mt-4">
+<div class="row custom-filter">
+  <div class="col-2"><h6 class="filter-heading">Filters:</h6></div>
+  <div class="col-2"><div class="btn-group" mdbDropdown>
+      <h6 mdbDropdownToggle class="dropdown-toggle-text">Brands <i class="ml-1 fas fa-caret-down"></i></h6>
+      <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" (click)="changeBrand('amazon')">Amazon</a>
+        <a class="dropdown-item" (click)="changeBrand('vlcc')">Vlcc</a>
+        <a class="dropdown-item" (click)="changeBrand('myntra')">Myntra</a>
+    </div>
+  </div>
+  <div *ngIf="brandValue"><h6 class="filter-badge">{{ brandValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetBrandValue()"></i></h6></div>
+  </div>
+  <div class="col-2"><div class="btn-group" mdbDropdown>
+      <h6 mdbDropdownToggle class="dropdown-toggle-text">Points <i class="ml-1 fas fa-caret-down"></i></h6>
+      <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" (click)="changePoints(1000)">Under 1000</a>
+        <a class="dropdown-item" (click)="changePoints(2000)">Under 2000</a>
+        <a class="dropdown-item" (click)="changePoints(3000)">Under 3000</a>
+      </div>
+    </div>
+    <div *ngIf="pointsValue !== 0"><h6 class="filter-badge">< {{ pointsValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetPointsValue()"></i></h6></div>
+  </div>
+  <div class="col-1"></div>
+  <div class="col-2 ml-4 pl-4">Sort By:</div>
+  <div class="col-2"><div class="btn-group" mdbDropdown>
+      <h6 mdbDropdownToggle class="dropdown-toggle-text">Options <i class="ml-1 fas fa-caret-down"></i></h6>
+      <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" (click)="changeSortParam('rating')" >Rating</a>
+        <a class="dropdown-item" (click)="changeSortParam('cost')">Points</a>
+      </div>
+    </div>
+    <i *ngIf="sortDirection === 'asc'" (click)="changeSortDirection('desc')" class="fas fa-arrow-up ml-4"></i>
+    <i *ngIf="sortDirection === 'desc'" (click)="changeSortDirection('asc')" class="fas fa-arrow-down ml-4"></i>
+  </div>
+  <div *ngIf="sortParamValue"><h6 class="filter-badge">{{ sortParamValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetSortParamValue()"></i></h6></div>
+  <div class="col-1"></div>
+</div>
+</div>

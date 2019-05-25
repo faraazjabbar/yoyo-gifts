@@ -13,7 +13,6 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
 import { User } from './../../../../shared/models/user.model';
-
 @Component({
   selector: 'app-gift-list',
   templateUrl: './gift-list.component.html',
@@ -35,13 +34,23 @@ export class GiftListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   gifts$: Observable<Gift[]>;
   modalRef: MDBModalRef;
+  searchValue: string;
   loading$: Observable<boolean>;
+  brandFilterValue = '';
+  pointsFilterValue = 0;
+  sortParam = '';
+  sortDirection = 'asc';
 
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
         private spinnerService: SpinnerService
    ) { }
+
+  setSearchValue(event: string) {
+    console.log(event);
+    this.searchValue = event;
+  }
 
   onEdit(event: Gift) {
     this.modalOptions.data = { content: event };
@@ -61,6 +70,21 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.modalOptions
       );
     }
+  }
+  onChangeBrandValue(event: string) {
+    this.brandFilterValue = event;
+  }
+  onChangePointsValue(event: number) {
+    this.pointsFilterValue = event;
+  }
+  onChangeSortParam(event: string) {
+    this.sortParam = event;
+  }
+  onChangeSortDirection(event: string) {
+    this.sortDirection = event;
+  }
+  resetSearch() {
+    this.searchValue = '';
   }
   ngOnInit() {
     const user: User = JSON.parse(localStorage.getItem('user'));

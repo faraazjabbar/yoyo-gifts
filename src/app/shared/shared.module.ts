@@ -1,3 +1,4 @@
+import { SectionComponent } from './ui-components/section/section.component';
 import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
@@ -6,23 +7,19 @@ import { GiftCardComponent } from './ui-components/gift-card/gift-card.component
 import { ButtonComponent } from './ui-components/button/button.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
-import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.component';
-import { CoreModule } from './../core/core.module';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { LookupPipe } from './pipes/lookup.pipe';
-import { SpinnerComponent } from './ui-components/spinner/spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     RatingComponent,
     GiftCardComponent,
+    SectionComponent,
     ButtonComponent,
-    GiftFilterComponent,
     TranslatePipe,
     LookupPipe,
-    ReversePipe,
-    SpinnerComponent
+    ReversePipe
   ],
   imports: [
     CommonModule,
@@ -38,10 +35,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RatingComponent,
     ReversePipe,
     RouterModule,
-    GiftFilterComponent,
-    SpinnerComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SectionComponent
   ]
 })
 export class SharedModule {}
