@@ -6,7 +6,7 @@ import { RouterLinks } from './../../shared/constants/app.constants';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService,
@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-        console.log(state);
         let res = false;
         const user: User = this.authService.emitUserData.getValue();
 

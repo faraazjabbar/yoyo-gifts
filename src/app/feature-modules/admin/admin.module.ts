@@ -1,4 +1,4 @@
-import { UserListComponent } from './components/user-list/user-list.component';
+
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,8 +9,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
-import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
-import { GiftListComponent } from './components/gift-list/gift-list.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component'
+import { AdminUserListComponent } from './components/admin-user-list/user-list.component';
+import { AdminGiftListComponent } from './components/admin-gift-list/gift-list.component';
 
 @NgModule({
     declarations: [
@@ -18,8 +19,8 @@ import { GiftListComponent } from './components/gift-list/gift-list.component';
         DashboardComponent,
         BrandFilterPipe,
         ConfirmationModalComponent,
-        UserListComponent,
-        GiftListComponent
+        AdminUserListComponent,
+        AdminGiftListComponent
     ],
     imports: [
         CommonModule,
