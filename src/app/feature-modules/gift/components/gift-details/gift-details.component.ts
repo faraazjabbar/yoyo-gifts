@@ -1,18 +1,17 @@
-import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { tap, map, switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { RootStoreState, GiftStoreActions, GiftStoreSelectors } from 'src/app/root-store';
+import { tap, map, switchMap, filter } from 'rxjs/operators';
 import { Subscription, Observable, of, forkJoin } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
-import { ActivatedRoute } from '@angular/router';
-import * as emailjs from 'emailjs-com';
-import {
-  Order,
-  SentGift,
-  RecievedGift
-} from 'src/app/shared/models/orders.model';
+import { ActivatedRoute, NavigationStart, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Order, SentGift, RecievedGift } from 'src/app/shared/models/orders.model';
 import { OrdersService } from 'src/app/feature-modules/user/services/orders.service';
-import { User } from './../../../../shared/models/user.model';
+import { User, SendEmail } from './../../../../shared/models/user.model';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { EmailService } from 'src/app/core/services/email.service';
+import { environment } from 'src/environments/environment';
+import { SpinnerService } from 'src/app/core/spinner/spinner.service';
 
 @Component({
   selector: 'app-gift-details',
@@ -20,210 +19,181 @@ import { AlertService } from 'src/app/core/services/alert.service';
   styleUrls: ['./gift-details.component.scss']
 })
 export class GiftDetailsComponent implements OnInit, OnDestroy {
-  public user: User;
 
-  private subscriptions: Subscription[] = [];
-  public isSendGift = false;
-  translation$: Observable<Object>;
-  gift$: Observable<Gift>;
-  gift: Gift;
-  giftMessage: string;
+    private subscriptions: Subscription[] = [];
 
-  model: any = {
-    name: '',
-    email: '',
-    messege: ''
-  };
+    user: User;
+    isSendGift = false;
+    translation$: Observable<Object>;
+    gift$: Observable<Gift>;
+    gift: Gift;
+    model: SendEmail;
 
-  constructor(
-    private route: ActivatedRoute,
-    private orderService: OrdersService,
-    private alertService: AlertService,
-    private spinnerService: SpinnerService
-  ) {}
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private alertService: AlertService,
+        private emailService: EmailService,
+        private orderService: OrdersService,
+        private store: Store<RootStoreState.State>,
+        private spinner: SpinnerService,
+    ) {
+        // Resolver guard spinner implement ...
+        // Using router trigger i.e. NaviagationStart, NavigationEnd
+        this.router.events.pipe(
+            tap(routerEvent => {
+                if (routerEvent instanceof NavigationStart) {
+                    this.spinner.show();
+                }
+                if (routerEvent instanceof NavigationEnd) {
+                    this.spinner.hide();
+                }
+            })
+        ).subscribe();
+    }
 
-  ngOnInit() {
-    // this.alertService.confirm('Want to delete?', 'xxxx', null);
-    // this.alertService.confirm(
-    //     this.confirmTitle,
-    //     this.confirmText,
-    //     () => this.yesCallBack(),
-    //     () => this.noCallBack(),
-    //     this.confirmBtnText,
-    //     this.cancelBtnText
-    // );
-    // this.alertService.error('Something went wrong');
-    // this.alertService.warning('Key is not Unique');
+    ngOnInit() {
+        // Initializing the send email model ...
+        this.model = {name: '', email: '', messege: ''};
 
-    this.user = JSON.parse(localStorage.getItem('user'));
+        // Fetching from local storage, if user logged in
+        this.user = JSON.parse(localStorage.getItem('user'));
 
-    // Accessing gift data from resolver route guard ...
-    this.spinnerService.show();
-    this.route.data.subscribe((data: { gift: Gift }) => {
-      this.gift = data.gift;
-      this.spinnerService.hide();
-    });
+        // Accessing gift data from resolver route guard ...
+        this.route.data.subscribe((data: { gift: Gift }) => {
+            this.gift = data.gift;
+        });
 
-    // this.gift$ = this.store.select(GiftStoreSelectors.getByKey('-LfIigQjjdKusws13mRo'));
-    // this.gift$
-    //     .pipe(
-    //         tap(gift => console.log('From GetByKey Selector DETAILS PAGE ::: ', gift))
-    //     )
-    //     .subscribe();
+        // TODO: to refactored for NGRX state route change ...
+        // const giftKey = 'giftKey';
+        // this.gift$ = this.store.select(GiftStoreSelectors.getByKey(giftKey));
+        // // Pushing obsersavation to unscribe it
+        // this.subscriptions.push(
+        //     this.store.select(GiftStoreSelectors.getError)
+        //         .pipe(
+        //             filter(error => error !== null),
+        //             tap(error => this.alertService.error(error))
+        //         )
+        //         .subscribe()
+        // );
+        // // Dispatching Gift Store Actions ...
+        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+        // this.store.dispatch(new GiftStoreActions.GetGiftRequestAction({key: giftKey}));
+    }
 
-    // this.subscriptions.push(this.store.select(GiftStoreSelectors.getError)
-    //     .pipe(
-    //         tap(error => {
-    //             if (error) {
-    //                 this.alertService.error(error);
-    //             }
-    //         })
-    //     )
-    //     .subscribe());
+    ngOnDestroy() {
+        // Unscribing all the subscriptions at one go ...
+        this.subscriptions.forEach(eachSubcription => {
+            if (eachSubcription) {
+                eachSubcription.unsubscribe();
+            }
+        });
+    }
 
-    // // Dispatching Gift Store Actions ...
-    // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-    // this.store.dispatch(new GiftStoreActions.GetGiftRequestAction({key: giftKey}));
-  }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(x => {
-      if (x) {
-        x.unsubscribe();
-      }
-    });
-  }
+    enableSendForm() {
+        this.isSendGift = true;
+    }
 
-  /**
-   * enableSendForm
-   */
-  public enableSendForm() {
-    this.isSendGift = true;
-  }
+    onSubmit() {
 
-  onSubmit() {
-    const templateParams = {
-      toemail: this.model.email,
-      toname: this.model.name,
-      fromname: 'YoYo Gifts Group#1'
-    };
-    const emailJsServiceId = 'gmail';
-    const emailJsTemplateId = 'template_Cg1kIF0Z';
-    const emailJsUserId = 'user_1Vb8OYU8eOTkZpWt24PNf';
-    emailjs
-      .send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
-      .then(
-        response => {
-          this.updateOrdersAndGift();
-          console.log('SUCCESS!', response.status, response.text);
-        },
-        err => {
-          console.log('FAILED...', err);
-        }
-      );
-  }
+        this.spinner.show();
 
-  cancelSendGift() {
-    this.isSendGift = false;
-    // this.giftMessage = 'Gift NOT Sent Successfully !!!';
-  }
+        const templateParams = {
+            toemail: this.model.email,
+            toname: this.model.name,
+            fromname: environment.appName
+        };
 
-  private updateOrdersAndGift() {
-    let senderOrder: Order;
-    let recieverOrder: Order;
-    let updateSenderOrderApi;
-    let updateRecieverOrderApi;
+        this.emailService.send(this.model, templateParams, () => this.updateOrdersAndGift());
+    }
 
-    const sentGift: SentGift = {
-      recieverName: this.model.name,
-      revieverEmail: this.model.email,
-      sentOn: new Date().toDateString(),
-      ...this.gift
-    };
+    cancelSendGift() {
+        this.isSendGift = false;
+    }
 
-    const recievedGift: RecievedGift = {
-      senderEmail: this.user.email,
-      senderName: this.user.userName,
-      senderImage: this.user.imageLink,
-      recievedOn: new Date().toDateString(),
-      isRedeemed: false,
-      isReviewed: false,
-      ...this.gift
-    };
+    private updateOrdersAndGift() {
+        let senderOrder: Order;
+        let recieverOrder: Order;
+        let updateSenderOrderApi;
+        let updateRecieverOrderApi;
+
+        const sentGift: SentGift = {
+            recieverName: this.model.name,
+            revieverEmail: this.model.email,
+            sentOn: new Date().toDateString(),
+            ...this.gift
+        };
+
+        const recievedGift: RecievedGift = {
+            senderEmail: this.user.email,
+            senderName: this.user.userName,
+            senderImage: this.user.imageLink,
+            recievedOn: new Date().toDateString(),
+            isRedeemed: false,
+            isReviewed: false,
+            ...this.gift
+        };
 
     const recieverOrderApi = this.orderService.getOrders(this.model.email);
     const senderOderApi = this.orderService.getOrders(this.user.email);
 
     forkJoin([senderOderApi, recieverOrderApi])
-      .pipe(
-        tap(data => console.log('Form Join data: ', data)),
-        switchMap(data => {
-          if (data[0].key) {
-            senderOrder = data[0];
-          } else {
-            senderOrder = {
-              email: this.user.email,
-              sent: [],
-              recieved: []
-            };
-          }
+        .pipe(
+            switchMap(data => {
+                if (data[0].key) {
+                    senderOrder = data[0];
+                } else {
+                    senderOrder = { email: this.user.email, sent: [], recieved: [] };
+                }
+                if (!senderOrder.sent) {
+                    senderOrder['sent'] = [];
+                }
+                senderOrder.sent.push(sentGift);
 
-          if (!senderOrder.sent) {
-            senderOrder['sent'] = [];
-          }
-          senderOrder.sent.push(sentGift);
-          if (data[1].key) {
-            recieverOrder = data[1];
-          } else {
-            recieverOrder = {
-              email: this.model.email,
-              sent: [],
-              recieved: []
-            };
-          }
-          if (!recieverOrder.recieved) {
-            recieverOrder['recieved'] = [];
-          }
+                if (data[1].key) {
+                    recieverOrder = data[1];
+                } else {
+                    recieverOrder = { email: this.model.email, sent: [], recieved: [] };
+                }
+                if (!recieverOrder.recieved) {
+                    recieverOrder['recieved'] = [];
+                }
+                recieverOrder.recieved.push(recievedGift);
 
-          recieverOrder.recieved.push(recievedGift);
+                if (data[0].key) {
+                    updateSenderOrderApi = this.orderService.updateOrder(senderOrder);
+                } else {
+                    updateSenderOrderApi = this.orderService.addNewOrder(senderOrder);
+                }
 
-          if (data[0].key) {
-            updateSenderOrderApi = this.orderService.updateOrder(senderOrder);
-          } else {
-            updateSenderOrderApi = this.orderService.addNewOrder(senderOrder);
-          }
-          if (data[1].key) {
-            updateRecieverOrderApi = this.orderService.updateOrder(
-              recieverOrder
-            );
-          } else {
-            updateRecieverOrderApi = this.orderService.addNewOrder(
-              recieverOrder
-            );
-          }
+                if (data[1].key) {
+                    updateRecieverOrderApi = this.orderService.updateOrder(recieverOrder);
+                } else {
+                    updateRecieverOrderApi = this.orderService.addNewOrder(recieverOrder);
+                }
 
-          this.gift.count++;
+                this.gift.count++;
 
-          const updateGiftApi = this.orderService.updateGift(
-            JSON.parse(JSON.stringify(this.gift))
-          );
-          forkJoin([
-            updateSenderOrderApi,
-            updateRecieverOrderApi,
-            updateGiftApi
-          ]).subscribe(
-            res => {
-              console.log(res);
-              this.isSendGift = false;
-              this.alertService.success('Sent', 'Gift sent successfully.');
-            },
-            err => {
-              this.alertService.error('Failed to send gift.');
-            }
-          );
-          return data;
-        })
-      )
-      .subscribe();
-  }
+                const updateGiftApi = this.orderService.updateGift(
+                    JSON.parse(JSON.stringify(this.gift))
+                );
+
+                forkJoin([updateSenderOrderApi, updateRecieverOrderApi, updateGiftApi]).subscribe(
+                    res => {
+                        console.log(res);
+                        this.spinner.hide();
+                        this.isSendGift = false;
+                        this.alertService.success('Gift Sent Successfully !!!', null);
+                    },
+                    err => {
+                        this.spinner.hide();
+                        this.alertService.error(err);
+                    }
+                );
+                return data;
+            })
+        )
+        .subscribe();
+    }
 }

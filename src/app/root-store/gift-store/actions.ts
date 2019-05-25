@@ -1,7 +1,5 @@
 ﻿import { Action } from '@ngrx/store';
 import { Gift } from 'src/app/shared/models/gift.model';
-import { Filter } from 'src/app/shared/models/filter.model';
-import { Sort } from 'src/app/shared/models/sort.model';
 
 export enum ActionTypes {
     // Get list
@@ -28,7 +26,7 @@ export enum ActionTypes {
 // Get List
 export class GetGiftsRequestAction implements Action {
     readonly type = ActionTypes.GET_GIFTS_REQUEST;
-    constructor(public payload: { pageNumber?: number, pageSize?: number, filters?: Filter[], sort?: Sort }) {}
+    constructor(public payload: { pageNumber?: number, pageSize?: number}) {}
 }
 
 export class GetGiftsFailureAction implements Action {

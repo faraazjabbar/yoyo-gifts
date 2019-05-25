@@ -6,6 +6,7 @@ import { Order } from 'src/app/shared/models/orders.model';
 import { map } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import { Gift } from 'src/app/shared/models/gift.model';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,11 @@ import { Gift } from 'src/app/shared/models/gift.model';
 export class OrdersService {
   constructor(private http: HttpClient, private fbService: FirebaseService) {}
 
-  public getOrders(email): Observable<Order> {
+    getGifts(): Observable<User[]> {
+        return this.fbService.get<User>('/users');
+    }
+
+  getOrders(email): Observable<Order> {
     return this.http
       .get<Order>(
         environment.firebaseConfig.databaseURL +
@@ -28,14 +33,14 @@ export class OrdersService {
       );
   }
 
-  public updateOrder(order: Order) {
+  updateOrder(order: Order) {
     return this.fbService.update('/orders', order);
   }
 
-  public addNewOrder(order: Order) {
+  addNewOrder(order: Order) {
     return this.fbService.add('/orders', order);
   }
-  public updateGift(gift: Gift) {
+  updateGift(gift: Gift) {
     return this.fbService.update('/gifts', gift);
   }
 

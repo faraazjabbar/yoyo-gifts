@@ -27,7 +27,6 @@
                 <button class="like btn btn-default" *ngIf="false" type="button">
                     <em [ngClass]="{ 'fas fa-heart': true, 'indigo-text': true }"></em>
                 </button>
-                <span *ngIf="giftMessage" class="ml-5 text-right">{{giftMessage}}</span>
             </div>
             <span *ngIf="!user && isSendGift">Please <a [routerLink]="['/signIn']">signIn</a> to send this gift.</span>
             <div class="row" *ngIf="isSendGift && user">
