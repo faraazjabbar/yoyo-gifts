@@ -26,10 +26,10 @@ export class GiftDetailsResolver implements Resolve<Gift> {
 
         const giftKey = route.paramMap.get('giftKey');
 
-        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-        this.store.select(GiftStoreSelectors.getByKey(giftKey)).pipe(
-            tap(gift => console.log('asdfasdf', gift))
-        ).subscribe();
+        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+        // this.store.select(GiftStoreSelectors.getByKey(giftKey)).pipe(
+        //     tap(gift => console.log('asdfasdf', gift))
+        // ).subscribe();
 
         return this.giftService.getGiftByKey(giftKey).pipe(
             mergeMap(gift => {

@@ -4,12 +4,14 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as actions from './actions';
 import { GiftService } from 'src/app/feature-modules/gift/services/gift.service';
+import { AdminGiftService } from 'src/app/feature-modules/admin/services/admin-gift.service';
 
 @Injectable()
 export class GiftStoreEffects {
 
     constructor(
         private giftService: GiftService,
+        private adminGiftService: AdminGiftService,
         private actions$: Actions
     ) { }
 
@@ -50,15 +52,15 @@ export class GiftStoreEffects {
     //     )
     // );
 
-    // // Delete
-    // @Effect()
-    // deleteGiftRequest$ = this.actions$.pipe(
-    //     ofType<actions.DeleteGiftRequestAction>(actions.ActionTypes.DELETE_GIFT_REQUEST),
-    //     switchMap(action =>
-    //         this.giftService.delete(action.payload.giftId).pipe(
-    //             map(() => new actions.DeleteGiftSuccessAction({ giftId: action.payload.giftId })),
-    //             catchError(error => of(new actions.DeleteGiftFailureAction({ error })))
-    //         )
-    //     )
-    // );
+    // Delete
+    @Effect()
+    deleteGiftRequest$ = this.actions$.pipe(
+        ofType<actions.DeleteGiftRequestAction>(actions.ActionTypes.DELETE_GIFT_REQUEST),
+        switchMap(action =>
+            this.adminGiftService.deleteByKey(action.payload.key).pipe(
+                map(() => new actions.DeleteGiftSuccessAction({ key: action.payload.key })),
+                catchError(error => of(new actions.DeleteGiftFailureAction({ error })))
+            )
+        )
+    );
 }

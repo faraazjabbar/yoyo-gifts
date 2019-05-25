@@ -6,84 +6,85 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(private db: AngularFireDatabase, private http: HttpClient) {}
+    constructor(private db: AngularFireDatabase, private http: HttpClient) {}
 
-  get<T>(path: string): Observable<T[]> {
-    return this.db
-      .list(path)
-      .snapshotChanges()
-      .pipe(
-        map((data: any) => {
-          return data.map((d: any) => {
-            return {
-              key: d.key,
-              ...d.payload.val()
-            };
-          });
-        })
-      );
-  }
-  getByQuery<T>(path: string): Observable<T[]> {
-    return this.db
-      .list(path, ref => {
-        const q = ref.limitToLast(4);
-        return q;
-      })
-      .snapshotChanges()
-      .pipe(
-        map((data: any) => {
-          return data.map((d: any) => {
-            return {
-              key: d.key,
-              ...d.payload.val()
-            };
-          });
-        })
-      );
-  }
-  getByQuery2<T>(path: string): Observable<T[]> {
-    return this.db
-      .list(path, ref => {
-        const q = ref.orderByChild('rating').limitToLast(4);
-        return q;
-      })
-      .snapshotChanges()
-      .pipe(
-        map((data: any) => {
-          return data.map((d: any) => {
-            return {
-              key: d.key,
-              ...d.payload.val()
-            };
-          });
-        })
-      );
-  }
-  getByKey<T>(path: string, key: string): Observable<T> {
-    return this.http
-      .get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
-  }
+    get<T>(path: string): Observable<T[]> {
+        return this.db
+            .list(path)
+            .snapshotChanges()
+            .pipe(
+                map((data: any) => {
+                    return data.map((d: any) => {
+                        return {
+                            key: d.key,
+                            ...d.payload.val()
+                        };
+                    });
+                })
+            );
+    }
+    getByQuery<T>(path: string): Observable<T[]> {
+        return this.db
+            .list(path, ref => {
+                const q = ref.limitToLast(4);
+                return q;
+            })
+            .snapshotChanges()
+            .pipe(
+                map((data: any) => {
+                    return data.map((d: any) => {
+                        return {
+                            key: d.key,
+                            ...d.payload.val()
+                        };
+                    });
+                })
+            );
+    }
+    getByQuery2<T>(path: string): Observable<T[]> {
+        return this.db
+            .list(path, ref => {
+                const q = ref.orderByChild('rating').limitToLast(4);
+                return q;
+            })
+            .snapshotChanges()
+            .pipe(
+                map((data: any) => {
+                    return data.map((d: any) => {
+                        return {
+                            key: d.key,
+                            ...d.payload.val()
+                        };
+                    });
+                })
+            );
+    }
 
-  add(path, item: any) {
-    const projects = this.db.list(path);
-    return projects.push(item);
-  }
+    getByKey<T>(path: string, key: string): Observable<T> {
+        return this.http
+            .get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`)
+            .pipe(
+                map(data => {
+                    return data;
+                })
+            );
+    }
 
-  update(path: string, item: any) {
-    const key = item.key;
-    delete item.key;
-    return of(this.db.object(path + '/' + key).update(item));
-  }
+    add(path, item: any) {
+        const projects = this.db.list(path);
+        return projects.push(item);
+    }
 
-  delete(path: string, item: any) {
-    return this.db.object(path + '/' + item.key).remove();
-  }
+    update(path: string, item: any) {
+        const key = item.key;
+        delete item.key;
+        return of(this.db.object(path + '/' + key).update(item));
+    }
+
+    delete<T>(path: string, item: any) {
+        return this.db.object(path + '/' + item.key).remove();
+    }
 }

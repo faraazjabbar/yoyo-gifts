@@ -1,3 +1,4 @@
+import { SectionComponent } from './ui-components/section/section.component';
 import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
@@ -6,7 +7,6 @@ import { GiftCardComponent } from './ui-components/gift-card/gift-card.component
 import { ButtonComponent } from './ui-components/button/button.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
-import { GiftFilterComponent } from './ui-components/gift-filter/gift-filter.component';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { LookupPipe } from './pipes/lookup.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     RatingComponent,
     GiftCardComponent,
+    SectionComponent,
     ButtonComponent,
-    GiftFilterComponent,
     TranslatePipe,
     LookupPipe,
     ReversePipe
@@ -35,9 +35,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RatingComponent,
     ReversePipe,
     RouterModule,
-    GiftFilterComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SectionComponent
   ]
 })
 export class SharedModule {}

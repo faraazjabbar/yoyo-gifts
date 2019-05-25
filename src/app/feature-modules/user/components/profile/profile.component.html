@@ -35,9 +35,8 @@
                     <div class="text-center">
                         <h4>You have</h4>
 
-                        <p class="points">
-                            {{ user.points.toLocaleString() }} pts
-                        </p>
+                        <p class="points" *ngIf="user.points">{{ user.points?.toLocaleString() }} pts</p>
+                        <p class="points" *ngIf="!user.points">0 pts</p>
                     </div>
                 </mdb-card>
             </div>

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { GiftStoreModule } from './gift-store';
+import { UserStoreModule } from './user-store';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { GiftStoreModule } from './gift-store';
     CommonModule,
 
     GiftStoreModule,
+    UserStoreModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

@@ -13,12 +13,22 @@ import { GiftListComponent } from './components/gift-list/gift-list.component';
 import { GiftDetailsComponent } from './components/gift-details/gift-details.component';
 import { GiftReviewComponent } from './components/gift-details/gift-review/gift-review.component';
 import { FormsModule } from '@angular/forms';
+import { GiftSearchComponent } from './components/gift-search/gift-search.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { GiftFilterComponent } from './components/gift-filter/gift-filter.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
     GiftListComponent,
     GiftDetailsComponent,
-    GiftReviewComponent
+    GiftReviewComponent,
+    GiftSearchComponent,
+    GiftFilterComponent,
+    SearchPipe,
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     CommonModule,
