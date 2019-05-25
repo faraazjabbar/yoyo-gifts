@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/models/user.model';
+import { Gift } from 'src/app/shared/models/gift.model';
 import { Store } from '@ngrx/store';
-import { RootStoreState, UserStoreSelectors, UserStoreActions } from 'src/app/root-store';
-import { Observable, Subscription } from 'rxjs';
+import { RootStoreState, GiftStoreSelectors, GiftStoreActions } from 'src/app/root-store';
+import { Subscription, Observable } from 'rxjs';
 import { tap, filter } from 'rxjs/operators';
 import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  selector: 'app-gift-list',
+  templateUrl: './gift-list.component.html',
+  styleUrls: ['./gift-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class GiftListComponent implements OnInit {
 
     private subscriptions: Subscription[] = [];
 
-    users$: Observable<User[]>;
+    gifts$: Observable<Gift[]>;
 
     constructor(
         private store: Store<RootStoreState.State>,
@@ -23,11 +23,11 @@ export class UserListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.users$ = this.store.select(UserStoreSelectors.getList);
-        this.users$.pipe(tap(users => console.log('Store users, ', users))).subscribe();
+        this.gifts$ = this.store.select(GiftStoreSelectors.getList);
+        this.gifts$.pipe(tap(gifts => console.log('Store gifts, ', gifts))).subscribe();
         // Pushing obsersavation to unscribe it
         this.subscriptions.push(
-            this.store.select(UserStoreSelectors.getError)
+            this.store.select(GiftStoreSelectors.getError)
                 .pipe(
                     filter(error => error !== null),
                     tap(error => this.alertService.error(error))
@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit {
                 .subscribe()
         );
         // Dispatching Gift Store Actions ...
-        this.store.dispatch(new UserStoreActions.GetUsersRequestAction({}));
+        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
     }
 
 }

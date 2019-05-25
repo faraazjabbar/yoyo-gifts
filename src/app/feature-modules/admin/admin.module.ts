@@ -10,9 +10,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { GiftListComponent } from './components/gift-list/gift-list.component';
 
 @NgModule({
-    declarations: [ManageGiftComponent, DashboardComponent, BrandFilterPipe, ConfirmationModalComponent, UserListComponent],
+    declarations: [
+        ManageGiftComponent,
+        DashboardComponent,
+        BrandFilterPipe,
+        ConfirmationModalComponent,
+        UserListComponent,
+        GiftListComponent
+    ],
     imports: [
         CommonModule,
         AdminRoutingModule,

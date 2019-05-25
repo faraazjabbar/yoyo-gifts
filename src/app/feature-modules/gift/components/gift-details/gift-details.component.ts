@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RootStoreState, GiftStoreActions, GiftStoreSelectors } from 'src/app/root-store';
+import { RootStoreState, GiftStoreActions, GiftStoreSelectors, UserStoreActions, UserStoreSelectors } from 'src/app/root-store';
 import { tap, map, switchMap, filter } from 'rxjs/operators';
 import { Subscription, Observable, of, forkJoin } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
@@ -29,6 +29,9 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     isSendGift = false;
     translation$: Observable<Object>;
     gift$: Observable<Gift>;
+    user$: Observable<User>;
+    gifts$: Observable<Gift[]>;
+    users$: Observable<User[]>;
     gift: Gift;
     model: SendEmail;
 
@@ -184,6 +187,25 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
         // // Dispatching Gift Store Actions ...
         // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
         // this.store.dispatch(new GiftStoreActions.GetGiftRequestAction({key: giftKey}));
+
+        // this.gifts$ = this.store.select(GiftStoreSelectors.getList());
+        // this.gifts$.pipe(tap(gifts => console.log('Store gifts, ', gifts))).subscribe();
+        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+
+        this.users$ = this.store.select(UserStoreSelectors.getList);
+        this.users$.pipe(tap(users => console.log('Store users, ', users))).subscribe();
+        // Pushing obsersavation to unscribe it
+        this.subscriptions.push(
+            this.store.select(UserStoreSelectors.getError)
+                .pipe(
+                    filter(error => error !== null),
+                    tap(error => this.alertService.error(error))
+                )
+                .subscribe()
+        );
+        // Dispatching Gift Store Actions ...
+        this.store.dispatch(new UserStoreActions.GetUsersRequestAction({}));
+        // this.store.dispatch(new UserStoreActions.GetUserRequestAction({key: giftKey}));
     }
 
     ngOnDestroy() {

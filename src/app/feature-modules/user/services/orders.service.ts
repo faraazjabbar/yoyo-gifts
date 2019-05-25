@@ -14,37 +14,29 @@ import { User } from 'firebase';
 export class OrdersService {
   constructor(private http: HttpClient, private fbService: FirebaseService) {}
 
-    getGifts(): Observable<User[]> {
-        return this.fbService.get<User>('/users');
+    getOrders(email): Observable<Order> {
+        return this.http
+            .get<Order>(environment.firebaseConfig.databaseURL + '/orders.json/?orderBy="email"&equalTo="' + email + '"')
+            .pipe(
+                map(data => {
+                return { key: Object.keys(data)[0], ...Object.values(data)[0] };
+                })
+            );
     }
 
-  getOrders(email): Observable<Order> {
-    return this.http
-      .get<Order>(
-        environment.firebaseConfig.databaseURL +
-          '/orders.json/?orderBy="email"&equalTo="' +
-          email +
-          '"'
-      )
-      .pipe(
-        map(data => {
-          return { key: Object.keys(data)[0], ...Object.values(data)[0] };
-        })
-      );
-  }
+    updateOrder(order: Order) {
+        return this.fbService.update('/orders', order);
+    }
 
-  updateOrder(order: Order) {
-    return this.fbService.update('/orders', order);
-  }
+    addNewOrder(order: Order) {
+        return this.fbService.add('/orders', order);
+    }
 
-  addNewOrder(order: Order) {
-    return this.fbService.add('/orders', order);
-  }
-  updateGift(gift: Gift) {
-    return this.fbService.update('/gifts', gift);
-  }
+    updateGift(gift: Gift) {
+        return this.fbService.update('/gifts', gift);
+    }
 
-  public getGiftByKey(key: string) {
-    return this.fbService.getByKey('/gifts', key);
-  }
+    getGiftByKey(key: string) {
+        return this.fbService.getByKey('/gifts', key);
+    }
 }
