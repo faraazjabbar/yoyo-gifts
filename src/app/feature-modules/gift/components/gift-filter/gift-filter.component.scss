@@ -1,0 +1,19 @@
+
+.dropdown-toggle-text {
+  cursor: pointer;
+}
+.custom-filter {
+  height: 70px;
+}
+.filter-badge {
+      color: #FD240B;
+      font-weight: bold;
+}
+.filter-heading {
+  padding-left: 30px;
+}
+@media (max-width: 415px) {
+  .filter-heading {
+    padding-left: 9px;
+  }
+}

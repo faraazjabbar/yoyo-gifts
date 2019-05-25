@@ -28,18 +28,28 @@ export class GiftListComponent implements OnInit, OnDestroy {
         containerClass: '',
         animated: true,
         data: {}
-    };
-    private subscriptions: Subscription[] = [];
-    gifts$: Observable<Gift[]>;
-    modalRef: MDBModalRef;
-    loading$: Observable<boolean>;
+  };
+  private subscriptions: Subscription[] = [];
+  gifts$: Observable<Gift[]>;
+  modalRef: MDBModalRef;
+  searchValue: string;
+  loading$: Observable<boolean>;
+  brandFilterArray = [];
+  pointsFilterValue = 0;
+  sortParam = '';
+  sortDirection = 'asc';
 
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
-        private alertService: AlertService,
-        private spinnerService: SpinnerService
+        private spinnerService: SpinnerService,
+        private alertService: AlertSerice
     ) { }
+
+    setSearchValue(event: string) {
+        console.log(event);
+        this.searchValue = event;
+    }
 
     onEdit(event: Gift) {
         this.modalOptions.data = { content: event };
@@ -57,8 +67,23 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.modalRef = this.mdbModal.show(
             ManageGiftComponent,
             this.modalOptions
-        );
+            );
         }
+    }
+    onChangeBrandValue(event: string[]) {
+        this.brandFilterArray = event.slice();
+    }
+    onChangePointsValue(event: number) {
+        this.pointsFilterValue = event;
+    }
+    onChangeSortParam(event: string) {
+        this.sortParam = event;
+    }
+    onChangeSortDirection(event: string) {
+        this.sortDirection = event;
+    }
+    resetSearch() {
+        this.searchValue = '';
     }
     ngOnInit() {
         const user: User = JSON.parse(localStorage.getItem('user'));

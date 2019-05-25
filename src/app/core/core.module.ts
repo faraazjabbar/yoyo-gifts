@@ -7,8 +7,6 @@ import { environment } from '../../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
@@ -23,18 +21,15 @@ import { SharedModule } from '../shared/shared.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    MDBBootstrapModule.forRoot(),
     SharedModule
   ],
   exports: [
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    MDBBootstrapModule,
     HeaderComponent,
     FooterComponent,
     NoAccessComponent,
-    FormsModule,
     SpinnerComponent
   ]
 })

@@ -125,7 +125,7 @@ export class ManageGiftComponent implements OnInit {
           giftedCount: this.content.giftedCount
             ? this.content.giftedCount
             : null,
-          rating: this.content.rating ? this.content.rating : null,
+          rating: this.content.rating ? this.content.rating : 0,
           ...addGiftObj
         })
         .toPromise()
@@ -137,7 +137,9 @@ export class ManageGiftComponent implements OnInit {
         });
     } else {
       this.adminGiftService
-        .addGift(addGiftObj)
+        .addGift({
+            ...addGiftObj,
+            rating: 0})
         .then(() => {
           this.alertService.success('Success', 'Gift added successfully.');
         })
