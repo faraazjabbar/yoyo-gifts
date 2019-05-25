@@ -7,6 +7,7 @@ export interface User {
     email: string;
     isAdmin: boolean;
     imageLink: string;
+    points: number;
     favoriteGifts?: Gift[];
 }
 
