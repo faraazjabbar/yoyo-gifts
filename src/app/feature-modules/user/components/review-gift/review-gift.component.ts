@@ -6,34 +6,34 @@ import { Review } from 'src/app/shared/models/gift.model';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
-  selector: 'app-review-gift',
-  templateUrl: './review-gift.component.html',
-  styleUrls: ['./review-gift.component.scss']
+    selector: 'app-review-gift',
+    templateUrl: './review-gift.component.html',
+    styleUrls: ['./review-gift.component.scss']
 })
 export class ReviewGiftComponent implements OnInit {
-  public rating = 0;
-  public review: string;
-  public content: RecievedGift;
-  public action: Subject<any> = new Subject();
+    public rating = 0;
+    public review: string;
+    public content: RecievedGift;
+    public action: Subject<any> = new Subject();
 
-  constructor(public modalRef: MDBModalRef) {}
+    constructor(public modalRef: MDBModalRef) {}
 
-  ngOnInit() {}
+    ngOnInit() {}
 
-  public getRating(rating: number): void {
-    this.rating = rating;
-  }
+    public getRating(rating: number): void {
+        this.rating = rating;
+    }
 
-  public sendReview() {
-    const user: User = JSON.parse(localStorage.getItem('user'));
-    const review: Review = {
-      userId: user.key,
-      userName: user.userName,
-      userImage: user.imageLink,
-      userReview: this.review,
-      userRating: this.rating,
-      reviewedOn: new Date().toDateString()
-    };
-    this.action.next(review);
-  }
+    public sendReview() {
+        const user: User = JSON.parse(localStorage.getItem('user'));
+        const review: Review = {
+            userId: user.key,
+            userName: user.userName,
+            userImage: user.imageLink,
+            userReview: this.review,
+            userRating: this.rating,
+            reviewedOn: new Date().toDateString()
+        };
+        this.action.next(review);
+    }
 }

@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Filter } from 'src/app/shared/models/filter.model';
-import { Sort } from 'src/app/shared/models/sort.model';
-import { Direction } from 'src/app/shared/enums/direction.enum';
-import { QueryResult } from 'src/app/shared/models/query-result.model';
 import { Observable, throwError } from 'rxjs';
 
 const TODAY = new Date(new Date().setHours(0, 0, 0, 0));
