@@ -132,9 +132,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
                 );
 
                 this.user.points -= this.gift.cost;
-                const updateUserApi = this.userService.updateUser(
-                    this.user
-                );
+                const updateUserApi = this.userService.updateUser(this.user);
 
                 forkJoin([updateSenderOrderApi, updateRecieverOrderApi, updateGiftApi, updateUserApi]).subscribe(
                     res => {
@@ -143,8 +141,12 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
 
                         this.authService.emitUserData.next(this.user);
                         this.alertService.success('Sent', 'Gift sent successfully.');
+                        this.spinnerService.hide();
                     },
-                    err => this.alertService.error('Failed to send gift.')
+                    err => {
+                        this.alertService.error('Failed to send gift.');
+                        this.spinnerService.hide();
+                    }
                 );
                 return data;
             })
@@ -204,6 +206,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
+        // Showing loading ...
         this.spinnerService.show();
 
         const templateParams = {
@@ -212,6 +215,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
             fromname: environment.appName
         };
 
+        // sending email with callback to update the orders
         this.emailService.send(this.model, templateParams, () => this.updateOrdersAndGift());
     }
 
