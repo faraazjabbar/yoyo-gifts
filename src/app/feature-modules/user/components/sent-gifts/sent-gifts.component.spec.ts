@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SentGiftsComponent } from './sent-gifts.component';
 
-fdescribe('SentGiftsComponent', () => {
+describe('SentGiftsComponent', () => {
   let component: SentGiftsComponent;
   let fixture: ComponentFixture<SentGiftsComponent>;
   beforeEach(() => {
@@ -78,5 +78,12 @@ fdescribe('SentGiftsComponent', () => {
 
     fixture.detectChanges();
     expect(component.noData).toEqual(false);
+  });
+
+  describe('formatDate', () => {
+    it('should return formatted date', () => {
+      const formattedDate = component.formatDate(new Date());
+      expect(formattedDate).toBe(new Date().toLocaleDateString());
+    });
   });
 });
