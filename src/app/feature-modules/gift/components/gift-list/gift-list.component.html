@@ -3,7 +3,7 @@
 </a>
 <app-gift-search (searchValueEvent)="setSearchValue($event)"></app-gift-search>
 
-<app-gift-filter (brandValueEvent)="onChangeBrandValue($event)" (pointsValueEvent)="onChangePointsValue($event)"
+<app-gift-filter (brandValueArrayEvent)="onChangeBrandValue($event)" (pointsValueEvent)="onChangePointsValue($event)"
                   (sortParamEvent)="onChangeSortParam($event)" (sortDirectionEvent)="onChangeSortDirection($event)"></app-gift-filter>
 <!-- filter -->
 
@@ -13,7 +13,7 @@
   <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">No Results for: <strong>{{searchValue}}.</strong> See all <span class="red-custom font-weight-bold" (click)="resetSearch()">gifts</span> </h4>
 </div>
 <div class="projects-list d-flex flex-wrap fadeIn animated">
-    <div class="project" *ngFor="let gift of gifts$ | async | search:searchValue | filter:brandFilterValue:pointsFilterValue | sort:sortParam:sortDirection">
+    <div class="project" *ngFor="let gift of gifts$ | async | search:searchValue | filter:brandFilterArray:pointsFilterValue | sort:sortParam:sortDirection">
       <app-gift-card
         [isAdmin]="isAdmin"
         [gift]="gift"

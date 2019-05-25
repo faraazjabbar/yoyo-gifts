@@ -2,7 +2,7 @@ import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { ConfirmationModalComponent } from './../../../admin/components/confirmation-modal/confirmation-modal.component';
 import { ManageGiftComponent } from './../../../admin/components/manage-gift/manage-gift.component';
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import {
@@ -36,7 +36,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
   modalRef: MDBModalRef;
   searchValue: string;
   loading$: Observable<boolean>;
-  brandFilterValue = '';
+  brandFilterArray = [];
   pointsFilterValue = 0;
   sortParam = '';
   sortDirection = 'asc';
@@ -44,7 +44,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
-        private spinnerService: SpinnerService
+        private spinnerService: SpinnerService,
+        private cdr: ChangeDetectorRef
    ) { }
 
   setSearchValue(event: string) {
@@ -71,8 +72,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
       );
     }
   }
-  onChangeBrandValue(event: string) {
-    this.brandFilterValue = event;
+  onChangeBrandValue(event: string[]) {
+    this.brandFilterArray = event.slice();
   }
   onChangePointsValue(event: number) {
     this.pointsFilterValue = event;

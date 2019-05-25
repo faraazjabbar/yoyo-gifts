@@ -19,11 +19,11 @@ export class GiftFilterComponent implements OnInit {
   // @Input()
   // gifts: Gift[];
 
-  @Output() brandValueEvent = new EventEmitter();
+  @Output() brandValueArrayEvent = new EventEmitter();
   @Output() pointsValueEvent = new EventEmitter();
   @Output() sortParamEvent = new EventEmitter();
   @Output() sortDirectionEvent = new EventEmitter();
-  brandValue = '';
+  brandValueArray = [];
   pointsValue = 0;
   sortParamValue = '';
   sortDirection = 'asc';
@@ -32,8 +32,10 @@ export class GiftFilterComponent implements OnInit {
 
   ngOnInit() {}
   changeBrand(value: string) {
-    this.brandValue = value;
-    this.brandValueEvent.emit(value);
+    if (!this.brandValueArray.includes(value)) {
+        this.brandValueArray.push(value);
+    }
+    this.brandValueArrayEvent.emit(this.brandValueArray);
   }
   changePoints(value: number) {
     this.pointsValue = value;
@@ -47,9 +49,11 @@ export class GiftFilterComponent implements OnInit {
     this.sortDirection = value;
     this.sortDirectionEvent.emit(value);
   }
-  resetBrandValue() {
-    this.brandValue = '';
-    this.brandValueEvent.emit('');
+  resetBrandValue(value: string) {
+    this.brandValueArray.splice(
+        this.brandValueArray.findIndex(b => b === value), 1
+    );
+    this.brandValueArrayEvent.emit(this.brandValueArray);
   }
   resetPointsValue() {
     this.pointsValue = 0;

@@ -10,7 +10,7 @@
         <a class="dropdown-item" (click)="changeBrand('myntra')">Myntra</a>
     </div>
   </div>
-  <div *ngIf="brandValue"><h6 class="filter-badge">{{ brandValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetBrandValue()"></i></h6></div>
+  <div *ngIf="brandValueArray.length"><h6 *ngFor="let brandValue of brandValueArray" class="filter-badge">{{ brandValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetBrandValue(brandValue)"></i></h6></div>
   </div>
   <div class="col-2"><div class="btn-group" mdbDropdown>
       <h6 mdbDropdownToggle class="dropdown-toggle-text">Points <i class="ml-1 fas fa-caret-down"></i></h6>
