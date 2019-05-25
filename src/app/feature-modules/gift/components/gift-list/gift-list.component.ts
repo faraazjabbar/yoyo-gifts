@@ -43,7 +43,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
         private spinnerService: SpinnerService,
-        private alertService: AlertSerice
+        private alertService: AlertService
     ) { }
 
     setSearchValue(event: string) {
@@ -55,6 +55,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.modalOptions.data = { content: event };
         this.modalRef = this.mdbModal.show(ManageGiftComponent, this.modalOptions);
     }
+
     onDelete(event: Gift) {
         this.modalOptions.data = { content: event };
         this.modalRef = this.mdbModal.show(
@@ -62,6 +63,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.modalOptions
         );
     }
+
     openManageGiftModal(mode: string) {
         if (mode === 'add') {
         this.modalRef = this.mdbModal.show(
@@ -70,21 +72,27 @@ export class GiftListComponent implements OnInit, OnDestroy {
             );
         }
     }
+
     onChangeBrandValue(event: string[]) {
         this.brandFilterArray = event.slice();
     }
+
     onChangePointsValue(event: number) {
         this.pointsFilterValue = event;
     }
+
     onChangeSortParam(event: string) {
         this.sortParam = event;
     }
+
     onChangeSortDirection(event: string) {
         this.sortDirection = event;
     }
+
     resetSearch() {
         this.searchValue = '';
     }
+
     ngOnInit() {
         const user: User = JSON.parse(localStorage.getItem('user'));
         this.isAdmin = user && user.isAdmin;
