@@ -4,26 +4,32 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLinks } from './../../shared/constants/app.constants';
 import { AuthService } from '../auth/auth.service';
-import { User } from 'src/app/shared/models/user.model';
+import { environment } from 'src/environments/environment';
+import { TranslationService } from '../services/translation.service';
 import { Observable } from 'rxjs';
-
+import { User } from 'src/app/shared/models/user.model';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    public user: User;
+    translation$: Observable<Object>;
+    user: User;
     isLoggedIn = false;
+    languages = environment.languages;
     categories$: Observable<Category[]>;
+
     constructor(
         private router: Router,
         private authService: AuthService,
         private cdr: ChangeDetectorRef,
-        private fbService: FirebaseService
+        private fbService: FirebaseService,
+        private translationService: TranslationService
     ) {}
-p
+
     ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('core', 'header', localStorage.getItem('chosenLang'));
         this.getUser();
         this.getCategories();
     }
@@ -33,6 +39,13 @@ p
     routeToCategories(category: Category) {
         this.router.navigate(['/gifts'], { queryParams: { categoryKey: category.key } });
     }
+
+    onLanguage(locale) {
+        // Setting up user language ...
+        localStorage.setItem('chosenLang', locale);
+        location.reload();
+    }
+
     private getUser() {
         this.authService.emitUserData.subscribe(data => {
             this.user = JSON.parse(JSON.stringify(data));

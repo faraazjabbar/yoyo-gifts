@@ -1,0 +1,16 @@
+{
+    "en": {
+        "searchResultFor": "Search Results for",
+        "noResultsFor": "No Results for",
+        "seeAll": "See All",
+        "gifts": "Gifts",
+        "title": "Gift List"
+    },
+    "es": {
+        "searchResultFor": "Resultados de la búsqueda para",
+        "noResultsFor": "No hay resultados para",
+        "seeAll": "Ver Todo",
+        "gifts": "Regalos",
+        "title": "Lista de regalos"
+    }
+}

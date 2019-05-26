@@ -1,0 +1,28 @@
+{
+    "en": {
+        "mostRatedProducts": "Most Rated Gifts",
+        "recentGifts": "Newly Added Gifts",
+        "whyChooseYoyo": "Why choose YoYo Gifts?",
+        "popularGifts": "Popular Gifts",
+        "instantDelivery": "Instant Delivery",
+        "instantDeliveryDesc": "Tech Services, the protection you need for your equipment, whether damaged by an accident or suffering from a theft.",
+        "qualityProducts": "Quality Products",
+        "qualityProductsDesc": "People no longer want to browse a website – they want to experience it. An image is ALWAYS the first thing that a visitor will notice as soon as he lands on your store’s product page.",
+        "support": "Support",
+        "supportDesc": "Business development is often used interchangeably with sales, which underestimates the many other considerations necessary to execute on strategic business initiatives",
+        "title": "Home"
+    },
+    "es": {
+        "mostRatedProducts": "Los regalos más valorados",
+        "recentGifts": "Regalos Recientes",
+        "whyChooseYoyo": "¿Por qué elegir YoYo Gifts?",
+        "popularGifts": "Regalos Populares",
+        "instantDelivery": "Entrega Inmediata",
+        "instantDeliveryDesc": "Tech Services, la protección que necesitas para tus equipos, ya sea que se dañen por un accidente o que sufran de un robo.",
+        "qualityProducts": "Productos De Calidad",
+        "qualityProductsDesc": "Las personas ya no quieren navegar por un sitio web, quieren experimentarlo. Una imagen SIEMPRE es lo primero que un visitante notará tan pronto como llegue a la página de productos de su tienda.",
+        "support": "Apoyo",
+        "supportDesc": "El desarrollo comercial a menudo se usa indistintamente con las ventas, lo que subestima las muchas otras consideraciones necesarias para ejecutar iniciativas empresariales estratégicas.",
+        "title": "Casa"
+    }
+}

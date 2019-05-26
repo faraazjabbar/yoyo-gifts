@@ -40,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     SectionComponent,
-    BrandFilterPipe
+    BrandFilterPipe,
+    TranslatePipe
   ]
 })
 export class SharedModule {}

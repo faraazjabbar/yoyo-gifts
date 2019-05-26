@@ -1,0 +1,19 @@
+{
+    "en": {
+        "filterText": "Filters",
+        "brandsText": "Brands",
+        "sortByText": "Sort By",
+        "optionsText": "Options",
+        "pointsText": "Points",
+        "title": "Gift Filter"
+    },
+    "es": {
+        "filterText": "Filtros",
+        "brandsText": "Las marcas",
+        "sortByText": "Ordenar por",
+        "optionsText": "Opciones",
+        "pointsText": "Puntos",
+        "title": "Filtro de regalo"
+    }
+}
+

@@ -1,0 +1,26 @@
+{
+    "en": {
+        "yoyoGifts": "YoYo Gifts",
+        "yoyoGiftsDesc": "Here you can use rows and columns here to organize your footer content.",
+        "aboutLinks": "About",
+        "pageLinks": "Pages",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "homeLink": "Go to home",
+        "listLink": "Go to list",
+        "yoyoCopyrights": "2019 Copyright:",
+        "title": "Footer"
+    },
+    "es": {
+        "yoyoGifts": "YoYo Gifts",
+        "yoyoGiftsDesc": "Aquí puede usar filas y columnas aquí para organizar el contenido de su pie de página.",
+        "aboutLinks": "Acerca de",
+        "pageLinks": "Páginas",
+        "aboutUs": "Sobre Nosotro",
+        "contactUs": "Contáctenos",
+        "homeLInk": "Ir A Casa",
+        "listLink": "Ir A La Lista",
+        "yoyoCopyrights": "2019 Copyright:",
+        "title": "Pie de página"
+    }
+}

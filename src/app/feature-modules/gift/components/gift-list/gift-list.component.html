@@ -1,7 +1,9 @@
 <a class="float" (click)="openManageGiftModal('add')" *ngIf="isAdmin">
   <em class="fa fa-plus my-float"></em>
 </a>
-<img src="https://vinylbannersprinting.co.uk/wp-content/uploads/2016/04/sb09-RA-Demo.jpg" class="img-fluid" alt="">
+<img src="{{ categoryImage }}" class="img-fluid" alt="">
+
+
 
 <app-gift-search (searchValueEvent)="setSearchValue($event)"></app-gift-search>
 

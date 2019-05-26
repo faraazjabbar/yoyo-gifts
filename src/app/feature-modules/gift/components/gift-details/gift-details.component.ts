@@ -31,6 +31,7 @@ import { SpinnerService } from 'src/app/core/spinner/spinner.service';
 import { EmailService } from 'src/app/core/services/email.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
     selector: 'app-gift-details',
@@ -40,9 +41,9 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 export class GiftDetailsComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
+    translation$: Observable<Object>;
     user: User;
     isSendGift = false;
-    translation$: Observable<Object>;
     gift$: Observable<Gift>;
     user$: Observable<User>;
     gifts$: Observable<Gift[]>;
@@ -51,6 +52,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     model: SendEmail;
 
     constructor(
+        private translationService: TranslationService,
         private router: Router,
         private route: ActivatedRoute,
         private store: Store<RootStoreState.State>,
@@ -205,6 +207,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('gift', 'gift-details', localStorage.getItem('chosenLang'));
         // Setting up the user ...
         this.setUser();
 

@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import {
   Component,
@@ -8,7 +7,9 @@ import {
   Input,
   OnChanges,
 } from '@angular/core';
-import { Brand} from '../../../../shared/models/gift.model';
+import { Brand, Gift, Category } from '../../../../shared/models/gift.model';
+import { TranslationService } from 'src/app/core/services/translation.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-gift-filter',
@@ -28,10 +29,13 @@ export class GiftFilterComponent implements OnInit, OnChanges {
   pointsValue = 0;
   sortParamValue = '';
   sortDirection = 'asc';
+    translation$: Observable<Object>;
 
-  constructor(private fbService: FirebaseService) {}
+  constructor(private fbService: FirebaseService,
+    private translationService: TranslationService) {}
 
   ngOnInit() {
+    this.translation$ = this.translationService.getTranslation('gift', 'gift-filter', localStorage.getItem('chosenLang'));
       this.brands$ = this.fbService.get('/brands');
   }
   ngOnChanges() {

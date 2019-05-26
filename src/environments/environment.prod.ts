@@ -33,4 +33,8 @@ export const environment = {
     // apiMocks = An array of relative paths (from mocks folder to file - with no extension) - i.e.: ['lookup/premium-vendors']
     defaultLanguage: 'en',
     defaultLocale: 'en-US',
+    languages: [
+        { key: 'en', name: 'English' },
+        { key: 'de', name: 'German' }
+    ]
 };
