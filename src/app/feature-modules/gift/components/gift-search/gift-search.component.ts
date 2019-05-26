@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
   selector: 'app-gift-search',
@@ -6,14 +8,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./gift-search.component.scss']
 })
 export class GiftSearchComponent implements OnInit {
-  searchValue: string;
-  @Output() searchValueEvent: EventEmitter<string> = new EventEmitter<string>();
-  constructor() { }
+    translation$: Observable<Object>;
+    searchValue: string;
+    @Output() searchValueEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit() {
-  }
-  emitSearchValue() {
-    console.log(this.searchValue);
-    this.searchValueEvent.emit(this.searchValue);
-  }
+    constructor(private translationService: TranslationService) { }
+
+    ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('gift', 'gift-search', localStorage.getItem('chosenLang'));
+    }
+    emitSearchValue() {
+        this.searchValueEvent.emit(this.searchValue);
+    }
 }

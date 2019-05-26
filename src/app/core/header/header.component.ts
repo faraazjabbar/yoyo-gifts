@@ -2,25 +2,37 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLinks } from './../../shared/constants/app.constants';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment';
+import { TranslationService } from '../services/translation.service';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
-import { Subscription, Observable } from 'rxjs';
-
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    public user;
+    translation$: Observable<Object>;
+    user: User;
     isLoggedIn = false;
+    languages = environment.languages;
+
     constructor(
         private router: Router,
         private authService: AuthService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private translationService: TranslationService
     ) {}
 
     ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('core', 'header', localStorage.getItem('chosenLang'));
         this.getUser();
+    }
+
+    onLanguage(locale) {
+        // Setting up user language ...
+        localStorage.setItem('chosenLang', locale);
+        location.reload();
     }
 
     private getUser() {

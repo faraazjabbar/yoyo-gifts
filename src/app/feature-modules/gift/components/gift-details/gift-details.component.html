@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="translation$ | async as translation">
     <div class="container-fliud">
         <div class="wrapper row mx-5">
             <!-- gift card image -->
@@ -23,18 +23,23 @@
                         [viewOnly]="true"
                     ></app-rating>
                     <div class="review-no" *ngIf="gift.reviews">
-                        {{ gift?.reviews.length }} reviews
+                        {{ gift?.reviews.length }}
+                        {{ 'reviewsText' | translate: translation }}
                     </div>
                 </div>
                 <p class="product-description">{{ gift.description }}</p>
                 <h4 class="price">
-                    Points: <span>{{ gift.cost }}</span>
+                    {{ 'pointsText' | translate: translation }}:
+                    <span>{{ gift.cost }}</span>
                 </h4>
                 <p class="product-description">
-                    <strong>Brand</strong>: {{ gift.brandName }}
+                    <strong>{{ 'brandText' | translate: translation }}: </strong
+                    >: {{ gift.brandName }}
                 </p>
                 <p class="product-description">
-                    <strong>Category</strong>: {{ gift.categoryName }}
+                    <strong
+                        >{{ 'categoryText' | translate: translation }}: </strong
+                    >: {{ gift.categoryName }}
                 </p>
                 <div class="action">
                     <button
@@ -42,7 +47,8 @@
                         type="button"
                         (click)="enableSendForm()"
                     >
-                        <em class="fa fa-gift-card"></em> Send Card
+                        <em class="fa fa-gift-card"></em>
+                        {{ 'sendCardText' | translate: translation }}Send Card
                     </button>
                     <button
                         class="like btn btn-default"
@@ -59,10 +65,9 @@
                     </button>
                 </div>
 
-                <span *ngIf="!user && isSendGift"
-                    >Please <a [routerLink]="['/signIn']">signIn</a> to send
-                    this gift.</span
-                >
+                <span *ngIf="!user && isSendGift">{{
+                    'signInText' | translate: translation
+                }}</span>
 
                 <div class="row" *ngIf="isSendGift && user">
                     <!-- Default form send card -->
@@ -73,7 +78,9 @@
                         name="form"
                         style="width: 90%"
                     >
-                        <p class="h4">Send Card To</p>
+                        <p class="h4">
+                            {{ 'sendCardToText' | translate: translation }}
+                        </p>
                         <!-- Name -->
                         <div class="form-group">
                             <input
@@ -93,7 +100,10 @@
                                 class="invalid-feedback"
                             >
                                 <div *ngIf="name?.errors.required">
-                                    Receiver Name is required
+                                    {{
+                                        'receiverRequiredText'
+                                            | translate: translation
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -117,10 +127,16 @@
                                 class="invalid-feedback"
                             >
                                 <div *ngIf="email?.errors.required">
-                                    Email is required
+                                    {{
+                                        'emailRequiredText'
+                                            | translate: translation
+                                    }}
                                 </div>
                                 <div *ngIf="email?.errors.email">
-                                    Email must be a valid email address
+                                    {{
+                                        'emailValidText'
+                                            | translate: translation
+                                    }}
                                 </div>
                             </div>
                         </div>

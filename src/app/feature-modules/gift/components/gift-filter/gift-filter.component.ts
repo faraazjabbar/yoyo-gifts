@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Brand, Gift, Category } from '../../../../shared/models/gift.model';
+import { TranslationService } from 'src/app/core/services/translation.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-gift-filter',
@@ -7,6 +9,7 @@ import { Brand, Gift, Category } from '../../../../shared/models/gift.model';
     styleUrls: ['./gift-filter.component.scss']
 })
 export class GiftFilterComponent implements OnInit {
+    translation$: Observable<Object>;
     // @Input()
     // categories: Category[];
     // @Input()
@@ -23,9 +26,15 @@ export class GiftFilterComponent implements OnInit {
     sortParamValue = '';
     sortDirection = 'asc';
 
-    constructor() {}
+    constructor(private translationService: TranslationService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.translation$ = this.translationService.getTranslation(
+            'gift',
+            'gift-filter',
+            localStorage.getItem('chosenLang')
+        );
+    }
     changeBrand(value: string) {
         if (!this.brandValueArray.includes(value)) {
             this.brandValueArray.push(value);

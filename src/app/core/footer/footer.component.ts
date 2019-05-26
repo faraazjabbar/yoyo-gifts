@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from '../services/translation.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+    translation$: Observable<Object>;
 
-  ngOnInit() {
-  }
+    constructor(private translationService: TranslationService) { }
+
+    ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('core', 'footer', localStorage.getItem('chosenLang'));
+    }
 
 }
