@@ -13,9 +13,9 @@ import { AlertService } from 'src/app/core/services/alert.service';
 import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
-  selector: 'app-gift-list',
-  templateUrl: './gift-list.component.html',
-  styleUrls: ['./gift-list.component.scss']
+    selector: 'app-gift-list',
+    templateUrl: './gift-list.component.html',
+    styleUrls: ['./gift-list.component.scss']
 })
 export class GiftListComponent implements OnInit, OnDestroy {
     translation$: Observable<Object>;
@@ -30,16 +30,16 @@ export class GiftListComponent implements OnInit, OnDestroy {
         containerClass: '',
         animated: true,
         data: {}
-  };
-  private subscriptions: Subscription[] = [];
-  gifts$: Observable<Gift[]>;
-  modalRef: MDBModalRef;
-  searchValue: string;
-  loading$: Observable<boolean>;
-  brandFilterArray = [];
-  pointsFilterValue = 0;
-  sortParam = '';
-  sortDirection = 'asc';
+    };
+    private subscriptions: Subscription[] = [];
+    gifts$: Observable<Gift[]>;
+    modalRef: MDBModalRef;
+    searchValue: string;
+    loading$: Observable<boolean>;
+    brandFilterArray = [];
+    pointsFilterValue = 0;
+    sortParam = '';
+    sortDirection = 'asc';
 
     constructor(
         private store: Store<RootStoreState.State>,
@@ -47,7 +47,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
         private spinnerService: SpinnerService,
         private alertService: AlertService,
         private translationService: TranslationService
-    ) { }
+    ) {}
 
     setSearchValue(event: string) {
         console.log(event);
@@ -55,23 +55,26 @@ export class GiftListComponent implements OnInit, OnDestroy {
     }
 
     onEdit(event: Gift) {
-        this.modalOptions.data = { content: event };
-        this.modalRef = this.mdbModal.show(ManageGiftComponent, this.modalOptions);
+        const modalOptions = JSON.parse(JSON.stringify(this.modalOptions));
+        modalOptions.data = { content: event };
+        this.modalRef = this.mdbModal.show(ManageGiftComponent, modalOptions);
     }
 
     onDelete(event: Gift) {
-        this.modalOptions.data = { content: event };
+        const modalOptions = JSON.parse(JSON.stringify(this.modalOptions));
+        modalOptions.data = { content: event };
         this.modalRef = this.mdbModal.show(
-        ConfirmationModalComponent,
-        this.modalOptions
+            ConfirmationModalComponent,
+            modalOptions
         );
     }
 
     openManageGiftModal(mode: string) {
         if (mode === 'add') {
-        this.modalRef = this.mdbModal.show(
-            ManageGiftComponent,
-            this.modalOptions
+            const modalOptions = JSON.parse(JSON.stringify(this.modalOptions));
+            this.modalRef = this.mdbModal.show(
+                ManageGiftComponent,
+                modalOptions
             );
         }
     }
@@ -106,7 +109,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
 
         // Pushing all the forced subscriptions for unscribe ...
         this.subscriptions.push(
-            this.store.select(GiftStoreSelectors.getLoading)
+            this.store
+                .select(GiftStoreSelectors.getLoading)
                 .pipe(
                     tap(value => {
                         if (value) {
@@ -119,7 +123,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
                 .subscribe()
         );
         this.subscriptions.push(
-            this.store.select(GiftStoreSelectors.getError)
+            this.store
+                .select(GiftStoreSelectors.getError)
                 .pipe(
                     filter(error => error !== null),
                     tap(error => this.alertService.error(error))
