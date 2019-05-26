@@ -184,6 +184,7 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
                                 'user',
                                 JSON.stringify(this.user)
                             );
+                            this.model = { name: '', email: '', messege: '' };
 
                             this.authService.emitUserData.next(this.user);
                             this.alertService.success(
@@ -294,6 +295,8 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
 
     cancelSendGift() {
         this.isSendGift = false;
+        this.model = { name: '', email: '', messege: '' };
+
     }
 
     addToFavorites() {
