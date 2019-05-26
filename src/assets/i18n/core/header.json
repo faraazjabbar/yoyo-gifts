@@ -7,6 +7,7 @@
         "categories": "Categories",
         "allGiftCards": "All Gift Cards",
         "signIn": "Sign In",
+        "signOut": "Sign Out",
         "myProfile": "My Profile",
         "myOrder": "My Order",
         "title": "Header"
@@ -16,11 +17,12 @@
         "gifts": "Regalos",
         "aboutUs": "Sobre nosotro",
         "contactUs": "Contáctenos",
-        "categories": "Las categorías",
-        "allGiftCards": "Las categorías",
-        "signIn": "iniciar sesión",
-        "myProfile": "Mi perfil",
-        "myOrder": "Mi pedido",
+        "categories": "Las Categorías",
+        "allGiftCards": "Las Categorías",
+        "signIn": "Iniciar Sesión",
+        "signOut": "Cerrar Sesión",
+        "myProfile": "Mi Perfil",
+        "myOrder": "Mi Pedido",
         "title": "Encabezamiento"
     }
 }
