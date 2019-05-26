@@ -11,119 +11,109 @@ import { Gift } from 'src/app/shared/models/gift.model';
 import { GiftListComponent } from './gift-list.component';
 
 describe('GiftListComponent', () => {
+    let component: GiftListComponent;
 
- let component: GiftListComponent;
+    let fixture: ComponentFixture<GiftListComponent>;
 
- let fixture: ComponentFixture<GiftListComponent>;
+    beforeEach(() => {
+        const mDBModalServiceStub = {
+            show: (manageGiftComponent1, arg2) => ({})
+        };
 
- beforeEach(() => {
+        const storeStub = {
+            select: arg1 => ({ pipe: () => ({ subscribe: () => ({}) }) }),
 
- const mDBModalServiceStub = { show: (manageGiftComponent1, arg2) => ({}) };
+            dispatch: arg1 => ({})
+        };
 
- const storeStub = {
+        const giftStub = {};
 
- select: arg1 => ({ pipe: () => ({ subscribe: () => ({}) }) }),
+        TestBed.configureTestingModule({
+            schemas: [NO_ERRORS_SCHEMA],
 
- dispatch: arg1 => ({})
+            declarations: [GiftListComponent],
 
- };
+            providers: [
+                { provide: MDBModalService, useValue: mDBModalServiceStub },
 
- const giftStub = {};
+                { provide: Store, useValue: storeStub }
+            ]
+        });
 
- TestBed.configureTestingModule({
+        fixture = TestBed.createComponent(GiftListComponent);
 
- schemas: [NO_ERRORS_SCHEMA],
+        component = fixture.componentInstance;
+    });
 
- declarations: [GiftListComponent],
+    it('can load instance', () => {
+        expect(component).toBeTruthy();
+    });
 
- providers: [
+    it('isAdmin defaults to: false', () => {
+        expect(component.isAdmin).toEqual(false);
+    });
 
- { provide: MDBModalService, useValue: mDBModalServiceStub },
+    //  describe('onEdit', () => {
 
- { provide: Store, useValue: storeStub }
- ]
+    //  it('makes expected calls', () => {
 
- });
+    //  const mDBModalServiceStub: MDBModalService = fixture.debugElement.injector.get(
 
- fixture = TestBed.createComponent(GiftListComponent);
+    //  MDBModalService
 
- component = fixture.componentInstance;
+    //  );
 
- });
+    //  spyOn(mDBModalServiceStub, 'show').and.callThrough();
 
- it('can load instance', () => {
+    //  component.onEdit(giftStub);
 
- expect(component).toBeTruthy();
+    //  expect(mDBModalServiceStub.show).toHaveBeenCalled();
 
- });
+    //  });
 
- it('isAdmin defaults to: false', () => {
+    //  });
 
- expect(component.isAdmin).toEqual(false);
+    //  describe('onDelete', () => {
 
- });
+    //  it('makes expected calls', () => {
 
-//  describe('onEdit', () => {
+    //  const mDBModalServiceStub: MDBModalService = fixture.debugElement.injector.get(
 
-//  it('makes expected calls', () => {
+    //  MDBModalService
 
-//  const mDBModalServiceStub: MDBModalService = fixture.debugElement.injector.get(
+    //  );
 
-//  MDBModalService
+    //  const giftStub: Gift = fixture.debugElement.injector.get(Gift);
 
-//  );
+    //  spyOn(mDBModalServiceStub, 'show').and.callThrough();
 
+    //  component.onDelete(giftStub);
 
-//  spyOn(mDBModalServiceStub, 'show').and.callThrough();
+    //  expect(mDBModalServiceStub.show).toHaveBeenCalled();
 
-//  component.onEdit(giftStub);
+    //  });
 
-//  expect(mDBModalServiceStub.show).toHaveBeenCalled();
+    //  });
 
-//  });
+    //  describe('ngOnInit', () => {
 
-//  });
+    //  it('makes expected calls', () => {
 
-//  describe('onDelete', () => {
+    //  const storeStub: Store = fixture.debugElement.injector.get(Store);
 
-//  it('makes expected calls', () => {
+    //  spyOn(storeStub, 'select').and.callThrough();
 
-//  const mDBModalServiceStub: MDBModalService = fixture.debugElement.injector.get(
+    //  spyOn(storeStub, 'dispatch').and.callThrough();
 
-//  MDBModalService
+    //  component.ngOnInit();
 
-//  );
+    //  expect(storeStub.select).toHaveBeenCalled();
 
-//  const giftStub: Gift = fixture.debugElement.injector.get(Gift);
+    //  expect(storeStub.dispatch).toHaveBeenCalled();
 
-//  spyOn(mDBModalServiceStub, 'show').and.callThrough();
+    //  });
 
-//  component.onDelete(giftStub);
+    //  });
 
-//  expect(mDBModalServiceStub.show).toHaveBeenCalled();
-
-//  });
-
-//  });
-
-//  describe('ngOnInit', () => {
-
-//  it('makes expected calls', () => {
-
-//  const storeStub: Store = fixture.debugElement.injector.get(Store);
-
-//  spyOn(storeStub, 'select').and.callThrough();
-
-//  spyOn(storeStub, 'dispatch').and.callThrough();
-
-//  component.ngOnInit();
-
-//  expect(storeStub.select).toHaveBeenCalled();
-
-//  expect(storeStub.dispatch).toHaveBeenCalled();
-
-//  });
-
-//  });
-
-// });
+    // });
+});

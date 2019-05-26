@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     appName: 'YoYo Gifts [Gr#1]',
     firebaseConfig: {
         apiKey: 'AIzaSyBj3BDphESdcyViDHaMvFcct8r0uV9FheA',
@@ -16,7 +16,7 @@ export const environment = {
     email: {
         serviceId: 'gmail',
         templateId: 'template_Cg1kIF0Z',
-        userId : 'user_1Vb8OYU8eOTkZpWt24PNf'
+        userId: 'user_1Vb8OYU8eOTkZpWt24PNf'
     },
     apiUrl: 'https://yoyo-gift.firebaseio.com',
     apiShowFriendlyMessage: false,
@@ -33,8 +33,5 @@ export const environment = {
     // apiMocks = An array of relative paths (from mocks folder to file - with no extension) - i.e.: ['lookup/premium-vendors']
     defaultLanguage: 'en',
     defaultLocale: 'en-US',
-    languages: [
-        { key: 'en', name: 'English' },
-        { key: 'de', name: 'German' }
-    ]
+    languages: [{ key: 'en', name: 'English' }, { key: 'de', name: 'German' }]
 };
