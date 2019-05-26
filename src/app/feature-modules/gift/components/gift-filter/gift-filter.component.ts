@@ -12,9 +12,9 @@ import { TranslationService } from 'src/app/core/services/translation.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-gift-filter',
-  templateUrl: './gift-filter.component.html',
-  styleUrls: ['./gift-filter.component.scss']
+    selector: 'app-gift-filter',
+    templateUrl: './gift-filter.component.html',
+    styleUrls: ['./gift-filter.component.scss']
 })
 export class GiftFilterComponent implements OnInit, OnChanges {
 

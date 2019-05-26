@@ -1,23 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { FirebaseService } from './../../../shared/services/firebase.service';
 import { Gift } from './../../../shared/models/gift.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import { AlertService } from 'src/app/core/services/alert.service';
-import { UserService } from './../../user/services/user.service';
-import { AuthService } from './../../../core/auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class GiftService {
     constructor(
-        private firebaseService: FirebaseService,
-        private http: HttpClient,
-        private alertService: AlertService,
-        private userService: UserService,
-        private authService: AuthService
+        private firebaseService: FirebaseService
     ) {}
 
     getGiftsByQuery(): Observable<Gift[]> {

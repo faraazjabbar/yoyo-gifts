@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { of, Observable } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -65,7 +65,9 @@ export class FirebaseService {
 
     getByKey<T>(path: string, key: string): Observable<T> {
         return this.http
-            .get<T>(`${environment.firebaseConfig.databaseURL}/${path}/${key}.json`)
+            .get<T>(
+                `${environment.firebaseConfig.databaseURL}/${path}/${key}.json`
+            )
             .pipe(
                 map(data => {
                     return data;
@@ -79,9 +81,10 @@ export class FirebaseService {
     }
 
     update(path: string, item: any) {
-        const key = item.key;
-        delete item.key;
-        return of(this.db.object(path + '/' + key).update(item));
+        const data = JSON.parse(JSON.stringify(item));
+        const key = data.key;
+        delete data.key;
+        return of(this.db.object(path + '/' + key).update(data));
     }
 
     delete<T>(path: string, item: any) {
