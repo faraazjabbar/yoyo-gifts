@@ -8,7 +8,6 @@ import { ButtonComponent } from './ui-components/button/button.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from './pipes/translate.pipe';
-import { LookupPipe } from './pipes/lookup.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SectionComponent,
     ButtonComponent,
     TranslatePipe,
-    LookupPipe,
     ReversePipe
   ],
   imports: [
