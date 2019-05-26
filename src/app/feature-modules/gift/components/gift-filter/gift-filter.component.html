@@ -5,10 +5,7 @@
   <div class="col-2"><div class="btn-group" mdbDropdown>
       <h6 mdbDropdownToggle class="dropdown-toggle-text">Brands <i class="ml-1 fas fa-caret-down"></i></h6>
       <div class="dropdown-menu dropdown-primary">
-        <a class="dropdown-item" (click)="changeBrand('amazon')">Amazon</a>
-        <a class="dropdown-item" (click)="changeBrand('vlcc')">Vlcc</a>
-        <a class="dropdown-item" (click)="changeBrand('myntra')">Myntra</a>
-    </div>
+        <a class="dropdown-item" *ngFor="let brand of brands$ | async | brandFilter:category" (click)="changeBrand(brand.brandName)">{{ brand.brandName }}</a>    </div>
   </div>
   <div *ngIf="brandValueArray.length"><h6 *ngFor="let brandValue of brandValueArray" class="filter-badge">{{ brandValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetBrandValue(brandValue)"></i></h6></div>
   </div>

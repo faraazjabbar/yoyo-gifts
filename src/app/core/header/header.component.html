@@ -134,18 +134,9 @@
                     class="dropdown-menu dropdown dropdown-primary"
                     role="menu"
                 >
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-                        >Action</a
-                    >
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-                        >Another action</a
-                    >
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-                        >Something else here</a
-                    >
-                    <div class="divider dropdown-divider"></div>
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#"
-                        >Separated link</a
+                    <a class="dropdown-item waves-light" *ngFor="let category of categories$ | async"
+                    (click)="routeToCategories(category)" mdbWavesEffect
+                        >{{ category.categoryName}}</a
                     >
                 </div>
             </li>

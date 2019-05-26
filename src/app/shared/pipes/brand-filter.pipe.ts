@@ -1,4 +1,4 @@
-import { Brand } from './../../../shared/models/gift.model';
+import { Brand } from '../models/gift.model';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

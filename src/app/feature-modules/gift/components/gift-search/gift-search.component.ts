@@ -16,4 +16,9 @@ export class GiftSearchComponent implements OnInit {
     console.log(this.searchValue);
     this.searchValueEvent.emit(this.searchValue);
   }
+  resetSearchValue() {
+      if (this.searchValue === '') {
+        this.searchValueEvent.emit(this.searchValue);
+      }
+  }
 }

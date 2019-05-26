@@ -13,7 +13,7 @@
               </div>
               <!--end of col-->
               <div class="col">
-                  <input  [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for gifts">
+                  <input (keyup)="resetSearchValue()" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg form-control-borderless" placeholder="Search for gifts">
               </div>
               <!--end of col-->
               <div class="col-auto">

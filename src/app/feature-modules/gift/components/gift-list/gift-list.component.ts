@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { ConfirmationModalComponent } from './../../../admin/components/confirmation-modal/confirmation-modal.component';
 import { ManageGiftComponent } from './../../../admin/components/manage-gift/manage-gift.component';
@@ -40,16 +41,68 @@ export class GiftListComponent implements OnInit, OnDestroy {
     loading$: Observable<boolean>;
     brandFilterArray = [];
     pointsFilterValue = 0;
-    sortParam = '';
+    sortParam;
     sortDirection = 'asc';
+    categoryFilterValue;
 
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
         private spinnerService: SpinnerService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
+    ngOnInit() {
+        const user: User = JSON.parse(localStorage.getItem('user'));
+        this.isAdmin = user && user.isAdmin;
+
+        this.route.queryParams
+        .subscribe(params => {
+            if (params.categoryKey) {
+                this.categoryFilterValue = params.categoryKey;
+            } else {
+                this.categoryFilterValue = null;
+            }
+         });
+        // From NGRX Gift store ...
+        this.gifts$ = this.store.select(GiftStoreSelectors.getList);
+
+        // Pushing all the forced subscriptions for unscribe ...
+        this.subscriptions.push(
+            this.store
+                .select(GiftStoreSelectors.getLoading)
+                .pipe(
+                    tap(value => {
+                        if (value) {
+                            this.spinnerService.show();
+                        } else {
+                            this.spinnerService.hide();
+                        }
+                    })
+                )
+                .subscribe()
+        );
+        this.subscriptions.push(
+            this.store
+                .select(GiftStoreSelectors.getError)
+                .pipe(
+                    filter(error => error !== null),
+                    tap(error => this.alertService.error(error))
+                )
+                .subscribe()
+        );
+        // Dispatching gift all store
+        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+    }
+    // resetFilterValues () {
+    //     this.brandFilterArray = [];
+    //     this.pointsFilterValue = 0;
+    //     this.sortParam = null;
+    //     this.sortDirection = 'asc';
+    //     this.categoryFilterValue = null;
+    // }
     setSearchValue(event: string) {
         console.log(event);
         this.searchValue = event;
@@ -98,42 +151,9 @@ export class GiftListComponent implements OnInit, OnDestroy {
 
     resetSearch() {
         this.searchValue = '';
+        this.router.navigate(['/gifts']);
     }
 
-    ngOnInit() {
-        const user: User = JSON.parse(localStorage.getItem('user'));
-        this.isAdmin = user && user.isAdmin;
-
-        // From NGRX Gift store ...
-        this.gifts$ = this.store.select(GiftStoreSelectors.getList);
-
-        // Pushing all the forced subscriptions for unscribe ...
-        this.subscriptions.push(
-            this.store
-                .select(GiftStoreSelectors.getLoading)
-                .pipe(
-                    tap(value => {
-                        if (value) {
-                            this.spinnerService.show();
-                        } else {
-                            this.spinnerService.hide();
-                        }
-                    })
-                )
-                .subscribe()
-        );
-        this.subscriptions.push(
-            this.store
-                .select(GiftStoreSelectors.getError)
-                .pipe(
-                    filter(error => error !== null),
-                    tap(error => this.alertService.error(error))
-                )
-                .subscribe()
-        );
-        // Dispatching gift all store
-        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-    }
 
     ngOnDestroy() {
         // Unscribing all the subscriptions at one go ...
