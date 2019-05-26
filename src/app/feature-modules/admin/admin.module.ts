@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -22,7 +23,8 @@ import { AdminGiftListComponent } from './components/admin-gift-list/gift-list.c
     imports: [
         CommonModule,
         AdminRoutingModule,
-        SharedModule
+        SharedModule,
+        ScrollingModule
     ],
     entryComponents: [
         ManageGiftComponent

@@ -5,6 +5,7 @@
 
       <div class="table-wrapper">
         <!--Table-->
+    <cdk-virtual-scroll-viewport class="viewport" [itemSize]="89">
         <table class="table table-hover mb-0">
 
           <!--Table head-->
@@ -21,7 +22,7 @@
 
           <!--Table body-->
           <tbody>
-            <tr *ngFor="let gift of gifts$ | async">
+            <tr *cdkVirtualFor="let gift of gifts$ | async">
                 <td><img src="{{gift.imageLink}}" class="img-rounded" alt="{{gift.giftName}}" style="height: 50px"></td>
                 <td>{{gift.giftName}}</td>
                 <td>{{gift.cost}}</td>
@@ -35,6 +36,7 @@
           <!--Table body-->
         </table>
         <!--Table-->
+    </cdk-virtual-scroll-viewport>
       </div>
 
     </div>

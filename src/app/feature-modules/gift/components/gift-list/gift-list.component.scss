@@ -50,17 +50,21 @@
 .container-custom {
   margin-left: 100px;
   margin-right: 70px;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 @media only screen and (max-width: 600px) {
   .container-custom {
     margin-left: 40px;
     margin-right: 50px;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }
 
 .red-custom {
   color: #FD240B;
   cursor: pointer;
+}
+img {
+    width: 79rem;
+    height: 45%;
 }
