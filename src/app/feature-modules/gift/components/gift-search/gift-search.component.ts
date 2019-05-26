@@ -14,10 +14,16 @@ export class GiftSearchComponent implements OnInit {
 
     constructor(private translationService: TranslationService) { }
 
-    ngOnInit() {
-        this.translation$ = this.translationService.getTranslation('gift', 'gift-search', localStorage.getItem('chosenLang'));
-    }
-    emitSearchValue() {
+  ngOnInit() {
+    this.translation$ = this.translationService.getTranslation('gift', 'gift-search', localStorage.getItem('chosenLang'));
+  }
+  emitSearchValue() {
+    console.log(this.searchValue);
+    this.searchValueEvent.emit(this.searchValue);
+  }
+  resetSearchValue() {
+      if (this.searchValue === '') {
         this.searchValueEvent.emit(this.searchValue);
-    }
+      }
+  }
 }

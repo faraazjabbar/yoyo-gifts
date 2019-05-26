@@ -1,3 +1,5 @@
+import { Category } from './../../shared/models/gift.model';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLinks } from './../../shared/constants/app.constants';
@@ -16,17 +18,26 @@ export class HeaderComponent implements OnInit {
     user: User;
     isLoggedIn = false;
     languages = environment.languages;
+    categories$: Observable<Category[]>;
 
     constructor(
         private router: Router,
         private authService: AuthService,
         private cdr: ChangeDetectorRef,
+        private fbService: FirebaseService,
         private translationService: TranslationService
     ) {}
 
     ngOnInit() {
         this.translation$ = this.translationService.getTranslation('core', 'header', localStorage.getItem('chosenLang'));
         this.getUser();
+        this.getCategories();
+    }
+    getCategories() {
+        this.categories$ = this.fbService.get('/categories');
+    }
+    routeToCategories(category: Category) {
+        this.router.navigate(['/gifts'], { queryParams: { categoryKey: category.key } });
     }
 
     onLanguage(locale) {
