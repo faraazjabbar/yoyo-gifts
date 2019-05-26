@@ -84,7 +84,9 @@ export class RecievedGiftsComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     public review(gift: RecievedGift) {
-        this.modalOptions.data = { content: gift };
+        this.modalOptions.data = {
+            content: { gift: gift, order: this.orders }
+        };
         this.modalRef = this.modalService.show(
             ReviewGiftComponent,
             this.modalOptions
