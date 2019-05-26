@@ -7,21 +7,20 @@ import { Gift } from '../../models/gift.model';
   styleUrls: ['./gift-card.component.scss']
 })
 export class GiftCardComponent implements OnInit {
-  @Input() gift: Gift;
-  @Input() isAdmin;
-  @Output() deleteEvent = new EventEmitter<Gift>();
-  @Output() editEvent = new EventEmitter<Gift>();
+    @Input() gift: Gift;
+    @Input() isAdmin;
+    @Output() deleteEvent = new EventEmitter<Gift>();
+    @Output() editEvent = new EventEmitter<Gift>();
 
-  constructor() {}
+    constructor() {}
 
-  ngOnInit() {
-    console.log(this.gift);
-  }
-  onEdit() {
-    this.editEvent.emit(this.gift);
-  }
+    ngOnInit() { }
 
-  onDelete() {
-    this.deleteEvent.emit(this.gift);
-  }
+    onEdit() {
+        this.editEvent.emit(this.gift);
+    }
+
+    onDelete() {
+        this.deleteEvent.emit(this.gift);
+    }
 }

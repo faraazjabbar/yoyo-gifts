@@ -1,0 +1,28 @@
+{
+    "en": {
+        "pointsText": "Points",
+        "brandText": "Brand",
+        "categoryText": "Category",
+        "sendCardText": "Send Card",
+        "signInText": "Please <a href=\"/signIn\">sign in</a> to send card",
+        "sendCardToText": "Send Card To",
+        "receiverRequiredText": "Name is required.",
+        "emailRequiredText": "Email is required.",
+        "emailValidText": "Email is invalid.",
+        "reviewsText": "Reviews",
+        "title": "Gift Details"
+    },
+    "es": {
+        "pointsText": "Puntos",
+        "brandText": "Marca",
+        "categoryText": "Categoría",
+        "sendCardText": "Enviar Tarjeta",
+        "signInText": "Por favor <a href=\"/iniciar sesión\">sign in</a> enviar tarjeta",
+        "sendCardToText": "Enviar tarjeta a",
+        "receiverRequiredText": "Se requiere el nombre",
+        "emailRequiredText": "Correo electronico es requerido",
+        "emailValidText": "correo electrónico es invalido",
+        "reviewsText": "Opiniones",
+        "title": "Detalles de regalo"
+    }
+}

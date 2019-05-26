@@ -37,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    SectionComponent
+    SectionComponent,
+    TranslatePipe
   ]
 })
 export class SharedModule {}

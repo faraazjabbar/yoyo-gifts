@@ -10,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
 import { User } from './../../../../shared/models/user.model';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
   selector: 'app-gift-list',
@@ -17,7 +18,8 @@ import { AlertService } from 'src/app/core/services/alert.service';
   styleUrls: ['./gift-list.component.scss']
 })
 export class GiftListComponent implements OnInit, OnDestroy {
-    public isAdmin = false;
+    translation$: Observable<Object>;
+    isAdmin = false;
     modalOptions = {
         backdrop: true,
         keyboard: true,
@@ -43,7 +45,8 @@ export class GiftListComponent implements OnInit, OnDestroy {
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
         private spinnerService: SpinnerService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private translationService: TranslationService
     ) { }
 
     setSearchValue(event: string) {
@@ -94,6 +97,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('gift', 'gift-list', localStorage.getItem('chosenLang'));
         const user: User = JSON.parse(localStorage.getItem('user'));
         this.isAdmin = user && user.isAdmin;
 

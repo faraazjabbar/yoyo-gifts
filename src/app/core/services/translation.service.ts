@@ -23,12 +23,14 @@ export class TranslationService {
         return languageInfo || environment.defaultLocale;
     }
 
-    getTranslation(module: string, component: string): Observable<Object> {
+    getTranslation(module: string, component: string, userLanguage?: string): Observable<Object> {
         const culstureInfo = this.helperService.getBrowserLanguage();
         const dashIndex = culstureInfo.indexOf('-');
         let language = dashIndex !== -1 ? culstureInfo.substring(0, dashIndex) : culstureInfo;
         language = language || environment.defaultLanguage;
         language = language.toLowerCase();
+        // Setting up user chosen language
+        language = userLanguage || language;
 
         let translation = this.translations[module] && this.translations[module][component];
 
