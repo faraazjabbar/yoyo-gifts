@@ -3,22 +3,28 @@ import { FirebaseService } from './../../../shared/services/firebase.service';
 import { Gift } from './../../../shared/models/gift.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
+import { AlertService } from 'src/app/core/services/alert.service';
+import { UserService } from './../../user/services/user.service';
+import { AuthService } from './../../../core/auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class GiftService {
-
     constructor(
         private firebaseService: FirebaseService,
-        private http: HttpClient
+        private http: HttpClient,
+        private alertService: AlertService,
+        private userService: UserService,
+        private authService: AuthService
     ) {}
 
     getGiftsByQuery(): Observable<Gift[]> {
-      return this.firebaseService.getByQuery<Gift>('/gifts');
+        return this.firebaseService.getByQuery<Gift>('/gifts');
     }
     getGiftsByQuery2(): Observable<Gift[]> {
-      return this.firebaseService.getByQuery2<Gift>('/gifts');
+        return this.firebaseService.getByQuery2<Gift>('/gifts');
     }
 
     getGifts(): Observable<Gift[]> {

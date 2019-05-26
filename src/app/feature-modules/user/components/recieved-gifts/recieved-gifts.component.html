@@ -1,46 +1,64 @@
 <div *ngIf="noData">
-  <h3>You haven't sent any gifts till now. Goto Gifts to send gifts.</h3>
+    <h5>
+        <strong class="font-weight-bold"
+            >You haven't recieved any gifts till now. Goto
+            <span class="red-custom" [routerLink]="['/gifts']">Gifts</span> to
+            send gifts.</strong
+        >
+    </h5>
 </div>
 
 <div *ngIf="!noData">
-  <div class="col-md-12 sent-gift" *ngFor="let gift of recievedGifts">
-    <div class="row">
-      <div class="col-md-6">
-        <p><strong class="font-weight-bold mr-4"> {{ gift.giftName }} from {{ gift.senderName }}.</strong></p>
-      </div>
-      <div class="col-md-2">
-        <img class="img-responsive" [routerLink]="['/gifts/details/', gift.key]" src="{{ gift.imageLink }}" alt="">
+    <div class="col-md-12 sent-gift" *ngFor="let gift of recievedGifts">
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <strong class="font-weight-bold mr-4">
+                        {{ gift.giftName }} from {{ gift.senderName }}.</strong
+                    >
+                </p>
+            </div>
+            <div class="col-md-2">
+                <img
+                    class="img-responsive"
+                    [routerLink]="['/gifts/details/', gift.key]"
+                    src="{{ gift.imageLink }}"
+                    alt=""
+                />
+            </div>
+            <div class="col-md-2">
+                <h6
+                    class="font-weight-bold red-custom mt-1"
+                    (click)="redeem(gift)"
+                    *ngIf="!gift.isRedeemed"
+                >
+                    Redeem
+                </h6>
+                <h6
+                    class="font-weight-bold red-custom mt-1"
+                    *ngIf="gift.isRedeemed && !gift.isReviewed"
+                    (click)="review(gift)"
+                >
+                    Review
+                </h6>
+
+                <h6
+                    class="font-weight-bold black-custom mt-1"
+                    *ngIf="gift.isRedeemed && gift.isReviewed"
+                    outline="true"
+                    disabled
+                    mdbWavesEffect
+                >
+                    Reviewed
+                </h6>
+            </div>
+
+            <div class=" date col-md-2">
+                <strong class="font-weight-bold mt-4">
+                    {{ formatDate(gift.recievedOn) }}
+                </strong>
+            </div>
         </div>
-      <div class="col-md-2">
-        <h6 class="font-weight-bold red-custom mt-1"
-          (click)="redeem(gift)"
-          *ngIf="!gift.isRedeemed"
-        >
-          Redeem
-      </h6>
-        <h6
-          class="font-weight-bold red-custom mt-1"
-          *ngIf="gift.isRedeemed && !gift.isReviewed"
-          (click)="review(gift)"
-        >
-          Review
-    </h6>
-
-        <h6
-          class="font-weight-bold black-custom mt-1"
-          *ngIf="gift.isRedeemed && gift.isReviewed"
-          outline="true"
-          disabled
-          mdbWavesEffect
-        >
-          Reviewed
-  </h6>
-      </div>
-
-      <div class=" date col-md-2">
-          <strong class="font-weight-bold mt-4"> {{ formatDate(gift.recievedOn) }} </strong>
-      </div>
+        <hr />
     </div>
-    <hr>
-  </div>
 </div>
