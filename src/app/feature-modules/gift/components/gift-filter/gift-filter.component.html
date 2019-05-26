@@ -47,14 +47,11 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="sortParamValue">
-            <h6 class="filter-badge">{{ sortParamValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetSortParamValue()"></i></h6>
-        </div>
         <div class="col-1"></div>
+        <i *ngIf="sortDirection === 'asc'" (click)="changeSortDirection('desc')" class="fas fa-arrow-up ml-4"></i>
+        <i *ngIf="sortDirection === 'desc'" (click)="changeSortDirection('asc')" class="fas fa-arrow-down ml-4"></i>
     </div>
-    <i *ngIf="sortDirection === 'asc'" (click)="changeSortDirection('desc')" class="fas fa-arrow-up ml-4"></i>
-    <i *ngIf="sortDirection === 'desc'" (click)="changeSortDirection('asc')" class="fas fa-arrow-down ml-4"></i>
     <div *ngIf="sortParamValue">
-        <h6 class="filter-badge">{{ sortParamValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetSortParamValue()"></i></h6>
+        <h6 class="filter-badge">{{ sortParamValue }} <i class="ml-1 fas fa-times close-icon" (click)="resetSortParamValue()"></i></h6>
     </div>
 </div>
