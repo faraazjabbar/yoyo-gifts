@@ -1,133 +1,37 @@
-<div class='container-fluid'>
+                       <div class="container">
+                            <h3 class="font-weight-bold mt-4 mb-4">Admin Dashboard</h3>
 
-        <div class='row'>
-        <div class='col-md-2'>
-              <nav class='s-sidebar__nav'>
-                      <ul>
-                         <li>
-                            <p class='s-sidebar__nav-link'>
-                               <i class='fa fa-home'></i><em>My Profile</em>
-                            </p>
-                         </li>
+                       <div class="row">
+                        <div class="col-md-3">
+                          <div class="card-counter primary">
+                            <i class="fa fa-code-fork"></i>
+                            <span class="count-numbers">12</span>
+                            <span class="count-name">Flowz</span>
+                          </div>
+                        </div>
 
+                        <div class="col-md-3">
+                          <div class="card-counter danger">
+                            <i class="fa fa-ticket"></i>
+                            <span class="count-numbers">599</span>
+                            <span class="count-name">Instances</span>
+                          </div>
+                        </div>
 
-                         <li>
-                              <a class='s-sidebar__nav-link' [routerLink]="['/packages']">
-                                <i class='fa fa-suitcase'></i><em>Package Management</em>
-                              </a>
-                           </li>
-                           <li>
-                                   <a class='s-sidebar__nav-link' [routerLink]="['/offers']">
-                                     <i class='fa fa-gift'></i><em>Offers Management</em>
-                                   </a>
-                            </li>
-                         <li>
-                           <a class='s-sidebar__nav-link' [routerLink]="['/admin/userManagement']">
-                               <i class='fa fa-user'></i><em>User Management</em>
-                           </a>
-                         </li>
-                         <li>
-                               <a class='s-sidebar__nav-link' [routerLink]="['/admin/bookingManagement']">
-                                   <i class='fa fa-calendar-check-o'></i><em>Booking Management</em>
-                               </a>
-                             </li>
-                         <li>
-                              <a class='s-sidebar__nav-link' [routerLink]="['/providers']">
-                                 <i class='fa fa-handshake-o'></i><em>Providers Management</em>
-                              </a>
-                           </li>
+                        <div class="col-md-3">
+                          <div class="card-counter success">
+                            <i class="fa fa-database"></i>
+                            <span class="count-numbers">6875</span>
+                            <span class="count-name">Data</span>
+                          </div>
+                        </div>
 
-
-                      </ul>
-                   </nav>
-
-        </div>
-        <div class='col-md-10'>
-               <!-- <div class='col-md-12'> -->
-                       <h2 class="mt-4">Admin Dashboard</h2>
-                           <!-- </div> -->
-                           <hr>
-
-                           <div class='row'>
-                                   <div class='col-lg-4 col-md-4 col-sm-12 card1'>
-                                           <div class='card'>
-                                               <div class='card-header'>
-
-                                                   <p class='card-category'>Our Packages</p>
-                                                   <h3 class='card-title'> {{total_packages}}
-
-                                                   </h3>
-                                               </div>
-
-                                           </div>
-                                       </div>
-                                       <div class='col-lg-4 col-md-4 col-sm-12 card1'>
-                                               <div class='card'>
-                                                   <div class='card-header'>
-
-                                                       <p class='card-category'>Our Users</p>
-                                                       <h3 class='card-title'> {{user_count}}
-
-                                                       </h3>
-                                                   </div>
-
-                                               </div>
-                                           </div>
-
-                                           <div class='col-lg-4 col-md-4 col-sm-12 card1'>
-                                                   <div class='card'>
-                                                       <div class='card-header'>
-
-                                                           <p class='card-category'>Our Offers</p>
-                                                           <h3 class='card-title'>5
-
-                                                           </h3>
-                                                       </div>
-
-                                                   </div>
-                                               </div>
-
-
-
-                               </div>
-
-
-
-
-
-
-<div class="row">
-<!--
-<ngx-charts-bar-vertical
-[view]="view"
-[scheme]="colorScheme"
-[results]="bar_chart_data"
-[gradient]="gradient"
-[xAxis]="showXAxis"
-[yAxis]="showYAxis"
-[legend]="showLegend"
-[showXAxisLabel]="showXAxisLabel"
-[showYAxisLabel]="showYAxisLabel"
-[xAxisLabel]="xAxisLabel"
-[yAxisLabel]="yAxisLabel"
-(select)="onSelect($event)">
-</ngx-charts-bar-vertical>
-              <ngx-charts-pie-chart
-
-             [view]="view"
-             [scheme]="colorScheme"
-             [results]="pie_chart_data"
-             [legend]="showLegend"
-             [legendTitle]="legendTitle"
-             [explodeSlices]="explodeSlices"
-             [doughnut]="doughnut"
-             [arcWidth]="arcWidth"
-
-             >
-           </ngx-charts-pie-chart> -->
-
-
-       </div>
-        </div>
-       </div>
-</div>
+                        <div class="col-md-3">
+                          <div class="card-counter info">
+                            <i class="fa fa-users"></i>
+                            <span class="count-numbers">35</span>
+                            <span class="count-name">Users</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>

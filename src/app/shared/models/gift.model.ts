@@ -34,4 +34,5 @@ export interface Brand {
 export interface Category {
   key?: string;
   categoryName: string;
+  categoryImage?: string;
 }

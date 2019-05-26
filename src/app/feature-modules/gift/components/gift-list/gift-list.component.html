@@ -1,31 +1,30 @@
 <a class="float" (click)="openManageGiftModal('add')" *ngIf="isAdmin">
   <em class="fa fa-plus my-float"></em>
 </a>
-<img src="https://vinylbannersprinting.co.uk/wp-content/uploads/2016/04/sb09-RA-Demo.jpg" class="img-fluid" alt="">
+<img src="{{ categoryImage }}" class="img-fluid" alt="">
+
+
 
 <app-gift-search (searchValueEvent)="setSearchValue($event)"></app-gift-search>
 
-<app-gift-filter (brandValueArrayEvent)="onChangeBrandValue($event)" (pointsValueEvent)="onChangePointsValue($event)"
+<app-gift-filter [category]="categoryFilterValue" (brandValueArrayEvent)="onChangeBrandValue($event)" (pointsValueEvent)="onChangePointsValue($event)"
     (sortParamEvent)="onChangeSortParam($event)" (sortDirectionEvent)="onChangeSortDirection($event)"></app-gift-filter>
 <!-- filter -->
 
-<div class="container-custom" *ngIf="translation$ | async as translation">
-    <div *ngIf="searchValue">
-    <h4 *ngIf="(gifts$ | async | search:searchValue).length > 0">{{'searchResultFor' | translate: translation}}<strong>{{searchValue}}</strong></h4>
-    <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">{{'noResultsFor' | translate: translation}}<strong>{{searchValue}}.</strong>
-        {{'seeAll' | translate: translation}}
-        <span class="red-custom font-weight-bold" (click)="resetSearch()">{{'gifts' | translate: translation}}</span>
-    </h4>
-    </div>
-    <div class="projects-list d-flex flex-wrap fadeIn animated">
-        <div class="project" *ngFor="let gift of gifts$ | async | search:searchValue | filter:brandFilterArray:pointsFilterValue | sort:sortParam:sortDirection">
-        <app-gift-card
-            [isAdmin]="isAdmin"
-            [gift]="gift"
-            (editEvent)="onEdit($event)"
-            (deleteEvent)="onDelete($event)">
-        </app-gift-card>
-    </div>
-    </div>
-    <app-gift-section></app-gift-section>
+<div class="container-custom">
+<div *ngIf="searchValue">
+  <!-- <h4 *ngIf="(gifts$ | async | search:searchValue).length > 0">Search Results for: <strong>{{searchValue}}</strong></h4>
+  <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">No Results for: <strong>{{searchValue}}.</strong> See all <span class="red-custom font-weight-bold" (click)="resetSearch()">gifts</span> </h4> -->
+</div>
+<div class="projects-list d-flex flex-wrap fadeIn animated">
+    <div class="project" *ngFor="let gift of gifts$ | async | filter:brandFilterArray:pointsFilterValue:categoryFilterValue | sort:sortParam:sortDirection | search:searchValue">
+      <app-gift-card
+        [isAdmin]="isAdmin"
+        [gift]="gift"
+        (editEvent)="onEdit($event)"
+        (deleteEvent)="onDelete($event)">
+      </app-gift-card>
+  </div>
+</div>
+<app-gift-section></app-gift-section>
 </div>

@@ -1,3 +1,6 @@
+import { Category } from './../../../../shared/models/gift.model';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from './../../../../core/spinner/spinner.service';
 import { ConfirmationModalComponent } from './../../../admin/components/confirmation-modal/confirmation-modal.component';
 import { ManageGiftComponent } from './../../../admin/components/manage-gift/manage-gift.component';
@@ -32,23 +35,77 @@ export class GiftListComponent implements OnInit, OnDestroy {
         data: {}
     };
     private subscriptions: Subscription[] = [];
+    categoryImage: string;
     gifts$: Observable<Gift[]>;
     modalRef: MDBModalRef;
     searchValue: string;
     loading$: Observable<boolean>;
     brandFilterArray = [];
     pointsFilterValue = 0;
-    sortParam = '';
+    sortParam;
     sortDirection = 'asc';
+    categoryFilterValue;
+    categories;
 
     constructor(
         private store: Store<RootStoreState.State>,
         private mdbModal: MDBModalService,
+        private fbService: FirebaseService,
         private spinnerService: SpinnerService,
         private alertService: AlertService,
+        private route: ActivatedRoute,
+        private router: Router,
         private translationService: TranslationService
     ) {}
 
+    ngOnInit() {
+        this.translation$ = this.translationService.getTranslation('gift', 'gift-list', localStorage.getItem('chosenLang'));
+        const user: User = JSON.parse(localStorage.getItem('user'));
+        this.isAdmin = user && user.isAdmin;
+
+        this.route.queryParams
+        .subscribe(params => {
+            if (params.categoryKey) {
+                this.categoryFilterValue = params.categoryKey;
+                this.fbService.getByKey('/categories', this.categoryFilterValue)
+                .subscribe((category: Category) => {
+                    this.categoryImage = category.categoryImage;
+                });
+            } else {
+                this.categoryFilterValue = null;
+                this.categoryImage = 'https://vinylbannersprinting.co.uk/wp-content/uploads/2016/04/sb09-RA-Demo.jpg';
+            }
+         });
+        // From NGRX Gift store ...
+        this.gifts$ = this.store.select(GiftStoreSelectors.getList);
+
+        // Pushing all the forced subscriptions for unscribe ...
+        this.subscriptions.push(
+            this.store
+                .select(GiftStoreSelectors.getLoading)
+                .pipe(
+                    tap(value => {
+                        if (value) {
+                            this.spinnerService.show();
+                        } else {
+                            this.spinnerService.hide();
+                        }
+                    })
+                )
+                .subscribe()
+        );
+        this.subscriptions.push(
+            this.store
+                .select(GiftStoreSelectors.getError)
+                .pipe(
+                    filter(error => error !== null),
+                    tap(error => this.alertService.error(error))
+                )
+                .subscribe()
+        );
+        // Dispatching gift all store
+        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+    }
     setSearchValue(event: string) {
         console.log(event);
         this.searchValue = event;
@@ -97,43 +154,9 @@ export class GiftListComponent implements OnInit, OnDestroy {
 
     resetSearch() {
         this.searchValue = '';
+        this.router.navigate(['/gifts']);
     }
 
-    ngOnInit() {
-        this.translation$ = this.translationService.getTranslation('gift', 'gift-list', localStorage.getItem('chosenLang'));
-        const user: User = JSON.parse(localStorage.getItem('user'));
-        this.isAdmin = user && user.isAdmin;
-
-        // From NGRX Gift store ...
-        this.gifts$ = this.store.select(GiftStoreSelectors.getList);
-
-        // Pushing all the forced subscriptions for unscribe ...
-        this.subscriptions.push(
-            this.store
-                .select(GiftStoreSelectors.getLoading)
-                .pipe(
-                    tap(value => {
-                        if (value) {
-                            this.spinnerService.show();
-                        } else {
-                            this.spinnerService.hide();
-                        }
-                    })
-                )
-                .subscribe()
-        );
-        this.subscriptions.push(
-            this.store
-                .select(GiftStoreSelectors.getError)
-                .pipe(
-                    filter(error => error !== null),
-                    tap(error => this.alertService.error(error))
-                )
-                .subscribe()
-        );
-        // Dispatching gift all store
-        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-    }
 
     ngOnDestroy() {
         // Unscribing all the subscriptions at one go ...

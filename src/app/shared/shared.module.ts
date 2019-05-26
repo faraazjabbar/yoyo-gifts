@@ -8,6 +8,7 @@ import { ButtonComponent } from './ui-components/button/button.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SectionComponent,
     ButtonComponent,
     TranslatePipe,
-    ReversePipe
+    ReversePipe,
+    BrandFilterPipe
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     SectionComponent,
+    BrandFilterPipe,
     TranslatePipe
   ]
 })
