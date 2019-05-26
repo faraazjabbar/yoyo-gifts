@@ -10,6 +10,11 @@
         "emailRequiredText": "Email is required.",
         "emailValidText": "Email is invalid.",
         "reviewsText": "Reviews",
+        "sendText": "Send",
+        "cancelText": "Cancel",
+        "nameText": "Name",
+        "emailText": "Email",
+        "messegeText": "Messege",
         "title": "Gift Details"
     },
     "es": {
@@ -23,6 +28,11 @@
         "emailRequiredText": "Correo electronico es requerido",
         "emailValidText": "correo electrónico es invalido",
         "reviewsText": "Opiniones",
+        "sendText": "Enviar",
+        "cancelText": "Cancel",
+        "nameText": "Nombre",
+        "emailText": "Correo",
+        "messegeText": "mensaje",
         "title": "Detalles de regalo"
     }
 }

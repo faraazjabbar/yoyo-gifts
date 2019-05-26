@@ -1,30 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-    RootStoreState,
-    GiftStoreActions,
-    GiftStoreSelectors,
-    UserStoreActions,
-    UserStoreSelectors
-} from 'src/app/root-store';
+import { RootStoreState, GiftStoreActions, GiftStoreSelectors, UserStoreActions, UserStoreSelectors } from 'src/app/root-store';
 import { tap, map, switchMap, filter } from 'rxjs/operators';
 import { Subscription, Observable, of, forkJoin } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
-import {
-    ActivatedRoute,
-    NavigationStart,
-    NavigationEnd,
-    Router,
-    RouterEvent
-} from '@angular/router';
-import {
-    Order,
-    SentGift,
-    RecievedGift
-} from 'src/app/shared/models/orders.model';
+import { ActivatedRoute, NavigationStart, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Order, SentGift, RecievedGift } from 'src/app/shared/models/orders.model';
 import { User, SendEmail } from './../../../../shared/models/user.model';
 import { environment } from 'src/environments/environment';
-
 import { OrdersService } from 'src/app/feature-modules/user/services/orders.service';
 import { UserService } from 'src/app/feature-modules/user/services/user.service';
 import { SpinnerService } from 'src/app/core/spinner/spinner.service';
@@ -221,44 +204,6 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
         this.route.data.subscribe((data: { gift: Gift }) => {
             this.gift = data.gift;
         });
-
-        // TODO: to refactored for NGRX state route change ...
-        // const giftKey = 'giftKey';
-        // this.gift$ = this.store.select(GiftStoreSelectors.getByKey(giftKey));
-        // // Pushing obsersavation to unscribe it
-        // this.subscriptions.push(
-        //     this.store.select(GiftStoreSelectors.getError)
-        //         .pipe(
-        //             filter(error => error !== null),
-        //             tap(error => this.alertService.error(error))
-        //         )
-        //         .subscribe()
-        // );
-        // // Dispatching Gift Store Actions ...
-        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-        // this.store.dispatch(new GiftStoreActions.GetGiftRequestAction({key: giftKey}));
-
-        // this.gifts$ = this.store.select(GiftStoreSelectors.getList());
-        // this.gifts$.pipe(tap(gifts => console.log('Store gifts, ', gifts))).subscribe();
-        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
-
-        this.users$ = this.store.select(UserStoreSelectors.getList);
-        this.users$
-            .pipe(tap(users => console.log('Store users, ', users)))
-            .subscribe();
-        // Pushing obsersavation to unscribe it
-        this.subscriptions.push(
-            this.store
-                .select(UserStoreSelectors.getError)
-                .pipe(
-                    filter(error => error !== null),
-                    tap(error => this.alertService.error(error))
-                )
-                .subscribe()
-        );
-        // Dispatching Gift Store Actions ...
-        this.store.dispatch(new UserStoreActions.GetUsersRequestAction({}));
-        // this.store.dispatch(new UserStoreActions.GetUserRequestAction({key: giftKey}));
     }
 
     ngOnDestroy() {
@@ -287,7 +232,11 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
         const templateParams = {
             toemail: this.model.email,
             toname: this.model.name,
-            fromname: environment.appName
+            messegeuser: this.model.messege,
+            giftname: this.gift.giftName,
+            giftimage: this.gift.imageLink,
+            fromname: environment.appName,
+            homeurl: environment.apiUrl
         };
 
         // sending email with callback to update the orders

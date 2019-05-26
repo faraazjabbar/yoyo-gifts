@@ -15,10 +15,10 @@ export const environment = {
     // to send the email | https://dashboard.emailjs.com/templates/hYcqUzL51F
     email: {
         serviceId: 'gmail',
-        templateId: 'template_Cg1kIF0Z',
-        userId: 'user_1Vb8OYU8eOTkZpWt24PNf'
+        templateId: 'yoyo_send_gift_template',
+        userId: 'user_uSW3FVSFuXcYR6LDqIlrN'
     },
-    apiUrl: 'https://yoyo-gift.firebaseio.com',
+    apiUrl: 'https://yoyo-gift.firebaseapp.com/home',
     apiShowFriendlyMessage: false,
     profileUrl: 'https://yoyo-gifts.firebaseapp.com/me',
     logoutUrl: 'https://yoyo-gifts.firebaseapp.com/signout',

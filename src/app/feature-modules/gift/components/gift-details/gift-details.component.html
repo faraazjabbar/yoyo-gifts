@@ -5,10 +5,7 @@
             <div class="preview col-md-6">
                 <div class="preview-pic tab-content">
                     <div class="tab-pane active">
-                        <img
-                            src="{{ gift.imageLink }}"
-                            alt="{{ gift.giftName }}"
-                        />
+                        <img src="{{ gift.imageLink }}" alt="{{ gift.giftName }}"/>
                     </div>
                 </div>
             </div>
@@ -37,135 +34,50 @@
                     >: {{ gift.brandName }}
                 </p>
                 <p class="product-description">
-                    <strong
-                        >{{ 'categoryText' | translate: translation }}: </strong
-                    >: {{ gift.categoryName }}
+                    <strong>{{ 'categoryText' | translate: translation }}: </strong>: {{ gift.categoryName }}
                 </p>
                 <div class="action">
-                    <button
-                        class="add-to-cart btn btn-default"
-                        type="button"
-                        (click)="enableSendForm()"
-                    >
-                        <em class="fa fa-gift-card"></em>
-                        {{ 'sendCardText' | translate: translation }}Send Card
+                    <button class="add-to-cart btn btn-default" type="button" (click)="enableSendForm()">
+                        <em class="fa fa-gift-card"></em>{{ 'sendCardText' | translate: translation }}Send Card
                     </button>
-                    <button
-                        class="like btn btn-default"
-                        type="button"
-                        *ngIf="user"
-                        (click)="addToFavorites()"
-                    >
-                        <em
-                            [ngClass]="{
-                                'fas fa-heart': true,
-                                'indigo-text': true
-                            }"
-                        ></em>
+                    <button class="like btn btn-default" type="button" *ngIf="user" (click)="addToFavorites()">
+                        <em [ngClass]="{'fas fa-heart': true, 'indigo-text': true}"></em>
                     </button>
                 </div>
 
-                <span *ngIf="!user && isSendGift">{{
-                    'signInText' | translate: translation
-                }}</span>
+                <span *ngIf="!user && isSendGift">{{'signInText' | translate: translation}}</span>
 
                 <div class="row" *ngIf="isSendGift && user">
                     <!-- Default form send card -->
-                    <form
-                        class="text-center border border-light p-3"
-                        #f="ngForm"
-                        (ngSubmit)="f.form.valid && onSubmit()"
-                        name="form"
-                        style="width: 90%"
-                    >
-                        <p class="h4">
-                            {{ 'sendCardToText' | translate: translation }}
-                        </p>
+                    <form class="text-center border border-light p-3" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" name="form" style="width: 90%">
+                        <p class="h4">{{ 'sendCardToText' | translate: translation }}</p>
                         <!-- Name -->
                         <div class="form-group">
-                            <input
-                                type="text"
-                                #name="ngModel"
-                                class="form-control mb-4"
-                                name="name"
-                                [(ngModel)]="model.name"
-                                [ngClass]="{
-                                    'is-invalid': f.submitted && name.invalid
-                                }"
-                                placeholder="Name"
-                                required
-                            />
-                            <div
-                                *ngIf="f.submitted && name.invalid"
-                                class="invalid-feedback"
-                            >
-                                <div *ngIf="name?.errors.required">
-                                    {{
-                                        'receiverRequiredText'
-                                            | translate: translation
-                                    }}
-                                </div>
+                            <input type="text" #name="ngModel" class="form-control mb-4" name="name" [(ngModel)]="model.name"
+                                [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="{{'nameText' | translate: translation}}" required />
+                            <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                                <div *ngIf="name?.errors.required">{{'receiverRequiredText' | translate: translation}}</div>
                             </div>
                         </div>
                         <!-- Email -->
                         <div class="form-group">
-                            <input
-                                type="text"
-                                #email="ngModel"
-                                class="form-control mb-4"
-                                name="email"
-                                [(ngModel)]="model.email"
-                                [ngClass]="{
-                                    'is-invalid': f.submitted && email.invalid
-                                }"
-                                placeholder="Email"
-                                required
-                                email
-                            />
-                            <div
-                                *ngIf="f.submitted && email.invalid"
-                                class="invalid-feedback"
-                            >
-                                <div *ngIf="email?.errors.required">
-                                    {{
-                                        'emailRequiredText'
-                                            | translate: translation
-                                    }}
-                                </div>
-                                <div *ngIf="email?.errors.email">
-                                    {{
-                                        'emailValidText'
-                                            | translate: translation
-                                    }}
-                                </div>
+                            <input type="text" #email="ngModel" class="form-control mb-4" name="email" [(ngModel)]="model.email"
+                                [ngClass]="{'is-invalid': f.submitted && email.invalid}"
+                                placeholder="{{'emailText' | translate: translation}}" required email />
+                            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                <div *ngIf="email?.errors.required">{{'emailRequiredText' | translate: translation}}</div>
+                                <div *ngIf="email?.errors.email">{{'emailValidText' | translate: translation}}</div>
                             </div>
                         </div>
                         <!-- Message -->
                         <div class="form-group mb-4">
-                            <textarea
-                                #messege="ngModel"
-                                [(ngModel)]="model.messege"
-                                name="messege"
-                                rows="3"
-                                placeholder="Message"
-                                class="form-control rounded-0"
-                            ></textarea>
+                            <textarea #messege="ngModel" [(ngModel)]="model.messege" name="messege" rows="3" placeholder="{{'messegeText' | translate: translation}}"
+                                class="form-control rounded-0" ></textarea>
                         </div>
                         <!-- Send button -->
                         <div class="d-flex flex-row justify-content-between">
-                            <button
-                                class="btn btn-info btn-block col-4"
-                                type="submit"
-                            >
-                                Send
-                            </button>
-                            <button
-                                class="btn btn-info btn-block col-4"
-                                type="button"
-                                (click)="cancelSendGift()"
-                            >
-                                Cancel
-                            </button>
+                            <button class="btn btn-info btn-block col-4" type="submit">{{'sendText' | translate: translation}}</button>
+                            <button class="btn btn-info btn-block col-4" type="button" (click)="cancelSendGift()">{{'cancelText' | translate: translation}}</button>
                         </div>
                     </form>
                     <!-- Default form send card -->
