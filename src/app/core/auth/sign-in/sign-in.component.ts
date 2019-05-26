@@ -66,7 +66,7 @@ export class SignInComponent implements OnInit {
                     userId: data.user.uid,
                     userName: data.user.displayName,
                     email: data.user.email,
-                    imageLink: 'data.user.photoURL',
+                    imageLink: data.user.photoURL,
                     isAdmin: false,
                     points: 10000
                 };

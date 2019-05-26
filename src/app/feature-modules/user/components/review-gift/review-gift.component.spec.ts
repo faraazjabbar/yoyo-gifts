@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { OrdersService } from '../../services/orders.service';
 import { AlertService } from './../../../../core/services/alert.service';
 import { ReviewGiftComponent } from './review-gift.component';
-fdescribe('ReviewGiftComponent', () => {
+describe('ReviewGiftComponent', () => {
     let component: ReviewGiftComponent;
     let fixture: ComponentFixture<ReviewGiftComponent>;
     beforeEach(() => {
