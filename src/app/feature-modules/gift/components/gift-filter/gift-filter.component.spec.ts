@@ -20,4 +20,9 @@ describe('GiftFilterComponent', () => {
     it('can load instance', () => {
         expect(component).toBeTruthy();
     });
-});
+    fixture = TestBed.createComponent(GiftFilterComponent);
+    component = fixture.componentInstance;
+    it('can load instance', () => {
+        expect(component).toBeTruthy();
+      });
+  });

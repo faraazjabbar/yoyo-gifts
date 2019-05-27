@@ -27,6 +27,8 @@
         <a class="dropdown-item" (click)="changeSortParam('rating')" >Rating</a>
         <a class="dropdown-item" (click)="changeSortParam('cost')">Points</a>
       </div>
+      <i *ngIf="sortDirection === 'asc'" class="fas fa-arrow-up ml-2" (click)="changeSortDirection('desc')"></i>
+      <i *ngIf="sortDirection === 'desc'" class="fas fa-arrow-down ml-2" (click)="changeSortDirection('asc')"></i>
     </div>
     <div *ngIf="sortParamValue">
         <h6 class="filter-badge">{{ sortParamValue }} <i class="ml-1 fas fa-times close-icon" (click)="resetSortParamValue()"></i></h6>

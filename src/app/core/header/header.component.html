@@ -66,6 +66,7 @@
             <li class="nav-item" *ngIf="!user">
                 <a class="nav-link waves-light" (click)="gotoSignIn()" mdbWavesEffect>{{'signIn' | translate: translation}}</a>
             </li>
+
             <li class="nav-item avatar dropdown" *ngIf="user" dropdown>
                 <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                     <img [src]="user.imageLink" alt="" class="img img-fluid rounded-circle z-depth-0"/>
