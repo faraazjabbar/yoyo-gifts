@@ -1,3 +1,4 @@
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { SectionComponent } from './ui-components/section/section.component';
 import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         SectionComponent,
         ButtonComponent,
         TranslatePipe,
-        ReversePipe
+        ReversePipe,
+        BrandFilterPipe
     ],
     imports: [
         CommonModule,
@@ -36,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         FormsModule,
         SectionComponent,
-        TranslatePipe
+        TranslatePipe,
+        BrandFilterPipe
     ]
 })
 export class SharedModule {}
