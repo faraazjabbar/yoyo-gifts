@@ -13,12 +13,12 @@ class DummyReviewGiftComponent {
         action: null;
     };
 }
-fdescribe('RecievedGiftsComponent', () => {
+describe('RecievedGiftsComponent', () => {
     let component: RecievedGiftsComponent;
     let fixture: ComponentFixture<RecievedGiftsComponent>;
     let order: Order;
     let recievedGifts: RecievedGift[];
-    let modalRef: MDBModalRef;
+    // let modalRef: MDBModalRef;
     let modalService: MDBModalService;
     beforeEach(() => {
         const ordersServiceStub = {

@@ -7,23 +7,22 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class EmailService {
-
-    constructor(private alertService: AlertService) { }
+    constructor(private alertService: AlertService) {}
 
     send(model, templateParams, callBack: Function) {
-
         const serviceId = environment.email.serviceId;
         const templateId = environment.email.templateId;
         const userId = environment.email.userId;
 
-        emailjs
-            .send(serviceId, templateId, templateParams, userId)
-            .then(response => {
-                if(response.status === 200) {
+        emailjs.send(serviceId, templateId, templateParams, userId).then(
+            response => {
+                if (response.status === 200) {
                     callBack();
                 }
-            }, err => {
+            },
+            err => {
                 this.alertService.error(err);
-            });
+            }
+        );
     }
 }
