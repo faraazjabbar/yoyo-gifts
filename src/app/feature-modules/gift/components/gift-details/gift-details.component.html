@@ -38,7 +38,7 @@
                 </p>
                 <div class="action">
                     <button class="add-to-cart btn btn-default" type="button" (click)="enableSendForm()">
-                        <em class="fa fa-gift-card"></em>{{ 'sendCardText' | translate: translation }}Send Card
+                        <em class="fa fa-gift-card"></em>{{ 'sendCardText' | translate: translation }}
                     </button>
                     <button class="like btn btn-default" type="button" *ngIf="user" (click)="addToFavorites()">
                         <em [ngClass]="{'fas fa-heart': true, 'indigo-text': true}"></em>
