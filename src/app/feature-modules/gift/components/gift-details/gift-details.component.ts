@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { RootStoreState, GiftStoreActions, GiftStoreSelectors, UserStoreActions, UserStoreSelectors } from 'src/app/root-store';
-import { tap, map, switchMap, filter } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { tap, switchMap } from 'rxjs/operators';
 import { Subscription, Observable, of, forkJoin } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
-import { ActivatedRoute, NavigationStart, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationStart, NavigationEnd, Router } from '@angular/router';
 import { Order, SentGift, RecievedGift } from 'src/app/shared/models/orders.model';
 import { User, SendEmail } from './../../../../shared/models/user.model';
 import { environment } from 'src/environments/environment';
@@ -38,7 +36,6 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
         private translationService: TranslationService,
         private router: Router,
         private route: ActivatedRoute,
-        private store: Store<RootStoreState.State>,
         private alertService: AlertService,
         private emailService: EmailService,
         private orderService: OrdersService,
@@ -189,13 +186,17 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
             .subscribe();
     }
 
+    private resetSendModel() {
+        this.model = { name: '', email: '', messege: '' };
+    }
+
     ngOnInit() {
         this.translation$ = this.translationService.getTranslation('gift', 'gift-details', localStorage.getItem('chosenLang'));
         // Setting up the user ...
         this.setUser();
 
         // Initializing the send email model ...
-        this.model = { name: '', email: '', messege: '' };
+        this.resetSendModel();
 
         // Fetching from local storage, if user logged in
         this.user = JSON.parse(localStorage.getItem('user'));
@@ -226,9 +227,10 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        // Showing loading ...
+        // Showing loading
         this.spinnerService.show();
 
+        // Initializing forms
         const templateParams = {
             toemail: this.model.email,
             toname: this.model.name,
@@ -239,16 +241,18 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
             homeurl: environment.apiUrl
         };
 
-        // sending email with callback to update the orders
+        // Sending email with callback to update the orders
         this.emailService.send(this.model, templateParams, () =>
             this.updateOrdersAndGift()
         );
+
+        // Resetting the form
+        this.resetSendModel();
     }
 
     cancelSendGift() {
         this.isSendGift = false;
-        this.model = { name: '', email: '', messege: '' };
-
+        this.resetSendModel();
     }
 
     addToFavorites() {

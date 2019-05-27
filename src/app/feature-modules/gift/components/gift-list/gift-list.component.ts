@@ -157,7 +157,6 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.router.navigate(['/gifts']);
     }
 
-
     ngOnDestroy() {
         // Unscribing all the subscriptions at one go ...
         this.subscriptions.forEach(eachSubcription => {
