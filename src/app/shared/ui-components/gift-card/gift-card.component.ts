@@ -40,4 +40,8 @@ export class GiftCardComponent implements OnInit {
     public addToFavorites() {
         this.userService.addToFavorites(this.user, this.gift);
     }
+    getDiscountValue(discount, cost) {
+        const discountValue = (cost / 100) * discount;
+        return cost - discountValue;
+    }
 }

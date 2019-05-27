@@ -51,7 +51,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
                 .subscribe()
         );
         // Dispatching Gift Store Actions ...
-        this.store.dispatch(new UserStoreActions.GetUsersRequestAction({}));
+        // this.store.dispatch(new UserStoreActions.GetUsersRequestAction({}));
     }
 
     gotoUserProfile(userKey) {

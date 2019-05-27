@@ -76,7 +76,7 @@ export class ManageGiftComponent implements OnInit, OnDestroy {
             ],
             imageLink: [this.content ? this.content.imageLink : '']
         });
-        this.manageForm.get('brandId').disable();
+        // this.manageForm.get('brandId').disable();
         if (this.adminGiftService.categories.length < 1) {
             this.adminGiftService
                 .getCategories()

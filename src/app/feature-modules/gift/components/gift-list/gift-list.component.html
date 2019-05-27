@@ -14,6 +14,7 @@
 <!-- filter -->
 
 <div class="container-custom">
+<<<<<<< HEAD
     <div *ngIf="searchValue">
         <!-- <h4 *ngIf="(gifts$ | async | search:searchValue).length > 0">Search Results for: <strong>{{searchValue}}</strong></h4>
         <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">No Results for: <strong>{{searchValue}}.</strong> See all <span class="red-custom font-weight-bold" (click)="resetSearch()">gifts</span> </h4> -->
@@ -28,4 +29,21 @@
         </div>
     </div>
     <app-gift-section></app-gift-section>
+=======
+<div *ngIf="searchValue">
+  <!-- <h4 *ngIf="(gifts$ | async | search:searchValue).length > 0">Search Results for: <strong>{{searchValue}}</strong></h4>
+  <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">No Results for: <strong>{{searchValue}}.</strong> See all <span class="red-custom font-weight-bold" (click)="resetSearch()">gifts</span> </h4> -->
+</div>
+<div class="projects-list d-flex flex-wrap fadeIn animated">
+    <div class="project" *ngFor="let gift of gifts$ | async | filter:brandFilterArray:pointsFilterValue:categoryFilterValue | sort:sortParam:sortDirection | search:searchValue; trackBy: trackByFn">
+      <app-gift-card
+        [isAdmin]="isAdmin"
+        [gift]="gift"
+        (editEvent)="onEdit($event)"
+        (deleteEvent)="onDelete($event)">
+      </app-gift-card>
+  </div>
+</div>
+<app-gift-section></app-gift-section>
+>>>>>>> 905c393295be6ccac5d9085fb2c1a6b54b194ed4
 </div>

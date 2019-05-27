@@ -55,7 +55,7 @@ export class AdminGiftListComponent implements OnInit, OnDestroy {
                 .subscribe()
         );
         // Dispatching Gift Store Actions ...
-        this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
+        // this.store.dispatch(new GiftStoreActions.GetGiftsRequestAction({}));
     }
 
     ngOnDestroy() {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RouterLinks } from '../../../shared/constants/app.constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from './../../services/alert.service';
+import { SpinnerService } from 'src/app/core/spinner/spinner.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -18,7 +19,8 @@ export class SignInComponent implements OnInit {
         private authService: AuthService,
         private router: Router,
         private fb: FormBuilder,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private spinnerService: SpinnerService
     ) {}
 
     ngOnInit() {
@@ -59,6 +61,7 @@ export class SignInComponent implements OnInit {
     }
 
     public signInWithGoogle() {
+        this.spinnerService.show();
         this.authService
             .googleSignInWithPopup()
             .then((data: any) => {
@@ -76,6 +79,7 @@ export class SignInComponent implements OnInit {
             })
             .catch(err => {
                 this.alertService.error(err);
+                this.spinnerService.hide();
             });
     }
 
@@ -87,6 +91,7 @@ export class SignInComponent implements OnInit {
             })
             .catch(err => {
                 this.alertService.error(err);
+                this.spinnerService.hide();
             });
     }
 
@@ -108,6 +113,7 @@ export class SignInComponent implements OnInit {
             })
             .catch(err => {
                 this.alertService.error(err);
+                this.spinnerService.hide();
             });
     }
 
@@ -135,6 +141,8 @@ export class SignInComponent implements OnInit {
         user.isAdmin
             ? this.router.navigate([RouterLinks.ADMIN])
             : this.router.navigate([RouterLinks.HOME]);
+
+        this.spinnerService.hide();
     }
 
     public toggleRegister() {
@@ -143,6 +151,7 @@ export class SignInComponent implements OnInit {
     }
 
     public onSubmit(form) {
+        this.spinnerService.show();
         form.value.firstName
             ? this.createUserWithEmail(form.value)
             : this.signInWithEmail(form.value);

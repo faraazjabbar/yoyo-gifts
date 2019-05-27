@@ -26,18 +26,21 @@
     <links>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li [ngClass]="{ 'nav-item': true }">
+            <li [ngClass]="{ 'nav-item': true }" *ngIf="!user?.isAdmin" >
                 <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']" routerLinkActive="active">{{'home' | translate: translation}}</a>
+            </li>
+            <li [ngClass]="{ 'nav-item': true }" *ngIf="user && user?.isAdmin" >
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/admin']" routerLinkActive="active">{{'dashboard' | translate: translation}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect routerLink="/gifts">{{'gifts' | translate: translation}}</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect>{{'aboutUs' | translate: translation}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect>{{'contactUs' | translate: translation}}</a>
-            </li>
+            </li> -->
             <!-- Dropdown -->
             <li class="nav-item dropdown" dropdown>
                 <a
@@ -66,6 +69,7 @@
             <li class="nav-item" *ngIf="!user">
                 <a class="nav-link waves-light" (click)="gotoSignIn()" mdbWavesEffect>{{'signIn' | translate: translation}}</a>
             </li>
+
             <li class="nav-item avatar dropdown" *ngIf="user" dropdown>
                 <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                     <img [src]="user.imageLink" alt="" class="img img-fluid rounded-circle z-depth-0"/>

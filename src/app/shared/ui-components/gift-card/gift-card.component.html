@@ -2,13 +2,15 @@
 <div class="card card-cascade card-ecommerce wider">
     <!--Card image-->
     <div
-        class="view view-cascade overlay"
+        class="view"
         [routerLink]="['/gifts/details/', gift.key]"
     >
+
         <img class="card-img-top" src="{{ gift.imageLink }}" alt="" />
-        <a>
-            <div class="mask rgba-white-slight"></div>
-        </a>
+        <div *ngIf="gift.discount > 0" class="ribbon"><span>{{ gift.discount }}% off</span></div>
+            <div *ngIf="gift.count === 0" class="mask flex-center waves-effect waves-light rgba-grey-strong">
+                <p class="red-text font-weight-bold px-4">SOLD OUT</p>
+              </div>
     </div>
     <!--/.Card image-->
 
@@ -33,7 +35,7 @@
         <!--Card footer-->
         <div class="card-footer">
             <span class="float-left"
-                ><strong>{{ gift.cost }} P</strong></span
+                ><strong [ngClass]="{'prevPrice': gift.discount > 0, 'mr-1': true}">{{ gift.cost }}</strong> <strong *ngIf="gift.discount > 0">{{ getDiscountValue(gift.discount, gift.cost) }}</strong>P</span
             >
             <span class="float-right">
                 <a

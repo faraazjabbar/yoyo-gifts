@@ -1,5 +1,6 @@
 {
     "en": {
+        "dashboard": "Dashboard",
         "home": "Home",
         "gifts": "Gifts",
         "aboutUs": "About Us",
@@ -13,6 +14,7 @@
         "title": "Header"
     },
     "es": {
+        "dashboard": "Tablero",
         "home": "Casa",
         "gifts": "Regalos",
         "aboutUs": "Sobre nosotro",
@@ -26,5 +28,3 @@
         "title": "Encabezamiento"
     }
 }
-
-
