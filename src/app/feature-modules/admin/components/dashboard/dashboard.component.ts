@@ -4,18 +4,15 @@ import { Component, OnInit } from '@angular/core';
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  modalRef: MDBModalRef;
+    modalRef: MDBModalRef;
+    total_packages;
+    user_count;
+    constructor(private adminGiftService: AdminGiftService) {}
 
-  constructor(
-    private adminGiftService: AdminGiftService
-  ) {}
-
-  ngOnInit() {
-  }
-
+    ngOnInit() {}
 }

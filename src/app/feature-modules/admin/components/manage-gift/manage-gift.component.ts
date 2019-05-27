@@ -43,7 +43,7 @@ export class ManageGiftComponent implements OnInit, OnDestroy {
                 Validators.compose([
                     Validators.required,
                     Validators.minLength(4),
-                    Validators.maxLength(20)
+                    Validators.maxLength(50)
                 ])
             ],
             description: [

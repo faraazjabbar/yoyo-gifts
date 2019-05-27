@@ -33,10 +33,6 @@ export class ReviewGiftComponent implements OnInit {
         this.user = this.authService.emitUserData.getValue();
     }
 
-    public getRating(rating: number): void {
-        this.rating = rating;
-    }
-
     public sendReview() {
         const review: Review = {
             userId: this.user.key,

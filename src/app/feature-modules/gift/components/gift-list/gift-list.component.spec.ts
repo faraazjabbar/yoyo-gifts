@@ -63,5 +63,4 @@ describe('GiftListComponent', () => {
     //         expect(storeStub.dispatch).toHaveBeenCalled();
     //     });
     // });
-
 });
