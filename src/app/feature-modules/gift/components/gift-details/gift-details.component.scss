@@ -113,7 +113,7 @@ img {
   border: none;
   text-transform: UPPERCASE;
   font-weight: bold;
-  color: #fff;
+  color: #fff !important;
   -webkit-transition: background .3s ease;
           transition: background .3s ease; }
   .add-to-cart:hover, .like:hover {

@@ -20,16 +20,4 @@ describe('GiftFilterComponent', () => {
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  it('categoriesToShow defaults to: []', () => {
-    expect(component.categoriesToShow).toEqual([]);
-  });
-  it('brandsToShow defaults to: []', () => {
-    expect(component.brandsToShow).toEqual([]);
-  });
-  it('filteredBrandIds defaults to: []', () => {
-    expect(component.filteredBrandIds).toEqual([]);
-  });
-  it('filteredCategoryIds defaults to: []', () => {
-    expect(component.filteredCategoryIds).toEqual([]);
-  });
 });
