@@ -18,9 +18,10 @@ describe('RecievedGiftsComponent', () => {
     let fixture: ComponentFixture<RecievedGiftsComponent>;
     let order: Order;
     let recievedGifts: RecievedGift[];
-    const modalRef: MDBModalRef;
+    // const modalRef: MDBModalRef = {};
     let modalService: MDBModalService;
     beforeEach(() => {
+        const modalRef = { hide: () => ({}) };
         const ordersServiceStub = {
             updateOrder: arg1 => ({ subscribe: () => of(order) }),
             getGiftByKey: arg1 => ({ pipe: () => ({ subscribe: () => ({}) }) }),

@@ -38,6 +38,9 @@ export class AuthGuard implements CanActivate {
         if (state.url === RouterLinks.ORDERS) {
             user ? (res = true) : (res = false);
         }
+        if (state.url === RouterLinks.SIGN_IN && user) {
+            res = false;
+        }
         if (!res) {
             this.router.navigate([RouterLinks.NO_ACCESS]);
         }
