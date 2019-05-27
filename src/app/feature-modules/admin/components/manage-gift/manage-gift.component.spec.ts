@@ -38,12 +38,8 @@ describe('ManageGiftComponent', () => {
   });
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      const adminGiftServiceStub: AdminGiftService = fixture.debugElement.injector.get(
-        AdminGiftService
-      );
-      const formBuilderStub: FormBuilder = fixture.debugElement.injector.get(
-        FormBuilder
-      );
+      const adminGiftServiceStub: AdminGiftService = fixture.debugElement.injector.get(AdminGiftService);
+      const formBuilderStub: FormBuilder = fixture.debugElement.injector.get(FormBuilder);
       spyOn(adminGiftServiceStub, 'getCategories').and.callThrough();
       spyOn(adminGiftServiceStub, 'getBrands').and.callThrough();
       spyOn(formBuilderStub, 'group').and.callThrough();
@@ -55,9 +51,7 @@ describe('ManageGiftComponent', () => {
   });
   describe('onSubmit', () => {
     it('makes expected calls', () => {
-      const adminGiftServiceStub: AdminGiftService = fixture.debugElement.injector.get(
-        AdminGiftService
-      );
+      const adminGiftServiceStub: AdminGiftService = fixture.debugElement.injector.get(AdminGiftService);
       spyOn(adminGiftServiceStub, 'updateGift').and.callThrough();
       spyOn(adminGiftServiceStub, 'addGift').and.callThrough();
       component.onSubmit();
