@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GiftListComponent } from './gift-list.component';
+import { AdminGiftListComponent } from './gift-list.component';
 
-describe('GiftListComponent', () => {
-  let component: GiftListComponent;
-  let fixture: ComponentFixture<GiftListComponent>;
+describe('AdminGiftListComponent', () => {
+  let component: AdminGiftListComponent;
+  let fixture: ComponentFixture<AdminGiftListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GiftListComponent ]
+      declarations: [ AdminGiftListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GiftListComponent);
+    fixture = TestBed.createComponent(AdminGiftListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

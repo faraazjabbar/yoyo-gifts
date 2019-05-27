@@ -1,15 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UserListComponent } from './user-list.component';
-describe('UserListComponent', () => {
-  let component: UserListComponent;
-  let fixture: ComponentFixture<UserListComponent>;
+import { AdminUserListComponent } from './user-list.component';
+
+describe('AdminUserListComponent', () => {
+  let component: AdminUserListComponent;
+  let fixture: ComponentFixture<AdminUserListComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [UserListComponent]
+      declarations: [AdminUserListComponent]
     });
-    fixture = TestBed.createComponent(UserListComponent);
+    fixture = TestBed.createComponent(AdminUserListComponent);
     component = fixture.componentInstance;
   });
   it('can load instance', () => {

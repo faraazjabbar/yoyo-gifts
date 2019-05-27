@@ -64,18 +64,19 @@ export class GiftListComponent implements OnInit, OnDestroy {
         this.isAdmin = user && user.isAdmin;
 
         this.route.queryParams
-        .subscribe(params => {
-            if (params.categoryKey) {
-                this.categoryFilterValue = params.categoryKey;
-                this.fbService.getByKey('/categories', this.categoryFilterValue)
-                .subscribe((category: Category) => {
-                    this.categoryImage = category.categoryImage;
-                });
-            } else {
-                this.categoryFilterValue = null;
-                this.categoryImage = 'https://vinylbannersprinting.co.uk/wp-content/uploads/2016/04/sb09-RA-Demo.jpg';
-            }
-         });
+            .subscribe(params => {
+                if (params.categoryKey) {
+                    this.categoryFilterValue = params.categoryKey;
+                    this.fbService.getByKey('/categories', this.categoryFilterValue)
+                    .subscribe((category: Category) => {
+                        this.categoryImage = category.categoryImage;
+                    });
+                } else {
+                    this.categoryFilterValue = null;
+                    this.categoryImage = 'https://vinylbannersprinting.co.uk/wp-content/uploads/2016/04/sb09-RA-Demo.jpg';
+                }
+            });
+
         // From NGRX Gift store ...
         this.gifts$ = this.store.select(GiftStoreSelectors.getList);
 

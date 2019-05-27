@@ -17,7 +17,7 @@
         <a class="dropdown-item" (click)="changePoints(3000)">Under 3000</a>
       </div>
     </div>
-    <div *ngIf="pointsValue !== 0"><h6 class="filter-badge">< {{ pointsValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetPointsValue()"></i></h6></div>
+    <div *ngIf="pointsValue !== 0"><h6 class="filter-badge"> {{ pointsValue }} <i class=" ml-1 fas fa-times close-icon" (click)="resetPointsValue()"></i></h6></div>
   </div>
   <div class="col-1"></div>
   <div class="col-2 ml-4 pl-4">Sort By:</div>

@@ -9,6 +9,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         SectionComponent,
         ButtonComponent,
         TranslatePipe,
-        ReversePipe
+        ReversePipe,
+        BrandFilterPipe
     ],
     imports: [
         CommonModule,
@@ -36,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         FormsModule,
         SectionComponent,
-        TranslatePipe
+        TranslatePipe,
+        BrandFilterPipe
     ]
 })
 export class SharedModule {}
