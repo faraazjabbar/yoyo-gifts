@@ -1,1 +1,2 @@
 [0526/120437.578:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0527/132014.455:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
