@@ -11,9 +11,9 @@ import { SpinnerService } from 'src/app/core/spinner/spinner.service';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
@@ -111,5 +111,4 @@ ngOnDestroy() {
         }
     });
 }
-
 }

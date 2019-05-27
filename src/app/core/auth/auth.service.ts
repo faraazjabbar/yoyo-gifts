@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/shared/models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -33,17 +34,17 @@ export class AuthService {
 
     public addNewUser(user: User) {
         return this.http.post(
-        environment.firebaseConfig.databaseURL + '/users.json',
-        user
+            environment.firebaseConfig.databaseURL + '/users.json',
+            user
         );
     }
 
     public getUser(email) {
         return this.http.get(
-        environment.firebaseConfig.databaseURL +
-            '/users.json?orderBy="email"&equalTo="' +
-            email +
-            '"'
+            environment.firebaseConfig.databaseURL +
+                '/users.json?orderBy="email"&equalTo="' +
+                email +
+                '"'
         );
     }
 }

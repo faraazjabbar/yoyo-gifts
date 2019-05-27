@@ -8,38 +8,35 @@ import { ButtonComponent } from './ui-components/button/button.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from './pipes/translate.pipe';
-import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    RatingComponent,
-    GiftCardComponent,
-    SectionComponent,
-    ButtonComponent,
-    TranslatePipe,
-    ReversePipe,
-    BrandFilterPipe
-  ],
-  imports: [
-    CommonModule,
-    MDBBootstrapModule.forRoot(),
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  exports: [
-    MDBBootstrapModule,
-    GiftCardComponent,
-    ButtonComponent,
-    RatingComponent,
-    ReversePipe,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SectionComponent,
-    BrandFilterPipe,
-    TranslatePipe
-  ]
+    declarations: [
+        RatingComponent,
+        GiftCardComponent,
+        SectionComponent,
+        ButtonComponent,
+        TranslatePipe,
+        ReversePipe
+    ],
+    imports: [
+        CommonModule,
+        MDBBootstrapModule.forRoot(),
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    exports: [
+        MDBBootstrapModule,
+        GiftCardComponent,
+        ButtonComponent,
+        RatingComponent,
+        ReversePipe,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SectionComponent,
+        TranslatePipe
+    ]
 })
 export class SharedModule {}
