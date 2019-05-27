@@ -91,45 +91,45 @@ export class RecievedGiftsComponent implements OnInit, OnChanges, OnDestroy {
             ReviewGiftComponent,
             this.modalOptions
         );
-        this.reviewSubscription = this.modalRef.content.action.subscribe(
-            data => {
-                if (data) {
-                    gift.isReviewed = true;
-                    this.orderService
-                        .getGiftByKey(gift.key)
-                        .pipe(
-                            tap((g: Gift) => {
-                                g['key'] = gift.key;
-                                const reviews: Review[] = g.reviews || [];
-                                reviews.push(data);
-                                if (reviews.length) {
-                                    g.rating = Math.round(
-                                        reviews.reduce((a, b) => {
-                                            return a + b.userRating;
-                                        }, 0) / reviews.length
-                                    );
-                                }
-                                g['reviews'] = reviews;
-                                const giftApi = this.orderService.updateGift(g);
-                                const orderApi = this.orderService.updateOrder(
-                                    this.orders
-                                );
-                                const apiArray = [orderApi, giftApi];
-                                forkJoin(apiArray).subscribe(res => {
-                                    this.modalRef.hide();
-                                    this.alertService.success(
-                                        'Success',
-                                        'Review submitted successfully.'
-                                    );
-                                });
-                            })
-                        )
-                        .subscribe();
-                }
-            },
-            err => {
-                this.alertService.error(err);
-            }
-        );
+        // this.reviewSubscription = this.modalRef.content.action.subscribe(
+        //     data => {
+        //         if (data) {
+        //             gift.isReviewed = true;
+        //             this.orderService
+        //                 .getGiftByKey(gift.key)
+        //                 .pipe(
+        //                     tap((g: Gift) => {
+        //                         g['key'] = gift.key;
+        //                         const reviews: Review[] = g.reviews || [];
+        //                         reviews.push(data);
+        //                         if (reviews.length) {
+        //                             g.rating = Math.round(
+        //                                 reviews.reduce((a, b) => {
+        //                                     return a + b.userRating;
+        //                                 }, 0) / reviews.length
+        //                             );
+        //                         }
+        //                         g['reviews'] = reviews;
+        //                         const giftApi = this.orderService.updateGift(g);
+        //                         const orderApi = this.orderService.updateOrder(
+        //                             this.orders
+        //                         );
+        //                         const apiArray = [orderApi, giftApi];
+        //                         forkJoin(apiArray).subscribe(res => {
+        //                             this.modalRef.hide();
+        //                             this.alertService.success(
+        //                                 'Success',
+        //                                 'Review submitted successfully.'
+        //                             );
+        //                         });
+        //                     })
+        //                 )
+        //                 .subscribe();
+        //         }
+        //     },
+        //     err => {
+        //         this.alertService.error(err);
+        //     }
+        // );
     }
 }
