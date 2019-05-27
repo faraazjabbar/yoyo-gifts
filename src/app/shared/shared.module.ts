@@ -10,6 +10,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 
 @NgModule({
     declarations: [

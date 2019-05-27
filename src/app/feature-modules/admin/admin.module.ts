@@ -6,7 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ManageGiftComponent } from './components/manage-gift/manage-gift.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component'
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { AdminUserListComponent } from './components/admin-user-list/user-list.component';
 import { AdminGiftListComponent } from './components/admin-gift-list/gift-list.component';
 
@@ -18,18 +18,8 @@ import { AdminGiftListComponent } from './components/admin-gift-list/gift-list.c
         AdminUserListComponent,
         AdminGiftListComponent
     ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        SharedModule,
-        ScrollingModule
-    ],
-    entryComponents: [
-        ManageGiftComponent
-    ],
-    exports: [
-        ManageGiftComponent,
-        ConfirmationModalComponent
-    ]
+    imports: [CommonModule, AdminRoutingModule, SharedModule, ScrollingModule],
+    entryComponents: [ManageGiftComponent],
+    exports: [ManageGiftComponent, ConfirmationModalComponent]
 })
 export class AdminModule {}

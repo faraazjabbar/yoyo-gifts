@@ -26,18 +26,21 @@
     <links>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li [ngClass]="{ 'nav-item': true }">
+            <li [ngClass]="{ 'nav-item': true }" *ngIf="!user?.isAdmin" >
                 <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']" routerLinkActive="active">{{'home' | translate: translation}}</a>
+            </li>
+            <li [ngClass]="{ 'nav-item': true }" *ngIf="user && user?.isAdmin" >
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/admin']" routerLinkActive="active">{{'dashboard' | translate: translation}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect routerLink="/gifts">{{'gifts' | translate: translation}}</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect>{{'aboutUs' | translate: translation}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect>{{'contactUs' | translate: translation}}</a>
-            </li>
+            </li> -->
             <!-- Dropdown -->
             <li class="nav-item dropdown" dropdown>
                 <a
