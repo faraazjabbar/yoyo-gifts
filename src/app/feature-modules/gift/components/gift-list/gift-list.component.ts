@@ -165,4 +165,7 @@ export class GiftListComponent implements OnInit, OnDestroy {
             }
         });
     }
+    trackByFn(index: any) {
+        return index;
+      }
 }

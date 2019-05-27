@@ -17,7 +17,7 @@
   <h4 *ngIf="(gifts$ | async | search:searchValue).length === 0">No Results for: <strong>{{searchValue}}.</strong> See all <span class="red-custom font-weight-bold" (click)="resetSearch()">gifts</span> </h4> -->
 </div>
 <div class="projects-list d-flex flex-wrap fadeIn animated">
-    <div class="project" *ngFor="let gift of gifts$ | async | filter:brandFilterArray:pointsFilterValue:categoryFilterValue | sort:sortParam:sortDirection | search:searchValue">
+    <div class="project" *ngFor="let gift of gifts$ | async | filter:brandFilterArray:pointsFilterValue:categoryFilterValue | sort:sortParam:sortDirection | search:searchValue; trackBy: trackByFn">
       <app-gift-card
         [isAdmin]="isAdmin"
         [gift]="gift"
