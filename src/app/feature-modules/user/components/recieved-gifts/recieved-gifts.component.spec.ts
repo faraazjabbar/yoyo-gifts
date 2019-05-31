@@ -153,7 +153,7 @@ describe('RecievedGiftsComponent', () => {
             //     OrdersService
             // );
             modalService = fixture.debugElement.injector.get(MDBModalService);
-            spyOn(modalService, 'show').and.returnValue(modalRef);
+            //spyOn(modalService, 'show').and.returnValue(modalRef);
 
             component.modalRef = modalService.show(ReviewGiftComponent);
 
@@ -218,7 +218,7 @@ describe('RecievedGiftsComponent', () => {
             // spyOn(ordersServiceStub, 'getGiftByKey').and.callThrough();
             // spyOn(ordersServiceStub, 'updateGift').and.callThrough();
             // spyOn(ordersServiceStub, 'updateOrder').and.callThrough();
-            spyOn(modalService, 'show').and.returnValue(modalRef);
+            //spyOn(modalService, 'show').and.returnValue(modalRef);
             // spyOn(alertServiceStub, 'success').and.callThrough();
             // spyOn(alertServiceStub, 'error').and.callThrough();
             component.review(recievedGifts[0]);

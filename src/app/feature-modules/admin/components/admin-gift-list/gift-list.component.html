@@ -1,48 +1,44 @@
 <div class="container">
-<h3 class="mt-4 mb-4 font-weight-bold">Gifts List</h3>
-<!-- Table with panel -->
-<div class="card card-cascade narrower">
+    <h3 class="mt-4 mb-4 font-weight-bold">Gifts List</h3>
+    <!-- Table with panel -->
+    <div class="card card-cascade narrower">
+        <div class="px-4">
+            <div class="table-wrapper">
+                <cdk-virtual-scroll-viewport class="viewport" [itemSize]="89">
+                    <!--Table-->
+                    <table class="table table-hover mb-0">
 
-    <div class="px-4">
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                        <th class="th-lg"><a href="">Gift Image</a></th>
+                        <th class="th-lg"><a href="">Gift Name</a></th>
+                        <th class="th-lg"><a href="">Gift Cost</a></th>
+                        <th class="th-lg"><a href="">Gift Count</a></th>
+                        <th class="th-lg"><a href="">Actions</a></th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
 
-      <div class="table-wrapper">
-        <!--Table-->
-    <cdk-virtual-scroll-viewport class="viewport" [itemSize]="89">
-        <table class="table table-hover mb-0">
-
-          <!--Table head-->
-          <thead>
-            <tr>
-              <th class="th-lg"><a href="">Gift Image</a></th>
-              <th class="th-lg"><a href="">Gift Name</a></th>
-              <th class="th-lg"><a href="">Gift Cost</a></th>
-              <th class="th-lg"><a href="">Gift Count</a></th>
-              <th class="th-lg"><a href="">Actions</a></th>
-            </tr>
-          </thead>
-          <!--Table head-->
-
-          <!--Table body-->
-          <tbody>
-            <tr *cdkVirtualFor="let gift of gifts$ | async">
-                <td><img src="{{gift.imageLink}}" class="img-rounded" alt="{{gift.giftName}}" style="height: 50px"></td>
-                <td>{{gift.giftName}}</td>
-                <td>{{gift.cost}}</td>
-                <td>{{gift.count}}</td>
-                <td>
-                    <button class="btn btn-primary" (click)="gotoGiftDetails(gift.key)">View</button>
-                    <button class="btn btn-danger" (click)="deleteGift(gift.key)">Delete</button>
-                </td>
-            </tr>
-          </tbody>
-          <!--Table body-->
-        </table>
-        <!--Table-->
-    </cdk-virtual-scroll-viewport>
-      </div>
-
+                    <!--Table body-->
+                    <tbody>
+                        <tr *cdkVirtualFor="let gift of gifts$ | async">
+                            <td><img src="{{gift.imageLink}}" class="img-rounded" alt="{{gift.giftName}}" style="height: 50px"></td>
+                            <td>{{gift.giftName}}</td>
+                            <td>{{gift.cost}}</td>
+                            <td>{{gift.count}}</td>
+                            <td>
+                                <button class="btn btn-primary" (click)="gotoGiftDetails(gift.key)">View</button>
+                                <button class="btn btn-danger" (click)="deleteGift(gift.key)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                    </table>
+                    <!--Table-->
+                </cdk-virtual-scroll-viewport>
+            </div>
+        </div>
     </div>
-
-  </div>
-  <!-- Table with panel -->
+    <!-- Table with panel -->
 </div>

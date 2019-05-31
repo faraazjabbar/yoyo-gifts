@@ -9,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirmation-modal.component.scss']
 })
 export class ConfirmationModalComponent implements OnInit {
-  content: Gift;
-  constructor(public modalRef: MDBModalRef, private adminGiftService: AdminGiftService) { }
+    content: Gift;
+    constructor(
+        public modalRef: MDBModalRef,
+        private adminGiftService: AdminGiftService
+    ) {}
 
-  ngOnInit() {
-    console.log(this.content);
-    this.adminGiftService.deleteGift(this.content);
-  }
+    ngOnInit() {
+        console.log(this.content);
+        this.adminGiftService.deleteGift(this.content);
+    }
 
 }

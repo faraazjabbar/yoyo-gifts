@@ -1,4 +1,3 @@
-import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { SectionComponent } from './ui-components/section/section.component';
 import { RatingComponent } from './ui-components/rating/rating.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';

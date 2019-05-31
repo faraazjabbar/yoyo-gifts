@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tap, switchMap } from 'rxjs/operators';
-import { Subscription, Observable, of, forkJoin } from 'rxjs';
+import { Subscription, Observable, of, forkJoin, pipe } from 'rxjs';
 import { Gift } from 'src/app/shared/models/gift.model';
 import { ActivatedRoute, NavigationStart, NavigationEnd, Router } from '@angular/router';
 import { Order, SentGift, RecievedGift } from 'src/app/shared/models/orders.model';
@@ -13,6 +13,7 @@ import { EmailService } from 'src/app/core/services/email.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { TranslationService } from 'src/app/core/services/translation.service';
+
 
 @Component({
     selector: 'app-gift-details',
@@ -33,9 +34,9 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
     model: SendEmail;
 
     constructor(
-        private translationService: TranslationService,
         private router: Router,
         private route: ActivatedRoute,
+        private translationService: TranslationService,
         private alertService: AlertService,
         private emailService: EmailService,
         private orderService: OrdersService,
@@ -57,14 +58,6 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe();
-    }
-
-    private setUser() {
-        this.subscriptions.push(
-            this.authService.emitUserData.subscribe(data => {
-                this.user = data;
-            })
-        );
     }
 
     private updateOrdersAndGift() {
@@ -125,23 +118,15 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
                     recieverOrder.recieved.push(recievedGift);
 
                     if (data[0].key) {
-                        updateSenderOrderApi = this.orderService.updateOrder(
-                            senderOrder
-                        );
+                        updateSenderOrderApi = this.orderService.updateOrder(senderOrder);
                     } else {
-                        updateSenderOrderApi = this.orderService.addNewOrder(
-                            senderOrder
-                        );
+                        updateSenderOrderApi = this.orderService.addNewOrder(senderOrder);
                     }
 
                     if (data[1].key) {
-                        updateRecieverOrderApi = this.orderService.updateOrder(
-                            recieverOrder
-                        );
+                        updateRecieverOrderApi = this.orderService.updateOrder(recieverOrder);
                     } else {
-                        updateRecieverOrderApi = this.orderService.addNewOrder(
-                            recieverOrder
-                        );
+                        updateRecieverOrderApi = this.orderService.addNewOrder(recieverOrder);
                     }
 
                     this.gift.count++;
@@ -192,8 +177,13 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.translation$ = this.translationService.getTranslation('gift', 'gift-details', localStorage.getItem('chosenLang'));
+
         // Setting up the user ...
-        this.setUser();
+        this.authService.emitUserData
+            .pipe(
+                tap(data => this.user = data)
+            )
+            .subscribe()
 
         // Initializing the send email model ...
         this.resetSendModel();
@@ -202,9 +192,11 @@ export class GiftDetailsComponent implements OnInit, OnDestroy {
         this.user = JSON.parse(localStorage.getItem('user'));
 
         // Accessing gift data from resolver route guard ...
-        this.route.data.subscribe((data: { gift: Gift }) => {
-            this.gift = data.gift;
-        });
+        this.route.data
+            .pipe(
+                tap((data: { gift: Gift }) => this.gift = data.gift)
+            )
+            .subscribe();
     }
 
     ngOnDestroy() {

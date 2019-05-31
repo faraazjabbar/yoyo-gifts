@@ -13,9 +13,7 @@
                             <th class="th-lg"><a href="">User email</a></th>
                             <th class="th-lg"><a href="">User name</a></th>
                             <th class="th-lg"><a href="">User Points</a></th>
-                            <th class="th-lg">
-                                <a href="">Favorite Counts</a>
-                            </th>
+                            <th class="th-lg"><a href="">Favorite Counts</a></th>
                             <th class="th-lg"><a href="">Actions</a></th>
                         </tr>
                     </thead>
@@ -24,31 +22,16 @@
                     <!--Table body-->
                     <tbody>
                         <tr *ngFor="let user of users$ | async">
-                            <td>
-                                <img
-                                    src="{{ user.imageLink }}"
-                                    class="img-rounded"
-                                    alt="{{ user.userName }}"
-                                    style="height: 50px"
-                                />
-                            </td>
+                            <td><img src="{{ user.imageLink }}" class="img-rounded" alt="{{ user.userName }}" style="height: 50px" /></td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.userName }}</td>
                             <td>{{ user.points }}</td>
+                            <td>{{ user.userName }}</td>
+                            <td>{{ user.favoriteGifts?.length }}</td>
+                            <td>{{ user.favoriteGifts?.length }}</td>
                             <td>{{ user.favoriteGifts?.length }}</td>
                             <td>
-                                <button
-                                    class="btn btn-primary"
-                                    (click)="gotoUserProfile()"
-                                >
-                                    View
-                                </button>
-                                <button
-                                    class="btn btn-danger"
-                                    (click)="blockUser()"
-                                >
-                                    Block
-                                </button>
+                                <button class="btn btn-primary" (click)="gotoUserProfile()">View</button>
+                                <button class="btn btn-danger" (click)="blockUser()">Block</button>
                             </td>
                         </tr>
                     </tbody>
