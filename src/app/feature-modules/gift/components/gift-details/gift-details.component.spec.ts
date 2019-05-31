@@ -9,9 +9,10 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { FormsModule } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { User } from 'src/app/shared/models/user.model';
+import { User, SendEmail } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/feature-modules/user/services/user.service';
 import { Gift } from 'src/app/shared/models/gift.model';
+import { Order } from 'src/app/shared/models/orders.model';
 
 class MockRouter {
     public ne = new NavigationEnd(0, 'http://localhost:4200/login', 'http://localhost:4200/login');
@@ -42,6 +43,133 @@ fdescribe('GiftDetailsComponent', () => {
     let fixture: ComponentFixture<GiftDetailsComponent>;
     let routerStub, activatedRouteStub, authServiceTub, userServiceStub, ordersServiceStub;
     let router: Router;
+    let SENDEMAIL: SendEmail = {
+        name: "Samir Kumar Adak",
+        email: "adaksamir@gmail.com",
+        messege: "This is test send order content"
+    }
+
+    const USER: User = {
+        key: '-userabcdefghijklmnopqrstuvwxyz',
+        userId: 'firstuserid',
+        userName: 'Samir',
+        email: 'adaksamir@gmail.com',
+        isAdmin: false,
+        imageLink: '',
+        points: 10,
+        favoriteGifts:
+        [{
+            key: '-giftabcdefghijklmnopqrstuvwxyz',
+            giftName: 'Amazon Gift Bonus',
+            brandId: '-brandabcdefghijklmnopqrstuvwxyz',
+            brandName: 'Amazon',
+            categoryId: 'catabcdefghijklmnopqrstuvwxyz',
+            categoryName: 'Ecommerce',
+            imageLink: '',
+            cost: 1000,
+            discount: 10,
+            count: 10,
+            description: 'string',
+            rating: 4,
+            giftedCount: 5,
+            reviews: [{
+                userId: '-user1abcdefghijklmnopqrstuvwxyz',
+                userName: 'Samir1',
+                userImage: '',
+                userRating: 3,
+                userReview: 'review1',
+                reviewedOn: ''
+            },{
+                userId: 'user2abcdefghijklmnopqrstuvwxyz',
+                userName: 'Samir2',
+                userImage: '',
+                userRating: 4,
+                userReview: 'review2',
+                reviewedOn: ''
+            }]
+        },{
+            key: 'string',
+            giftName: 'string',
+            brandId: 'string',
+            brandName: 'string',
+            categoryId: 'string',
+            categoryName: 'string',
+            imageLink: 'string',
+            cost: 0,
+            discount: 0,
+            count: 0,
+            description: 'string',
+            rating: 0,
+            giftedCount: 0,
+            reviews: [{
+                userId: 'string',
+                userName: 'string',
+                userImage: 'string',
+                userRating: 0,
+                userReview: 'string',
+                reviewedOn: 'string'
+            },{
+                userId: 'string',
+                userName: 'string',
+                userImage: 'string',
+                userRating: 0,
+                userReview: 'string',
+                reviewedOn: 'string'
+            }]
+        }]
+    };
+
+    const GIFT: Gift = {
+        key: 'string',
+        giftName: 'string',
+        brandId: 'string',
+        brandName: 'string',
+        categoryId: 'string',
+        categoryName: 'string',
+        imageLink: 'string',
+        cost: 0,
+        discount: 0,
+        count: 0,
+        description: 'string',
+        rating: 0,
+        giftedCount: 0,
+        reviews: [{
+            userId: 'string',
+            userName: 'string',
+            userImage: 'string',
+            userRating: 0,
+            userReview: 'string',
+            reviewedOn: 'string'
+        },{
+            userId: 'string',
+            userName: 'string',
+            userImage: 'string',
+            userRating: 0,
+            userReview: 'string',
+            reviewedOn: 'string'
+        }]
+    };
+
+    const ORDER: Order = {
+        key: '-orderabcdefghijklmnopqrstuvwxyz',
+        email: 'adaksamir@gmail.com',
+        recieved: [{
+            senderEmail: USER.email,
+            senderName: USER.userName,
+            senderImage: USER.imageLink,
+            recievedOn: new Date().toDateString(),
+            isRedeemed: false,
+            isReviewed: false,
+            ...GIFT
+        }],
+        sent: [{
+            revieverEmail: 'adaksamir@gmail.com',
+            recieverName: 'samir kumar adak',
+            recieverImage: USER.imageLink,
+            sentOn: new Date().toDateString(),
+            ...GIFT
+        }]
+    };
 
     beforeEach(() => {
         // routerStub = jasmine.createSpyObj('events', ['routerEvent']);
@@ -50,109 +178,11 @@ fdescribe('GiftDetailsComponent', () => {
             events: of(new NavigationEnd(0, 'http://localhost:4200', 'http://localhost:4200'))
         };
         activatedRouteStub = {
-            data: of({
-                gift : <Gift>{
-                    key: 'string',
-                    giftName: 'string',
-                    brandId: 'string',
-                    brandName: 'string',
-                    categoryId: 'string',
-                    categoryName: 'string',
-                    imageLink: 'string',
-                    cost: 0,
-                    discount: 0,
-                    count: 0,
-                    description: 'string',
-                    rating: 0,
-                    giftedCount: 0,
-                    reviews: [{
-                        userId: 'string',
-                        userName: 'string',
-                        userImage: 'string',
-                        userRating: 0,
-                        userReview: 'string',
-                        reviewedOn: 'string'
-                    },{
-                        userId: 'string',
-                        userName: 'string',
-                        userImage: 'string',
-                        userRating: 0,
-                        userReview: 'string',
-                        reviewedOn: 'string'
-                    }]
-                }
+            data: of({gift : <Gift>{...GIFT}
             })
         };
         authServiceTub = {
-            emitUserData: of(<User>{
-                key: '-userabcdefghijklmnopqrstuvwxyz',
-                userId: 'firstuserid',
-                userName: 'Samir',
-                email: 'adaksamir@gmail.com',
-                isAdmin: false,
-                imageLink: '',
-                points: 10,
-                favoriteGifts:
-                [{
-                    key: '-giftabcdefghijklmnopqrstuvwxyz',
-                    giftName: 'Amazon Gift Bonus',
-                    brandId: '-brandabcdefghijklmnopqrstuvwxyz',
-                    brandName: 'Amazon',
-                    categoryId: 'catabcdefghijklmnopqrstuvwxyz',
-                    categoryName: 'Ecommerce',
-                    imageLink: '',
-                    cost: 1000,
-                    discount: 10,
-                    count: 10,
-                    description: 'string',
-                    rating: 4,
-                    giftedCount: 5,
-                    reviews: [{
-                        userId: '-user1abcdefghijklmnopqrstuvwxyz',
-                        userName: 'Samir1',
-                        userImage: '',
-                        userRating: 3,
-                        userReview: 'review1',
-                        reviewedOn: ''
-                    },{
-                        userId: 'user2abcdefghijklmnopqrstuvwxyz',
-                        userName: 'Samir2',
-                        userImage: '',
-                        userRating: 4,
-                        userReview: 'review2',
-                        reviewedOn: ''
-                    }]
-                },{
-                    key: 'string',
-                    giftName: 'string',
-                    brandId: 'string',
-                    brandName: 'string',
-                    categoryId: 'string',
-                    categoryName: 'string',
-                    imageLink: 'string',
-                    cost: 0,
-                    discount: 0,
-                    count: 0,
-                    description: 'string',
-                    rating: 0,
-                    giftedCount: 0,
-                    reviews: [{
-                        userId: 'string',
-                        userName: 'string',
-                        userImage: 'string',
-                        userRating: 0,
-                        userReview: 'string',
-                        reviewedOn: 'string'
-                    },{
-                        userId: 'string',
-                        userName: 'string',
-                        userImage: 'string',
-                        userRating: 0,
-                        userReview: 'string',
-                        reviewedOn: 'string'
-                    }]
-                }]
-            })
+            emitUserData: of(<User>{...USER})
         };
 
         ordersServiceStub = jasmine.createSpyObj(['getOrders', 'updateOrder', 'addNewOrder', 'updateGift']);
@@ -187,19 +217,22 @@ fdescribe('GiftDetailsComponent', () => {
     });
 
     it('should make expected router actiated data', () => {
-        component.ngOnInit();
+        component.user = USER;
+        component.gift = GIFT;
         expect(activatedRouteStub.data).toBeDefined();
     });
 
     describe('onSubmit', () => {
         it('makes expected add update order', () => {
-            const orderServiceStub: OrdersService = fixture.debugElement.injector.get(OrdersService);
-            // spyOn(orderServiceStub, 'getOrders').and.callThrough();
-            // spyOn(orderServiceStub, 'addNewOrder').and.callThrough();
-            // spyOn(orderServiceStub, 'updateOrder').and.callThrough();
+            component.user = USER;
+            component.gift = GIFT;
+            component.model = SENDEMAIL;
+            ordersServiceStub.getOrders.and.returnValue(of({...ORDER}));
+            ordersServiceStub.addNewOrder.and.returnValue(of({...GIFT}));
+            ordersServiceStub.updateOrder.and.returnValue(of({...GIFT}));
             component.onSubmit();
-            expect(orderServiceStub.addNewOrder).toHaveBeenCalled();
-            expect(orderServiceStub.updateOrder).toHaveBeenCalled();
+            expect(ordersServiceStub.addNewOrder).toHaveBeenCalled();
+            expect(ordersServiceStub.updateOrder).toHaveBeenCalled();
         });
     });
 });
