@@ -31,7 +31,7 @@
     "@ngrx/store-devtools": "^7.4.0",
     "@types/chart.js": "^2.7.40",
     "angular-bootstrap-md": "^7.5.2",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "emailjs-com": "^2.3.2",
